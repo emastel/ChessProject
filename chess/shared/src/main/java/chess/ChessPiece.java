@@ -10,12 +10,14 @@ import java.util.Collection;
  */
 public class ChessPiece {
 
-    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
-    }
+    private:
+    ChessGame.TeamColor thisColor;
+    ChessPiece.PieceType thisType;
 
-    /**
-     * The various different chess piece options
-     */
+    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+        this.thisColor = pieceColor;
+        this.thisType = type;
+    }
     public enum PieceType {
         KING,
         QUEEN,
@@ -24,19 +26,15 @@ public class ChessPiece {
         ROOK,
         PAWN
     }
-
-    /**
-     * @return Which team this chess piece belongs to
-     */
     public ChessGame.TeamColor getTeamColor() {
-        throw new RuntimeException("Not implemented");
-    }
 
-    /**
-     * @return which type of chess piece this piece is
-     */
+        return thisColor;
+
+    }
     public PieceType getPieceType() {
-        throw new RuntimeException("Not implemented");
+
+        return thisType;
+
     }
 
     /**
@@ -47,6 +45,23 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        throw new RuntimeException("Not implemented");
+        if(thisType == ChessPiece.PieceType.KING) {
+
+        }
+        else if(thisType == ChessPiece.PieceType.QUEEN) {
+
+        }
+        else if(thisType == ChessPiece.PieceType.BISHOP) {
+
+        }
+        else if(thisType == ChessPiece.PieceType.KNIGHT) {
+
+        }
+        else if(thisType == ChessPiece.PieceType.ROOK) {
+
+        }
+        else if(thisType == ChessPiece.PieceType.PAWN) {
+
+        }
     }
 }
