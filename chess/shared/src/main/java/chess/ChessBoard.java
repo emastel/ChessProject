@@ -8,6 +8,8 @@ package chess;
  */
 public class ChessBoard {
 
+    private:
+
     public ChessBoard() {
         
     }
@@ -40,4 +42,5 @@ public class ChessBoard {
     public void resetBoard() {
         throw new RuntimeException("Not implemented");
     }
+
 }
