@@ -98,21 +98,37 @@ public class PieceMovesCalculator {
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
         /* Up */
-        validMoves.add(makeNewMove(tempRow+1,tempColumn, null));
+        if(tempRow+1<8&&(!isTaken(tempRow+1,tempColumn) || enemyPresent(tempRow+1,tempColumn))) {
+            validMoves.add(makeNewMove(tempRow+1,tempColumn, null));
+        }
         /* Left diagonal up */
-        validMoves.add(makeNewMove(tempRow-1,tempColumn-1, null));
+        if(tempRow-1>1&&(!isTaken(tempRow-1,tempColumn-1) || enemyPresent(tempRow-1,tempColumn-1))) {
+            validMoves.add(makeNewMove(tempRow - 1, tempColumn - 1, null));
+        }
         /* Right diagonal up */
-        validMoves.add(makeNewMove(tempRow-1,tempColumn+1, null));
+        if((tempRow-1>1&&tempColumn+1<8)&&(!isTaken(tempRow-1,tempColumn+1) || enemyPresent(tempRow-1,tempColumn+1))) {
+            validMoves.add(makeNewMove(tempRow - 1, tempColumn + 1, null));
+        }
         /* Left */
-        validMoves.add(makeNewMove(tempRow,tempColumn-1, null));
+        if(tempColumn-1>1&&(!isTaken(tempRow,tempColumn-1) || enemyPresent(tempRow,tempColumn-1))) {
+            validMoves.add(makeNewMove(tempRow, tempColumn - 1, null));
+        }
         /* Right */
-        validMoves.add(makeNewMove(tempRow,tempColumn+1, null));
+        if(tempColumn+1<8&&(!isTaken(tempRow,tempColumn+1) || enemyPresent(tempRow,tempColumn+1))) {
+            validMoves.add(makeNewMove(tempRow, tempColumn + 1, null));
+        }
         /* Down */
-        validMoves.add(makeNewMove(tempRow-1,tempColumn, null));
+        if(tempRow-1>1&&(!isTaken(tempRow-1,tempColumn) || enemyPresent(tempRow-1,tempColumn))) {
+            validMoves.add(makeNewMove(tempRow - 1, tempColumn, null));
+        }
         /* Left diagonal down */
-        validMoves.add(makeNewMove(tempRow+1,tempColumn-1, null));
+        if((tempColumn-1>1&&tempRow+1<8)&&(!isTaken(tempRow+1,tempColumn-1) || enemyPresent(tempRow+1,tempColumn-1))) {
+            validMoves.add(makeNewMove(tempRow + 1, tempColumn - 1, null));
+        }
         /* Right diagonal down */
-        validMoves.add(makeNewMove(tempRow+1,tempColumn+1, null));
+        if((tempRow+1<8&&tempColumn+1<8)&&(!isTaken(tempRow+1,tempColumn+1) || enemyPresent(tempRow+1,tempColumn+1))) {
+            validMoves.add(makeNewMove(tempRow + 1, tempColumn + 1, null));
+        }
         return validMoves;
     }
 }
