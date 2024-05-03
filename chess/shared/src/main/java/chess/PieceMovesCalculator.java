@@ -11,20 +11,27 @@ public class PieceMovesCalculator {
         thisBoard = board;
         thisPosition = position;
     }
-    public ChessMove makeNewMove(int row, int col, ChessPiece.PieceType type)
+    private ChessMove makeNewMove(int row, int col, ChessPiece.PieceType type)
     {
         ChessPosition newPosition = new ChessPosition(row,col);
-        if(thisBoard.getPiece(newPosition) == null)
-        {
-            new ChessMove(thisPosition,newPosition,type);
-            if(type != ChessPiece.PieceType.PAWN)
-            {
-                return new ChessMove(thisPosition,newPosition,type);
-            }
-        }
-        return null;
+        new ChessMove(thisPosition,newPosition,type);
+        return new ChessMove(thisPosition,newPosition,type);
     }
-    //ToDo: check if enemy piece is present
+    private boolean enemyPresent(int row, int col)
+    {
+        ChessPosition newPosition = new ChessPosition(row,col);
+        if(thisBoard.getPiece(newPosition) != null)
+        {
+            ChessPiece newPiece = thisBoard.getPiece(newPosition);
+            ChessPiece thisPiece = thisBoard.getPiece(thisPosition);
+            return newPiece.getTeamColor() != thisPiece.getTeamColor();
+        }
+        return false;
+    }
+    private boolean isTaken(int row, int col) {
+        ChessPosition newPosition = new ChessPosition(row,col);
+        return thisBoard.getPiece(newPosition) != null;
+    }
     public Collection<ChessMove> BishopMoves()
     {
         ArrayList<ChessMove> validMoves = new ArrayList<>();
@@ -34,7 +41,13 @@ public class PieceMovesCalculator {
         while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
             ++tempRow;
             ++tempColumn;
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)) {
+                break;
+            }
         }
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
@@ -42,7 +55,13 @@ public class PieceMovesCalculator {
         while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
             --tempRow;
             ++tempColumn;
-            validMoves.add(makeNewMove(tempRow,tempColumn,null));
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)) {
+                break;
+            }
         }
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
@@ -50,7 +69,13 @@ public class PieceMovesCalculator {
         while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
             --tempRow;
             --tempColumn;
-            validMoves.add(makeNewMove(tempRow,tempColumn,null));
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)) {
+                break;
+            }
         }
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
@@ -58,7 +83,13 @@ public class PieceMovesCalculator {
         while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
             ++tempRow;
             --tempColumn;
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)) {
+                break;
+            }
         }
         return validMoves;
     }
