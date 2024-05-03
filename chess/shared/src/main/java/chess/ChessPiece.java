@@ -14,8 +14,8 @@ public class ChessPiece {
     private ChessPiece.PieceType thisType;
 
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
-        this.thisColor = pieceColor;
-        this.thisType = type;
+        thisColor = pieceColor;
+        thisType = type;
     }
     public enum PieceType {
         KING,
@@ -26,14 +26,10 @@ public class ChessPiece {
         PAWN
     }
     public ChessGame.TeamColor getTeamColor() {
-
         return thisColor;
-
     }
     public PieceType getPieceType() {
-
         return thisType;
-
     }
 
     /**
@@ -44,23 +40,14 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        if(thisType == ChessPiece.PieceType.KING) {
-
+//        throw new RuntimeException("Not implemented");
+        PieceMovesCalculator moveType = new PieceMovesCalculator(board, myPosition);
+        if(thisType == PieceType.BISHOP) {
+            return moveType.BishopMoves();
         }
-        else if(thisType == ChessPiece.PieceType.QUEEN) {
-
+        else if(thisType == PieceType.KING) {
+            return moveType.KingMoves();
         }
-        else if(thisType == ChessPiece.PieceType.BISHOP) {
-
-        }
-        else if(thisType == ChessPiece.PieceType.KNIGHT) {
-
-        }
-        else if(thisType == ChessPiece.PieceType.ROOK) {
-
-        }
-        else if(thisType == ChessPiece.PieceType.PAWN) {
-
-        }
+        return null;
     }
 }
