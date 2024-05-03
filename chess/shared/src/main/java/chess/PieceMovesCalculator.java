@@ -131,4 +131,100 @@ public class PieceMovesCalculator {
         }
         return validMoves;
     }
+    public Collection<ChessMove> KnightMoves(){
+        ArrayList<ChessMove> validMoves = new ArrayList<>();
+        int tempRow = thisPosition.getRow();
+        int tempColumn = thisPosition.getColumn();
+        /* Up Left Highest */
+        tempRow += 2;
+        tempColumn -= 1;
+        if((tempRow<8&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Up Left Lowest */
+        tempRow += 1;
+        tempColumn -= 2;
+        if((tempRow<8&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Up Right Highest */
+        tempRow += 2;
+        tempColumn += 1;
+        if((tempRow<8&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Up Right Lowest */
+        tempRow += 1;
+        tempColumn += 2;
+        if((tempRow<8&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Left Lowest */
+        tempRow -= 2;
+        tempColumn -= 1;
+        if((tempRow>1&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Left Highest */
+        tempRow -= 1;
+        tempColumn -= 2;
+        if((tempRow>1&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Right Lowest */
+        tempRow -= 2;
+        tempColumn += 1;
+        if((tempRow>1&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Right Highest */
+        tempRow -= 1;
+        tempColumn += 2;
+        if((tempRow>1&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        return validMoves;
+    }
+    public Collection<ChessMove> PawnMoves(){
+        ArrayList<ChessMove> validMoves = new ArrayList<>();
+        int tempRow = thisPosition.getRow();
+        int tempColumn = thisPosition.getColumn();
+        /* Up One */
+        tempRow += 1;
+        if((tempRow<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        tempRow = thisPosition.getRow();
+        /* Up Two */
+        tempRow += 2;
+        if((tempRow<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        {
+            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        }
+        return validMoves;
+    }
+
 }
