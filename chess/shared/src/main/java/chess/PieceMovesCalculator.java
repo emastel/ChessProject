@@ -138,7 +138,7 @@ public class PieceMovesCalculator {
         /* Up Left Highest */
         tempRow += 2;
         tempColumn -= 1;
-        if((tempRow<8&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -147,7 +147,7 @@ public class PieceMovesCalculator {
         /* Up Left Lowest */
         tempRow += 1;
         tempColumn -= 2;
-        if((tempRow<8&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -156,7 +156,7 @@ public class PieceMovesCalculator {
         /* Up Right Highest */
         tempRow += 2;
         tempColumn += 1;
-        if((tempRow<8&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -165,7 +165,7 @@ public class PieceMovesCalculator {
         /* Up Right Lowest */
         tempRow += 1;
         tempColumn += 2;
-        if((tempRow<8&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -174,7 +174,7 @@ public class PieceMovesCalculator {
         /* Down Left Lowest */
         tempRow -= 2;
         tempColumn -= 1;
-        if((tempRow>1&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow>=1&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -183,7 +183,7 @@ public class PieceMovesCalculator {
         /* Down Left Highest */
         tempRow -= 1;
         tempColumn -= 2;
-        if((tempRow>1&&tempColumn>1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow>=1&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -192,7 +192,7 @@ public class PieceMovesCalculator {
         /* Down Right Lowest */
         tempRow -= 2;
         tempColumn += 1;
-        if((tempRow>1&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -201,7 +201,7 @@ public class PieceMovesCalculator {
         /* Down Right Highest */
         tempRow -= 1;
         tempColumn += 2;
-        if((tempRow>1&&tempColumn<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
