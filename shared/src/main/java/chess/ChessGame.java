@@ -43,18 +43,18 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-//        Collection<ChessMove> validMoves = validMoves(move.getStartPosition());
-//        if (!validMoves.isEmpty()) {
-//            for (Iterator<ChessMove> it = validMoves.iterator(); it.hasNext();) {
-//                if(it.next().getEndPosition().equals(move.getEndPosition())) {
-//                    if()
-//                }
-//                throw new InvalidMoveException();
-//            }
-//        }
-//        else {
-//            throw new InvalidMoveException();
-//        }
+        Collection<ChessMove> validMoves = validMoves(move.getStartPosition());
+        if (!validMoves.isEmpty()) {
+            for (Iterator<ChessMove> it = validMoves.iterator(); it.hasNext();) {
+                if(it.next().getEndPosition().equals(move.getEndPosition())) {
+                    if()
+                }
+                throw new InvalidMoveException();
+            }
+        }
+        else {
+            throw new InvalidMoveException();
+        }
     }
 
     /**

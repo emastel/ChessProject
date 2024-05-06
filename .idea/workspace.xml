@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="file cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
-    </list>
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Gets and setters implemented" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702756436549</updated>
       <workItem from="1715015332298" duration="275000" />
-      <workItem from="1715021981518" duration="1460000" />
+      <workItem from="1715021981518" duration="2198000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -118,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715015416796</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Gets and setters implemented">
+      <option name="closed" value="true" />
+      <created>1715025803143</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715025803143</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,7 +133,8 @@
     <MESSAGE value="add(client) dependency on server for running tests." />
     <MESSAGE value="fix(shared) maven resource reference" />
     <MESSAGE value="file cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="file cleanup" />
+    <MESSAGE value="Gets and setters implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gets and setters implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
