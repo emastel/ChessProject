@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * For a class that can manage a chess game, making moves on a board
@@ -10,43 +11,29 @@ import java.util.Collection;
  */
 public class ChessGame {
 
+    private ChessBoard thisBoard;
+    private TeamColor currentTeam;
+
     public ChessGame() {
 
     }
 
-    /**
-     * @return Which team's turn it is
-     */
     public TeamColor getTeamTurn() {
-        throw new RuntimeException("Not implemented");
+        return currentTeam;
     }
 
-    /**
-     * Set's which teams turn it is
-     *
-     * @param team the team whose turn it is
-     */
     public void setTeamTurn(TeamColor team) {
-        throw new RuntimeException("Not implemented");
+        currentTeam = team;
     }
 
-    /**
-     * Enum identifying the 2 possible teams in a chess game
-     */
     public enum TeamColor {
         WHITE,
         BLACK
     }
 
-    /**
-     * Gets a valid moves for a piece at the given location
-     *
-     * @param startPosition the piece to get valid moves for
-     * @return Set of valid moves for requested piece, or null if no piece at
-     * startPosition
-     */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        ChessPiece newPiece = thisBoard.getPiece(startPosition);
+        return newPiece.pieceMoves(thisBoard, startPosition);
     }
 
     /**
@@ -56,7 +43,18 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+//        Collection<ChessMove> validMoves = validMoves(move.getStartPosition());
+//        if (!validMoves.isEmpty()) {
+//            for (Iterator<ChessMove> it = validMoves.iterator(); it.hasNext();) {
+//                if(it.next().getEndPosition().equals(move.getEndPosition())) {
+//                    if()
+//                }
+//                throw new InvalidMoveException();
+//            }
+//        }
+//        else {
+//            throw new InvalidMoveException();
+//        }
     }
 
     /**
@@ -90,21 +88,11 @@ public class ChessGame {
         throw new RuntimeException("Not implemented");
     }
 
-    /**
-     * Sets this game's chessboard with a given board
-     *
-     * @param board the new board to use
-     */
     public void setBoard(ChessBoard board) {
-        throw new RuntimeException("Not implemented");
+        thisBoard = board;
     }
 
-    /**
-     * Gets the current chessboard
-     *
-     * @return the chessboard
-     */
     public ChessBoard getBoard() {
-        throw new RuntimeException("Not implemented");
+        return thisBoard;
     }
 }
