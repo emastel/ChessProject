@@ -330,6 +330,71 @@ public class PieceMovesCalculator {
     }
     public Collection<ChessMove> RookMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
+        int tempRow = thisPosition.getRow();
+        int tempColumn = thisPosition.getColumn();
+        /* Up */
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            ++tempRow;
+            if(tempRow>8 || tempRow<1)
+            {
+                break;
+            }
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
+                break;
+            }
+        }
+        tempRow = thisPosition.getRow();
+        /* Down */
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            --tempRow;
+            if(tempRow>8 || tempRow<1)
+            {
+                break;
+            }
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
+                break;
+            }
+        }
+        tempRow = thisPosition.getRow();
+        /* Right */
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            ++tempColumn;
+            if(tempColumn>8 || tempColumn<1)
+            {
+                break;
+            }
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
+                break;
+            }
+        }
+        tempColumn = thisPosition.getColumn();
+        /* Left */
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            --tempColumn;
+            if(tempColumn>8 || tempColumn<1)
+            {
+                break;
+            }
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
+                break;
+            }
+        }
         return validMoves;
     }
 
