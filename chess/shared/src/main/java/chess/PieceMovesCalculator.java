@@ -231,7 +231,7 @@ public class PieceMovesCalculator {
             }
             /* Diagonal Right */
             tempColumn += 1;
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(tempColumn<=8&&enemyPresent(tempRow,tempColumn)) {
                 if(tempRow==8) {
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
@@ -245,7 +245,7 @@ public class PieceMovesCalculator {
             tempColumn = thisPosition.getColumn();
             /* Diagonal Left */
             tempColumn -= 1;
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(tempColumn>=1&&enemyPresent(tempRow,tempColumn)) {
                 if(tempRow==8) {
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
@@ -286,7 +286,7 @@ public class PieceMovesCalculator {
             }
             /* Diagonal Right */
             tempColumn += 1;
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(tempColumn<=8&&enemyPresent(tempRow,tempColumn)) {
                 if(tempRow==1) {
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
@@ -300,7 +300,7 @@ public class PieceMovesCalculator {
             tempColumn = thisPosition.getColumn();
             /* Diagonal Left */
             tempColumn -= 1;
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(tempColumn>=1&&enemyPresent(tempRow,tempColumn)) {
                 if(tempRow==1) {
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
                     validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
