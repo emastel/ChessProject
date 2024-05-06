@@ -36,7 +36,11 @@ public class ChessGame {
     }
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         ChessPiece newPiece = thisBoard.getPiece(startPosition);
-        return newPiece.pieceMoves(thisBoard, startPosition);
+        Collection<ChessMove> tempMoves = newPiece.pieceMoves(thisBoard, startPosition);
+        Collection<ChessMove> validMoves = new ArrayList<>();
+        for(ChessMove move : tempMoves) {
+
+        }
     }
 
     /**
@@ -46,6 +50,10 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        ChessPiece tempPiece = thisBoard.getPiece(move.getStartPosition());
+        if(tempPiece == null || tempPiece.getTeamColor() != currentTeam) {
+            throw new InvalidMoveException();
+        }
         Collection<ChessMove> validMoves = validMoves(move.getStartPosition());
         if (!validMoves.isEmpty()) {
             for (ChessMove validMove : validMoves) {
@@ -54,10 +62,13 @@ public class ChessGame {
                         throw new InvalidMoveException();
                     }
                     else {
-
+                        thisBoard.removePiece(move.getStartPosition());
+                        thisBoard.addPiece(move.getEndPosition(),tempPiece);
                     }
                 }
-                throw new InvalidMoveException();
+                else {
+                    throw new InvalidMoveException();
+                }
             }
         }
         else {
