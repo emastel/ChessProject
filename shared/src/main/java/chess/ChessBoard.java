@@ -1,14 +1,10 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
-/**
- * A chessboard that can hold and rearrange chess pieces.
- * <p>
- * Note: You can add to this class, but you may not alter
- * signature of the existing methods.
- */
 public class ChessBoard {
 
     private ChessPiece[][] squares = new ChessPiece[8][8];
@@ -17,15 +13,24 @@ public class ChessBoard {
     public void addPiece(ChessPosition position, ChessPiece piece) {
         squares[position.getRow()-1][position.getColumn()-1] = piece;
     }
-
     public ChessPiece getPiece(ChessPosition position) {
         return squares[position.getRow()-1][position.getColumn()-1];
     }
-
-    /**
-     * Sets the board to the default starting board
-     * (How the game of chess normally starts)
-     */
+    public Collection<ChessPosition> getTeamPieces(ChessGame.TeamColor teamColor) {
+        ArrayList<ChessPosition> teamPieces = new ArrayList<>();
+        if(teamColor == ChessGame.TeamColor.BLACK) {
+            for(int i=0; i<8; i++) {
+                for(int j=0; j<8; j++) {
+                    ChessPiece tempPiece = squares[i][j];
+                    if(tempPiece != null && tempPiece.getTeamColor() == teamColor) {
+                        ChessPosition tempPosition = new ChessPosition(i, j);
+                        teamPieces.add(tempPosition);
+                    }
+                }
+            }
+        }
+        return teamPieces;
+    }
     public void resetBoard() {
         /* White Rook */
         ChessPiece newPiece = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.ROOK);

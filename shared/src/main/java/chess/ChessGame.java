@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -14,23 +15,25 @@ public class ChessGame {
     private ChessBoard thisBoard;
     private TeamColor currentTeam;
 
-    public ChessGame() {
-
-    }
-
+    public ChessGame() {}
     public TeamColor getTeamTurn() {
         return currentTeam;
     }
-
     public void setTeamTurn(TeamColor team) {
         currentTeam = team;
     }
-
     public enum TeamColor {
         WHITE,
         BLACK
     }
-
+    private TeamColor getOppositeTeam() {
+        if(currentTeam == TeamColor.BLACK) {
+            return TeamColor.WHITE;
+        }
+        else{
+            return TeamColor.BLACK;
+        }
+    }
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         ChessPiece newPiece = thisBoard.getPiece(startPosition);
         return newPiece.pieceMoves(thisBoard, startPosition);
@@ -45,9 +48,14 @@ public class ChessGame {
     public void makeMove(ChessMove move) throws InvalidMoveException {
         Collection<ChessMove> validMoves = validMoves(move.getStartPosition());
         if (!validMoves.isEmpty()) {
-            for (Iterator<ChessMove> it = validMoves.iterator(); it.hasNext();) {
-                if(it.next().getEndPosition().equals(move.getEndPosition())) {
-                    if()
+            for (ChessMove validMove : validMoves) {
+                if (validMove.getEndPosition().equals(move.getEndPosition())) {
+                    if(isInCheck(getOppositeTeam())) {
+                        throw new InvalidMoveException();
+                    }
+                    else {
+
+                    }
                 }
                 throw new InvalidMoveException();
             }
@@ -56,7 +64,16 @@ public class ChessGame {
             throw new InvalidMoveException();
         }
     }
-
+    private Collection<ChessMove> getTeamMoves(TeamColor teamColor) {
+        Collection<ChessPosition> teamPieces = thisBoard.getTeamPieces(teamColor);
+        Collection<ChessMove> allMoves = new ArrayList<>();
+        for (ChessPosition tempPosition : teamPieces) {
+            ChessPiece tempPiece = thisBoard.getPiece(tempPosition);
+            Collection<ChessMove> tempMoves = tempPiece.pieceMoves(thisBoard, tempPosition);
+            allMoves.addAll(tempMoves);
+        }
+        return allMoves;
+    }
     /**
      * Determines if the given team is in check
      *
@@ -64,7 +81,16 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        Collection<ChessMove> allMoves = new ArrayList<>();
+        allMoves = getTeamMoves(getOppositeTeam());
+        for (ChessMove tempMove : allMoves) {
+            ChessPosition tempPosition = tempMove.getEndPosition();
+            ChessPiece tempPiece = thisBoard.getPiece(tempPosition);
+            if(tempPiece.getPieceType() == ChessPiece.PieceType.KING) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

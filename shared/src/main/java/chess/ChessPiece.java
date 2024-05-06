@@ -32,16 +32,7 @@ public class ChessPiece {
     public PieceType getPieceType() {
         return thisType;
     }
-
-    /**
-     * Calculates all the positions a chess piece can move to
-     * Does not take into account moves that are illegal due to leaving the king in
-     * danger
-     *
-     * @return Collection of valid moves
-     */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-//        throw new RuntimeException("Not implemented");
         PieceMovesCalculator moveType = new PieceMovesCalculator(board, myPosition);
         if(thisType == PieceType.BISHOP) {
             return moveType.BishopMoves();
