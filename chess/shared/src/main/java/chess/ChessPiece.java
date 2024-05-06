@@ -48,13 +48,17 @@ public class ChessPiece {
         else if(thisType == PieceType.KING) {
             return moveType.KingMoves();
         }
-        else if(thisType == PieceType.KNIGHT)
-        {
+        else if(thisType == PieceType.KNIGHT) {
             return moveType.KnightMoves();
         }
-        else if(thisType == PieceType.PAWN)
-        {
+        else if(thisType == PieceType.PAWN) {
             return moveType.PawnMoves();
+        }
+        else if(thisType == PieceType.ROOK) {
+            return moveType.RookMoves();
+        }
+        else if(thisType == PieceType.QUEEN) {
+            return moveType.QueenMoves();
         }
         return null;
     }

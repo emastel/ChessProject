@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -32,7 +34,24 @@ public class ChessMove {
      * @return Type of piece to promote a pawn to, or null if no promotion
      */
     public ChessPiece.PieceType getPromotionPiece() {
-        throw new RuntimeException("Not implemented");
+        if(thisType == ChessPiece.PieceType.QUEEN) {
+            return ChessPiece.PieceType.QUEEN;
+        }
+        else if(thisType == ChessPiece.PieceType.KING) {
+            return ChessPiece.PieceType.KING;
+        }
+        else if(thisType == ChessPiece.PieceType.BISHOP) {
+            return ChessPiece.PieceType.BISHOP;
+        }
+        else if(thisType == ChessPiece.PieceType.KNIGHT) {
+            return ChessPiece.PieceType.KNIGHT;
+        }
+        else if(thisType == ChessPiece.PieceType.ROOK) {
+            return ChessPiece.PieceType.ROOK;
+        }
+        else {
+            return null;
+        }
     }
 
     @Override

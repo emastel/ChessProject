@@ -211,19 +211,125 @@ public class PieceMovesCalculator {
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
-        /* Up One */
-        tempRow += 1;
-        if((tempRow<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        ChessPiece newPiece = thisBoard.getPiece(thisPosition);
+        /* White pieces */
+        if(newPiece.getTeamColor() == ChessGame.TeamColor.WHITE)
         {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            /* Up One */
+            tempRow += 1;
+            if((tempRow<=8)&&(!isTaken(tempRow,tempColumn) && !enemyPresent(tempRow,tempColumn)))
+            {
+                if(tempRow==8) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
+            /* Diagonal Right */
+            tempColumn += 1;
+            if(enemyPresent(tempRow,tempColumn)) {
+                if(tempRow==8) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
+            tempColumn = thisPosition.getColumn();
+            /* Diagonal Left */
+            tempColumn -= 1;
+            if(enemyPresent(tempRow,tempColumn)) {
+                if(tempRow==8) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
+            tempColumn = thisPosition.getColumn();
+            tempRow = thisPosition.getRow();
+            if(tempRow == 2) {
+                /* Up Two */
+                tempRow += 2;
+                if((!isTaken(tempRow,tempColumn)&&!isTaken(tempRow-1,tempColumn)) && !enemyPresent(tempRow,tempColumn))
+                {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
         }
-        tempRow = thisPosition.getRow();
-        /* Up Two */
-        tempRow += 2;
-        if((tempRow<8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        /* Black Pieces */
+        else
         {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            /* Up One */
+            tempRow -= 1;
+            if((tempRow>=1)&&(!isTaken(tempRow,tempColumn) && !enemyPresent(tempRow,tempColumn)))
+            {
+                if(tempRow==1) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn,null));
+                }
+            }
+            /* Diagonal Right */
+            tempColumn += 1;
+            if(enemyPresent(tempRow,tempColumn)) {
+                if(tempRow==1) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
+            tempColumn = thisPosition.getColumn();
+            /* Diagonal Left */
+            tempColumn -= 1;
+            if(enemyPresent(tempRow,tempColumn)) {
+                if(tempRow==1) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
+            tempColumn = thisPosition.getColumn();
+            tempRow = thisPosition.getRow();
+            if(tempRow == 7) {
+                /* Up Two */
+                tempRow -= 2;
+                if((!isTaken(tempRow,tempColumn)&&!isTaken(tempRow+1,tempColumn)) && !enemyPresent(tempRow,tempColumn))
+                {
+                    validMoves.add(makeNewMove(tempRow,tempColumn,null));
+                }
+            }
         }
+        return validMoves;
+    }
+    public Collection<ChessMove> QueenMoves(){
+        ArrayList<ChessMove> validMoves = new ArrayList<>();
+        return validMoves;
+    }
+    public Collection<ChessMove> RookMoves(){
+        ArrayList<ChessMove> validMoves = new ArrayList<>();
         return validMoves;
     }
 
