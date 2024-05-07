@@ -8,32 +8,35 @@ import java.util.Objects;
 public class ChessBoard {
 
     private ChessPiece[][] squares = new ChessPiece[8][8];
+
     public ChessBoard() {}
 
     public void addPiece(ChessPosition position, ChessPiece piece) {
         squares[position.getRow()-1][position.getColumn()-1] = piece;
     }
+
     public void removePiece(ChessPosition position) {
         squares[position.getRow()-1][position.getColumn()-1] = null;
     }
+
     public ChessPiece getPiece(ChessPosition position) {
         return squares[position.getRow()-1][position.getColumn()-1];
     }
+
     public Collection<ChessPosition> getTeamPieces(ChessGame.TeamColor teamColor) {
         ArrayList<ChessPosition> teamPieces = new ArrayList<>();
-        if(teamColor == ChessGame.TeamColor.BLACK) {
-            for(int i=0; i<8; i++) {
-                for(int j=0; j<8; j++) {
-                    ChessPiece tempPiece = squares[i][j];
-                    if(tempPiece != null && tempPiece.getTeamColor() == teamColor) {
-                        ChessPosition tempPosition = new ChessPosition(i, j);
-                        teamPieces.add(tempPosition);
-                    }
+        for(int i=0; i<8; i++) {
+            for(int j=0; j<8; j++) {
+                ChessPiece tempPiece = squares[i][j];
+                if(tempPiece != null && tempPiece.getTeamColor() == teamColor) {
+                    ChessPosition tempPosition = new ChessPosition(i+1, j+1);
+                    teamPieces.add(tempPosition);
                 }
             }
         }
         return teamPieces;
     }
+
     public void resetBoard() {
         /* White Rook */
         ChessPiece newPiece = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.ROOK);

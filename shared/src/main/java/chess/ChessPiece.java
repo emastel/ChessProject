@@ -12,12 +12,14 @@ import java.util.Objects;
 public class ChessPiece {
 
     private ChessGame.TeamColor thisColor;
+
     private ChessPiece.PieceType thisType;
 
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         thisColor = pieceColor;
         thisType = type;
     }
+
     public enum PieceType {
         KING,
         QUEEN,
@@ -26,12 +28,15 @@ public class ChessPiece {
         ROOK,
         PAWN
     }
+
     public ChessGame.TeamColor getTeamColor() {
         return thisColor;
     }
+
     public PieceType getPieceType() {
         return thisType;
     }
+
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         PieceMovesCalculator moveType = new PieceMovesCalculator(board, myPosition);
         if(thisType == PieceType.BISHOP) {

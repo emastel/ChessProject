@@ -5,20 +5,21 @@ import java.util.Collection;
 
 public class PieceMovesCalculator {
     private ChessBoard thisBoard;
+
     private ChessPosition thisPosition;
-    public PieceMovesCalculator(ChessBoard board, ChessPosition position)
-    {
+
+    public PieceMovesCalculator(ChessBoard board, ChessPosition position) {
         thisBoard = board;
         thisPosition = position;
     }
-    private ChessMove makeNewMove(int row, int col, ChessPiece.PieceType type)
-    {
+
+    private ChessMove makeNewMove(int row, int col, ChessPiece.PieceType type) {
         ChessPosition newPosition = new ChessPosition(row,col);
         new ChessMove(thisPosition,newPosition,type);
         return new ChessMove(thisPosition,newPosition,type);
     }
-    private boolean enemyPresent(int row, int col)
-    {
+
+    private boolean enemyPresent(int row, int col) {
         ChessPosition newPosition = new ChessPosition(row,col);
         if(thisBoard.getPiece(newPosition) != null)
         {
@@ -28,12 +29,13 @@ public class PieceMovesCalculator {
         }
         return false;
     }
+
     private boolean isTaken(int row, int col) {
         ChessPosition newPosition = new ChessPosition(row,col);
         return thisBoard.getPiece(newPosition) != null;
     }
-    public Collection<ChessMove> BishopMoves()
-    {
+
+    public Collection<ChessMove> BishopMoves() {
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
@@ -93,6 +95,7 @@ public class PieceMovesCalculator {
         }
         return validMoves;
     }
+
     public Collection<ChessMove> KingMoves() {
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
@@ -131,6 +134,7 @@ public class PieceMovesCalculator {
         }
         return validMoves;
     }
+
     public Collection<ChessMove> KnightMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
@@ -324,6 +328,7 @@ public class PieceMovesCalculator {
         }
         return validMoves;
     }
+
     public Collection<ChessMove> QueenMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
@@ -461,6 +466,7 @@ public class PieceMovesCalculator {
         }
         return validMoves;
     }
+
     public Collection<ChessMove> RookMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();

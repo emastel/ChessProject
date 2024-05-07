@@ -2,38 +2,52 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
-/**
- * For a class that can manage a chess game, making moves on a board
- * <p>
- * Note: You can add to this class, but you may not alter
- * signature of the existing methods.
- */
 public class ChessGame {
 
     private ChessBoard thisBoard;
+
     private TeamColor currentTeam;
 
     public ChessGame() {}
+
     public TeamColor getTeamTurn() {
         return currentTeam;
     }
+
     public void setTeamTurn(TeamColor team) {
         currentTeam = team;
     }
+
     public enum TeamColor {
         WHITE,
         BLACK
     }
-    private TeamColor getOppositeTeam() {
-        if(currentTeam == TeamColor.BLACK) {
+
+    private TeamColor getOppositeTeam(TeamColor teamColor) {
+        if(teamColor == TeamColor.BLACK) {
             return TeamColor.WHITE;
         }
         else{
             return TeamColor.BLACK;
         }
     }
+
+    private boolean moveMakesCheck(ChessMove move){
+        ChessPiece tempPiece = thisBoard.getPiece(move.getStartPosition());
+        TeamColor teamColor = tempPiece.getTeamColor();
+        thisBoard.addPiece(move.getEndPosition(),tempPiece);
+        thisBoard.removePiece(move.getStartPosition());
+        if(isInCheck(teamColor)){
+            thisBoard.removePiece(move.getEndPosition());
+            thisBoard.addPiece(move.getStartPosition(),tempPiece);
+            return true;
+        }
+        thisBoard.removePiece(move.getEndPosition());
+        thisBoard.addPiece(move.getStartPosition(),tempPiece);
+        return false;
+    }
+
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         Collection<ChessMove> validMoves = new ArrayList<>();
         if(thisBoard.getPiece(startPosition) != null) {
@@ -42,18 +56,17 @@ public class ChessGame {
             if(isInStalemate(team)) {
                 return validMoves;
             }
-            validMoves = thisPiece.pieceMoves(thisBoard,startPosition);
+            Collection<ChessMove> tempMoves = thisPiece.pieceMoves(thisBoard,startPosition);
+            for(ChessMove move : tempMoves) {
+                if(!moveMakesCheck(move)) {
+                    validMoves.add(move);
+                }
+            }
             return validMoves;
         }
         return null;
     }
 
-    /**
-     * Makes a move in a chess game
-     *
-     * @param move chess move to preform
-     * @throws InvalidMoveException if move is invalid
-     */
     public void makeMove(ChessMove move) throws InvalidMoveException {
         ChessPiece tempPiece = thisBoard.getPiece(move.getStartPosition());
         if(tempPiece == null || tempPiece.getTeamColor() != currentTeam) {
@@ -63,10 +76,10 @@ public class ChessGame {
         if (!validMoves.isEmpty()) {
             for (ChessMove validMove : validMoves) {
                 if (validMove.getEndPosition().equals(move.getEndPosition())) {
-                    if(isInCheck(getOppositeTeam())) {
+                    if(isInCheck(getOppositeTeam(tempPiece.getTeamColor()))) {
                         throw new InvalidMoveException();
                     }
-                    else if(isInStalemate(getOppositeTeam())){
+                    else if(isInStalemate(getOppositeTeam(tempPiece.getTeamColor()))){
                         throw new InvalidMoveException();
                     }
                     else {
@@ -83,6 +96,7 @@ public class ChessGame {
             throw new InvalidMoveException();
         }
     }
+
     private Collection<ChessMove> getTeamMoves(TeamColor teamColor) {
         Collection<ChessPosition> teamPieces = thisBoard.getTeamPieces(teamColor);
         Collection<ChessMove> allMoves = new ArrayList<>();
@@ -93,19 +107,21 @@ public class ChessGame {
         }
         return allMoves;
     }
+
     public boolean isInCheck(TeamColor teamColor) {
-        Collection<ChessMove> allMoves = getTeamMoves(getOppositeTeam());
+        Collection<ChessMove> allMoves = getTeamMoves(getOppositeTeam(teamColor));
         for (ChessMove tempMove : allMoves) {
             ChessPosition tempPosition = tempMove.getEndPosition();
             ChessPiece tempPiece = thisBoard.getPiece(tempPosition);
-            if(tempPiece.getPieceType() == ChessPiece.PieceType.KING) {
+            if(tempPiece != null && tempPiece.getPieceType() == ChessPiece.PieceType.KING) {
                 return true;
             }
         }
         return false;
     }
+
     public boolean isInCheckmate(TeamColor teamColor) {
-        Collection<ChessMove> oppositeMoves = getTeamMoves(getOppositeTeam());
+        Collection<ChessMove> oppositeMoves = getTeamMoves(getOppositeTeam(teamColor));
         Collection<ChessMove> teamMoves = getTeamMoves(teamColor);
         for (ChessMove tempOppMove : oppositeMoves) {
             for (ChessMove tempTeamMove : teamMoves) {
@@ -119,18 +135,9 @@ public class ChessGame {
         return true;
     }
 
-    /**
-     * Determines if the given team is in stalemate, which here is defined as having
-     * no valid moves
-     *
-     * @param teamColor which team to check for stalemate
-     * @return True if the specified team is in stalemate, otherwise false
-     */
     public boolean isInStalemate(TeamColor teamColor) {
         if(currentTeam == teamColor) {
-            if(getTeamMoves(teamColor).isEmpty()) {
-                return true;
-            }
+            return getTeamMoves(teamColor).isEmpty();
         }
         return false;
     }

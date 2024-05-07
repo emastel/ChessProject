@@ -4,12 +4,14 @@ import java.util.Objects;
 
 public class ChessPosition {
     private int thisRow;
+
     private int thisColumn;
 
     public ChessPosition(int row, int col) {
         thisRow = row;
         thisColumn = col;
     }
+
     public int getRow() {
         return thisRow;
     }

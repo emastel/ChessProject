@@ -12,7 +12,9 @@ import java.util.Objects;
  */
 public class ChessMove {
     private ChessPosition thisStart;
+
     private ChessPosition thisEnd;
+
     private ChessPiece.PieceType thisType;
 
     public ChessMove(ChessPosition startPosition, ChessPosition endPosition, ChessPiece.PieceType promotionPiece) {
@@ -20,12 +22,15 @@ public class ChessMove {
         thisEnd = endPosition;
         thisType = promotionPiece;
     }
+
     public ChessPosition getStartPosition() {
         return thisStart;
     }
+
     public ChessPosition getEndPosition() {
         return thisEnd;
     }
+
     public ChessPiece.PieceType getPromotionPiece() {
         if(thisType == ChessPiece.PieceType.QUEEN) {
             return ChessPiece.PieceType.QUEEN;
