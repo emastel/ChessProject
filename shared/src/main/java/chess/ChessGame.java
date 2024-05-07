@@ -35,12 +35,17 @@ public class ChessGame {
         }
     }
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        ChessPiece newPiece = thisBoard.getPiece(startPosition);
-        Collection<ChessMove> tempMoves = newPiece.pieceMoves(thisBoard, startPosition);
         Collection<ChessMove> validMoves = new ArrayList<>();
-        for(ChessMove move : tempMoves) {
-
+        if(thisBoard.getPiece(startPosition) != null) {
+            ChessPiece thisPiece = thisBoard.getPiece(startPosition);
+            TeamColor team = thisPiece.getTeamColor();
+            if(isInStalemate(team)) {
+                return validMoves;
+            }
+            validMoves = thisPiece.pieceMoves(thisBoard,startPosition);
+            return validMoves;
         }
+        return null;
     }
 
     /**
@@ -59,6 +64,9 @@ public class ChessGame {
             for (ChessMove validMove : validMoves) {
                 if (validMove.getEndPosition().equals(move.getEndPosition())) {
                     if(isInCheck(getOppositeTeam())) {
+                        throw new InvalidMoveException();
+                    }
+                    else if(isInStalemate(getOppositeTeam())){
                         throw new InvalidMoveException();
                     }
                     else {
@@ -85,15 +93,8 @@ public class ChessGame {
         }
         return allMoves;
     }
-    /**
-     * Determines if the given team is in check
-     *
-     * @param teamColor which team to check for check
-     * @return True if the specified team is in check
-     */
     public boolean isInCheck(TeamColor teamColor) {
-        Collection<ChessMove> allMoves = new ArrayList<>();
-        allMoves = getTeamMoves(getOppositeTeam());
+        Collection<ChessMove> allMoves = getTeamMoves(getOppositeTeam());
         for (ChessMove tempMove : allMoves) {
             ChessPosition tempPosition = tempMove.getEndPosition();
             ChessPiece tempPiece = thisBoard.getPiece(tempPosition);
@@ -103,15 +104,19 @@ public class ChessGame {
         }
         return false;
     }
-
-    /**
-     * Determines if the given team is in checkmate
-     *
-     * @param teamColor which team to check for checkmate
-     * @return True if the specified team is in checkmate
-     */
     public boolean isInCheckmate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        Collection<ChessMove> oppositeMoves = getTeamMoves(getOppositeTeam());
+        Collection<ChessMove> teamMoves = getTeamMoves(teamColor);
+        for (ChessMove tempOppMove : oppositeMoves) {
+            for (ChessMove tempTeamMove : teamMoves) {
+                ChessPosition teamPosition = tempTeamMove.getEndPosition();
+                ChessPosition oppPosition = tempOppMove.getEndPosition();
+                if(teamPosition.equals(oppPosition)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
