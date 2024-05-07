@@ -101,35 +101,35 @@ public class PieceMovesCalculator {
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
         /* Up */
-        if(tempRow+1<8&&(!isTaken(tempRow+1,tempColumn) || enemyPresent(tempRow+1,tempColumn))) {
+        if(tempRow+1<=8&&(!isTaken(tempRow+1,tempColumn) || enemyPresent(tempRow+1,tempColumn))) {
             validMoves.add(makeNewMove(tempRow+1,tempColumn, null));
         }
         /* Left diagonal up */
-        if(tempRow-1>1&&(!isTaken(tempRow-1,tempColumn-1) || enemyPresent(tempRow-1,tempColumn-1))) {
+        if(tempRow-1>=1&&(!isTaken(tempRow-1,tempColumn-1) || enemyPresent(tempRow-1,tempColumn-1))) {
             validMoves.add(makeNewMove(tempRow - 1, tempColumn - 1, null));
         }
         /* Right diagonal up */
-        if((tempRow-1>1&&tempColumn+1<8)&&(!isTaken(tempRow-1,tempColumn+1) || enemyPresent(tempRow-1,tempColumn+1))) {
+        if((tempRow-1>=1&&tempColumn+1<=8)&&(!isTaken(tempRow-1,tempColumn+1) || enemyPresent(tempRow-1,tempColumn+1))) {
             validMoves.add(makeNewMove(tempRow - 1, tempColumn + 1, null));
         }
         /* Left */
-        if(tempColumn-1>1&&(!isTaken(tempRow,tempColumn-1) || enemyPresent(tempRow,tempColumn-1))) {
+        if(tempColumn-1>=1&&(!isTaken(tempRow,tempColumn-1) || enemyPresent(tempRow,tempColumn-1))) {
             validMoves.add(makeNewMove(tempRow, tempColumn - 1, null));
         }
         /* Right */
-        if(tempColumn+1<8&&(!isTaken(tempRow,tempColumn+1) || enemyPresent(tempRow,tempColumn+1))) {
+        if(tempColumn+1<=8&&(!isTaken(tempRow,tempColumn+1) || enemyPresent(tempRow,tempColumn+1))) {
             validMoves.add(makeNewMove(tempRow, tempColumn + 1, null));
         }
         /* Down */
-        if(tempRow-1>1&&(!isTaken(tempRow-1,tempColumn) || enemyPresent(tempRow-1,tempColumn))) {
+        if(tempRow-1>=1&&(!isTaken(tempRow-1,tempColumn) || enemyPresent(tempRow-1,tempColumn))) {
             validMoves.add(makeNewMove(tempRow - 1, tempColumn, null));
         }
         /* Left diagonal down */
-        if((tempColumn-1>1&&tempRow+1<8)&&(!isTaken(tempRow+1,tempColumn-1) || enemyPresent(tempRow+1,tempColumn-1))) {
+        if((tempColumn-1>=1&&tempRow+1<=8)&&(!isTaken(tempRow+1,tempColumn-1) || enemyPresent(tempRow+1,tempColumn-1))) {
             validMoves.add(makeNewMove(tempRow + 1, tempColumn - 1, null));
         }
         /* Right diagonal down */
-        if((tempRow+1<8&&tempColumn+1<8)&&(!isTaken(tempRow+1,tempColumn+1) || enemyPresent(tempRow+1,tempColumn+1))) {
+        if((tempRow+1<=8&&tempColumn+1<=8)&&(!isTaken(tempRow+1,tempColumn+1) || enemyPresent(tempRow+1,tempColumn+1))) {
             validMoves.add(makeNewMove(tempRow + 1, tempColumn + 1, null));
         }
         return validMoves;
