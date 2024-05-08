@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Some move tests pass">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="King moves fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +42,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.FullGameTest.executor": "Debug",
     "JUnit.GameStatusTests.executor": "Debug",
     "JUnit.MakeMoveTests.executor": "Debug",
+    "JUnit.PawnMoveTests.executor": "Debug",
+    "JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor": "Debug",
+    "JUnit.QueenMoveTests.executor": "Debug",
+    "JUnit.RookMoveTests.executor": "Debug",
     "JUnit.ValidMovesTests.executor": "Debug",
     "JUnit.ValidMovesTests.forcedMove.executor": "Debug",
     "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
@@ -67,7 +72,52 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.ValidMovesTests.noPutSelfInDanger">
+  <component name="RunManager" selected="JUnit.BishopMoveTests">
+    <configuration name="BishopMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.BishopMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueenMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.QueenMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RookMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.RookMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ValidMovesTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shared" />
       <extension name="coverage">
@@ -99,54 +149,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidMovesTests.moveIntoCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.game" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.ValidMovesTests" />
-      <option name="METHOD_NAME" value="moveIntoCheck" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ValidMovesTests.noPutSelfInDanger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.game" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.ValidMovesTests" />
-      <option name="METHOD_NAME" value="noPutSelfInDanger" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ValidMovesTests.rookPinnedToKing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.game" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.ValidMovesTests" />
-      <option name="METHOD_NAME" value="rookPinnedToKing" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Chess Project" />
       <method v="2">
@@ -162,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ValidMovesTests.noPutSelfInDanger" />
-        <item itemvalue="JUnit.ValidMovesTests.forcedMove" />
+        <item itemvalue="JUnit.BishopMoveTests" />
+        <item itemvalue="JUnit.RookMoveTests" />
         <item itemvalue="JUnit.ValidMovesTests" />
-        <item itemvalue="JUnit.ValidMovesTests.rookPinnedToKing" />
-        <item itemvalue="JUnit.ValidMovesTests.moveIntoCheck" />
+        <item itemvalue="JUnit.QueenMoveTests" />
+        <item itemvalue="JUnit.ValidMovesTests.forcedMove" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +189,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702756436549</updated>
       <workItem from="1715015332298" duration="275000" />
-      <workItem from="1715021981518" duration="23839000" />
+      <workItem from="1715021981518" duration="28235000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -269,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715114716097</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="King moves fixed">
+      <option name="closed" value="true" />
+      <created>1715120625982</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715120625982</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,21 +295,7 @@
     <MESSAGE value="validMoves is written" />
     <MESSAGE value="isInStalemate is written" />
     <MESSAGE value="Some move tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some move tests pass" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>
-          <line>64</line>
-          <properties class="chess.ChessGame" method="validMoves">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="King moves fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="King moves fixed" />
   </component>
 </project>
