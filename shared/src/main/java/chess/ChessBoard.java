@@ -5,11 +5,25 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
-public class ChessBoard {
+public class ChessBoard implements Cloneable {
 
     private ChessPiece[][] squares = new ChessPiece[8][8];
 
     public ChessBoard() {}
+
+    public Object clone() throws CloneNotSupportedException {
+        ChessBoard clone = new ChessBoard();
+        for(int i=0; i<8; i++) {
+            for(int j=0; j<8; j++) {
+                ChessPiece tempPiece = squares[i][j];
+                if(tempPiece != null) {
+                    ChessPosition tempPosition = new ChessPosition(i+1, j+1);
+                    clone.addPiece(tempPosition,tempPiece);
+                }
+            }
+        }
+        return clone;
+    }
 
     public void addPiece(ChessPosition position, ChessPiece piece) {
         squares[position.getRow()-1][position.getColumn()-1] = piece;
