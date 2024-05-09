@@ -90,16 +90,8 @@ public class ChessGame {
         if (!validMoves.isEmpty()) {
             for (ChessMove validMove : validMoves) {
                 if (validMove.getEndPosition().equals(move.getEndPosition())) {
-                    if(isInCheck(getOppositeTeam(tempPiece.getTeamColor()))) {
-                        throw new InvalidMoveException();
-                    }
-                    else if(isInStalemate(getOppositeTeam(tempPiece.getTeamColor()))){
-                        throw new InvalidMoveException();
-                    }
-                    else {
-                        thisBoard.removePiece(move.getStartPosition());
-                        thisBoard.addPiece(move.getEndPosition(),tempPiece);
-                    }
+                    thisBoard.removePiece(move.getStartPosition());
+                    thisBoard.addPiece(move.getEndPosition(),tempPiece);
                 }
                 else {
                     throw new InvalidMoveException();
@@ -125,8 +117,12 @@ public class ChessGame {
     }
 
     private boolean moveMakesCheck(ChessMove move){
+        ChessPiece lostPiece = null;
         ChessPiece tempPiece = thisBoard.getPiece(move.getStartPosition());
         TeamColor teamColor = tempPiece.getTeamColor();
+        if(thisBoard.getPiece(move.getEndPosition())!=null) {
+            lostPiece = thisBoard.getPiece(move.getEndPosition());
+        }
         thisBoard.addPiece(move.getEndPosition(),tempPiece);
         thisBoard.removePiece(move.getStartPosition());
         if(isInCheck(teamColor)){
@@ -136,6 +132,9 @@ public class ChessGame {
         }
         thisBoard.removePiece(move.getEndPosition());
         thisBoard.addPiece(move.getStartPosition(),tempPiece);
+        if(lostPiece != null) {
+            thisBoard.addPiece(move.getEndPosition(),lostPiece);
+        }
         return false;
     }
 
