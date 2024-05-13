@@ -245,7 +245,7 @@ public class PieceMovesCalculator {
         int direction = getDirection(teamColor);
         /* Up One */
         tempRow += direction;
-        if((tempRow<=8)&&(!isTaken(tempRow,tempColumn) && !enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1)&&(!isTaken(tempRow,tempColumn) && !enemyPresent(tempRow,tempColumn)))
         {
             if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
                 validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
@@ -259,7 +259,7 @@ public class PieceMovesCalculator {
         }
         /* Diagonal Right */
         tempColumn += 1;
-        if(tempColumn<=8&&enemyPresent(tempRow,tempColumn)) {
+        if((tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1)&&enemyPresent(tempRow,tempColumn)) {
             if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
                 validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
                 validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
@@ -273,7 +273,7 @@ public class PieceMovesCalculator {
         tempColumn = thisPosition.getColumn();
         /* Diagonal Left */
         tempColumn -= 1;
-        if(tempColumn>=1&&enemyPresent(tempRow,tempColumn)) {
+        if((tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1)&&enemyPresent(tempRow,tempColumn)) {
             if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
                 validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
                 validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
