@@ -52,56 +52,68 @@ public class PieceMovesCalculator {
         int tempColumn = thisPosition.getColumn();
         int direction = getDirection(thisBoard.getPiece(thisPosition).getTeamColor());
         /* right down */
-        while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
-            tempRow += direction;
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            tempRow -= direction;
             ++tempColumn;
+            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
+                break;
+            }
             if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
             {
                 validMoves.add(makeNewMove(tempRow,tempColumn, null));
             }
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(enemyPresent(tempRow,tempColumn) || isTaken(tempRow,tempColumn)) {
                 break;
             }
         }
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
         /* right up */
-        while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
-            tempRow -= direction;
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            tempRow += direction;
             ++tempColumn;
+            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
+                break;
+            }
             if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
             {
                 validMoves.add(makeNewMove(tempRow,tempColumn, null));
             }
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(enemyPresent(tempRow,tempColumn)|| isTaken(tempRow,tempColumn)) {
                 break;
             }
         }
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
         /* left up */
-        while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
-            tempRow -= direction;
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            tempRow += direction;
             --tempColumn;
+            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
+                break;
+            }
             if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
             {
                 validMoves.add(makeNewMove(tempRow,tempColumn, null));
             }
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(enemyPresent(tempRow,tempColumn)|| isTaken(tempRow,tempColumn)) {
                 break;
             }
         }
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
         /* left down */
-        while(tempRow<8 && tempColumn<8 && tempRow>1 && tempColumn>1) {
-            tempRow += direction;
+        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
+            tempRow -= direction;
             --tempColumn;
+            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
+                break;
+            }
             if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
             {
                 validMoves.add(makeNewMove(tempRow,tempColumn, null));
             }
-            if(enemyPresent(tempRow,tempColumn)) {
+            if(enemyPresent(tempRow,tempColumn)|| isTaken(tempRow,tempColumn)) {
                 break;
             }
         }
@@ -155,7 +167,7 @@ public class PieceMovesCalculator {
         /* Up Left Highest */
         tempRow += 2*direction;
         tempColumn -= 1;
-        if((tempRow<=8&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -164,7 +176,7 @@ public class PieceMovesCalculator {
         /* Up Left Lowest */
         tempRow += direction;
         tempColumn -= 2;
-        if((tempRow<=8&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -173,7 +185,7 @@ public class PieceMovesCalculator {
         /* Up Right Highest */
         tempRow += 2*direction;
         tempColumn += 1;
-        if((tempRow<=8&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -182,7 +194,7 @@ public class PieceMovesCalculator {
         /* Up Right Lowest */
         tempRow += direction;
         tempColumn += 2;
-        if((tempRow<=8&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -191,7 +203,7 @@ public class PieceMovesCalculator {
         /* Down Left Lowest */
         tempRow -= 2*direction;
         tempColumn -= 1;
-        if((tempRow>=1&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -200,7 +212,7 @@ public class PieceMovesCalculator {
         /* Down Left Highest */
         tempRow -= direction;
         tempColumn -= 2;
-        if((tempRow>=1&&tempColumn>=1)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -209,7 +221,7 @@ public class PieceMovesCalculator {
         /* Down Right Lowest */
         tempRow -= 2*direction;
         tempColumn += 1;
-        if((tempRow>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
@@ -218,7 +230,7 @@ public class PieceMovesCalculator {
         /* Down Right Highest */
         tempRow -= direction;
         tempColumn += 2;
-        if((tempRow>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }

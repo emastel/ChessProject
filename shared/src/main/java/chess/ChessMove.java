@@ -32,24 +32,7 @@ public class ChessMove {
     }
 
     public ChessPiece.PieceType getPromotionPiece() {
-        if(thisType == ChessPiece.PieceType.QUEEN) {
-            return ChessPiece.PieceType.QUEEN;
-        }
-        else if(thisType == ChessPiece.PieceType.KING) {
-            return ChessPiece.PieceType.KING;
-        }
-        else if(thisType == ChessPiece.PieceType.BISHOP) {
-            return ChessPiece.PieceType.BISHOP;
-        }
-        else if(thisType == ChessPiece.PieceType.KNIGHT) {
-            return ChessPiece.PieceType.KNIGHT;
-        }
-        else if(thisType == ChessPiece.PieceType.ROOK) {
-            return ChessPiece.PieceType.ROOK;
-        }
-        else {
-            return null;
-        }
+        return thisType;
     }
 
     @Override
