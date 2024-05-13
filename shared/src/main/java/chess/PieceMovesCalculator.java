@@ -129,7 +129,7 @@ public class PieceMovesCalculator {
             validMoves.add(makeNewMove(tempRow+1,tempColumn, null));
         }
         /* Left diagonal up */
-        if(tempRow-1>=1&&(!isTaken(tempRow-1,tempColumn-1) || enemyPresent(tempRow-1,tempColumn-1))) {
+        if(tempRow-1>=1&&tempColumn-1>=1&&(!isTaken(tempRow-1,tempColumn-1) || enemyPresent(tempRow-1,tempColumn-1))) {
             validMoves.add(makeNewMove(tempRow - 1, tempColumn - 1, null));
         }
         /* Right diagonal up */

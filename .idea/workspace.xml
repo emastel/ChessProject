@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Cloned the board instead">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="MakeMoveTests passing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +46,11 @@
     "JUnit.BishopMoveTests.bishopBlocked.executor": "Debug",
     "JUnit.BishopMoveTests.executor": "Debug",
     "JUnit.FullGameTest.executor": "Debug",
+    "JUnit.GameStatusTests.blackTeamPawnCheckmate.executor": "Debug",
     "JUnit.GameStatusTests.executor": "Debug",
+    "JUnit.GameStatusTests.newGame.executor": "Debug",
+    "JUnit.GameStatusTests.stalemate.executor": "Debug",
+    "JUnit.GameStatusTests.whiteTeamCheckmate.executor": "Debug",
     "JUnit.MakeMoveTests.executor": "Debug",
     "JUnit.MakeMoveTests.invalidMakeMoveCapturedPiece.executor": "Debug",
     "JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor": "Debug",
@@ -82,33 +84,65 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.MakeMoveTests">
-    <configuration name="BishopMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GameStatusTests">
+    <configuration name="GameStatusTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shared" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="PATTERN" value="passoff.chess.game.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.BishopMoveTests" />
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.GameStatusTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BishopMoveTests.bishopBlocked" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameStatusTests.blackTeamPawnCheckmate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shared" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="PATTERN" value="passoff.chess.game.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.BishopMoveTests" />
-      <option name="METHOD_NAME" value="bishopBlocked" />
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.GameStatusTests" />
+      <option name="METHOD_NAME" value="blackTeamPawnCheckmate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameStatusTests.stalemate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.GameStatusTests" />
+      <option name="METHOD_NAME" value="stalemate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameStatusTests.whiteTeamCheckmate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.GameStatusTests" />
+      <option name="METHOD_NAME" value="whiteTeamCheckmate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -129,38 +163,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MakeMoveTests.makeValidBishopMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.game" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.MakeMoveTests" />
-      <option name="METHOD_NAME" value="makeValidBishopMove" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MakeMoveTests.promotionMoves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.game" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.MakeMoveTests" />
-      <option name="METHOD_NAME" value="promotionMoves(chess.ChessPiece$PieceType)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Chess Project" />
       <method v="2">
@@ -176,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameStatusTests" />
+        <item itemvalue="JUnit.GameStatusTests.blackTeamPawnCheckmate" />
+        <item itemvalue="JUnit.GameStatusTests.stalemate" />
+        <item itemvalue="JUnit.GameStatusTests.whiteTeamCheckmate" />
         <item itemvalue="JUnit.MakeMoveTests" />
-        <item itemvalue="JUnit.BishopMoveTests" />
-        <item itemvalue="JUnit.BishopMoveTests.bishopBlocked" />
-        <item itemvalue="JUnit.MakeMoveTests.makeValidBishopMove" />
-        <item itemvalue="JUnit.MakeMoveTests.promotionMoves" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +205,7 @@
       <workItem from="1715015332298" duration="275000" />
       <workItem from="1715021981518" duration="45259000" />
       <workItem from="1715365290775" duration="26000" />
-      <workItem from="1715382395230" duration="3874000" />
+      <workItem from="1715382395230" duration="10742000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -317,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715277286890</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="MakeMoveTests passing">
+      <option name="closed" value="true" />
+      <created>1715613375734</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715613375734</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,20 +347,20 @@
     <MESSAGE value="Directions added to piece moves" />
     <MESSAGE value="ValidMovesTests passing" />
     <MESSAGE value="Cloned the board instead" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cloned the board instead" />
+    <MESSAGE value="MakeMoveTests passing" />
+    <option name="LAST_COMMIT_MESSAGE" value="MakeMoveTests passing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/1-chess-game/passoff/chess/game/MakeMoveTests.java</url>
-          <line>159</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="12" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>
+          <line>34</line>
+          <properties class="chess.ChessGame" method="isInStalemate">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
