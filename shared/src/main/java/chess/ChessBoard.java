@@ -140,7 +140,7 @@ public class ChessBoard implements Cloneable {
     @Override
     public String toString() {
         return "ChessBoard{" +
-                "squares=" + Arrays.toString(squares) +
+                "squares=" + Arrays.deepToString(squares) +
                 '}';
     }
 }
