@@ -90,18 +90,33 @@ public class ChessGame {
             ChessPiece thisPiece = thisBoard.getPiece(startPosition);
             Collection<ChessMove> tempMoves = thisPiece.pieceMoves(thisBoard,startPosition);
             if(thisPiece.getPieceType() == ChessPiece.PieceType.KING) {
-                /* Left */
-                ChessPosition tempPosition = new ChessPosition(startPosition.getRow(),startPosition.getColumn()-2);
-                ChessMove tempMove = new ChessMove(startPosition, tempPosition, null);
-                if(castlingValid(tempMove)) {
-                    validMoves.add(tempMove);
+                boolean valid = true;
+                if(currentTeam == TeamColor.WHITE) {
+                    if(kingMovedWhite || (startPosition.getRow() != 1 && startPosition.getColumn() != 5)) {
+                        valid = false;
+                    }
                 }
-                /* Right */
-                tempPosition = new ChessPosition(startPosition.getRow(),startPosition.getColumn()+2);
-                tempMove = new ChessMove(startPosition, tempPosition, null);
-                if(castlingValid(tempMove)) {
-                    validMoves.add(tempMove);
+                else {
+                    if(kingMovedBlack || (startPosition.getRow() != 8 && startPosition.getColumn() != 5)) {
+                        valid = false;
+                    }
                 }
+                if(valid)
+                {
+                    /* Left */
+                    ChessPosition tempPosition = new ChessPosition(startPosition.getRow(),startPosition.getColumn()-2);
+                    ChessMove tempMove = new ChessMove(startPosition, tempPosition, null);
+                    if(castlingValid(tempMove)) {
+                        validMoves.add(tempMove);
+                    }
+                    /* Right */
+                    tempPosition = new ChessPosition(startPosition.getRow(),startPosition.getColumn()+2);
+                    tempMove = new ChessMove(startPosition, tempPosition, null);
+                    if(castlingValid(tempMove)) {
+                        validMoves.add(tempMove);
+                    }
+                }
+
             }
             for(ChessMove move : tempMoves) {
                 if(!moveMakesCheck(move)) {
@@ -282,13 +297,13 @@ public class ChessGame {
         ChessPiece rook = new ChessPiece(teamColor, ChessPiece.PieceType.ROOK);
         if(teamColor == TeamColor.WHITE) {
             range = 1;
-            if(kingMovedWhite) {
+            if(kingMovedWhite || (move.getStartPosition().getRow() != 1 || move.getStartPosition().getColumn() != 5)) {
                 return false;
             }
         }
         else {
             range = 8;
-            if(kingMovedBlack) {
+            if(kingMovedBlack || (move.getStartPosition().getRow() != 8 || move.getStartPosition().getColumn() != 5)) {
                 return false;
             }
         }
@@ -299,18 +314,26 @@ public class ChessGame {
                 return false;
             }
             if(teamColor == TeamColor.WHITE) {
-                if(rightRookMovedWhite) {
+                ChessPosition tempPosition = new ChessPosition(1,8);
+                ChessPiece tempRook = thisBoard.getPiece(tempPosition);
+                if(rightRookMovedWhite || (tempRook != null && tempRook.getPieceType() != ChessPiece.PieceType.ROOK)) {
                     rightValid = false;
                 }
-                if(leftRookMovedWhite) {
+                tempPosition = new ChessPosition(1,1);
+                tempRook = thisBoard.getPiece(tempPosition);
+                if(leftRookMovedWhite || (tempRook != null && tempRook.getPieceType() != ChessPiece.PieceType.ROOK)) {
                     leftValid = false;
                 }
             }
             else {
-                if(rightRookMovedBlack) {
+                ChessPosition tempPosition = new ChessPosition(8,8);
+                ChessPiece tempRook = thisBoard.getPiece(tempPosition);
+                if(rightRookMovedBlack || (tempRook != null && tempRook.getPieceType() != ChessPiece.PieceType.ROOK)) {
                     rightValid = false;
                 }
-                if(leftRookMovedBlack) {
+                tempPosition = new ChessPosition(8,1);
+                tempRook = thisBoard.getPiece(tempPosition);
+                if(leftRookMovedBlack || (tempRook != null && tempRook.getPieceType() != ChessPiece.PieceType.ROOK)) {
                     leftValid = false;
                 }
             }
