@@ -86,9 +86,39 @@ public class ChessGame {
 
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         Collection<ChessMove> validMoves = new ArrayList<>();
+        ChessPosition tempPosition;
+        ChessMove tempMove;
         if(thisBoard.getPiece(startPosition) != null) {
             ChessPiece thisPiece = thisBoard.getPiece(startPosition);
             Collection<ChessMove> tempMoves = thisPiece.pieceMoves(thisBoard,startPosition);
+            /* en Passant */
+            if(thisPiece.getPieceType() == ChessPiece.PieceType.PAWN) {
+                int direction;
+                if(currentTeam == TeamColor.WHITE) {
+                    direction = 1;
+                }
+                else {
+                    direction = -1;
+                }
+                /* Left */
+                if(startPosition.getRow()+direction <= 8 && startPosition.getRow()+direction >=1 && startPosition.getColumn()-1 >=1)
+                {
+                    tempPosition = new ChessPosition(startPosition.getRow()+direction, startPosition.getColumn()-1);
+                    tempMove = new ChessMove(startPosition, tempPosition, null);
+                    if(enPassantValid(tempMove)) {
+                        validMoves.add(tempMove);
+                    }
+                }
+                /* Right */
+                if(startPosition.getRow()+direction <= 8 && startPosition.getRow()+direction >=1 && startPosition.getColumn()+1 <=8) {
+                    tempPosition = new ChessPosition(startPosition.getRow()+direction, startPosition.getColumn()+1);
+                    tempMove = new ChessMove(startPosition, tempPosition, null);
+                    if(enPassantValid(tempMove)) {
+                        validMoves.add(tempMove);
+                    }
+                }
+            }
+            /* Castling */
             if(thisPiece.getPieceType() == ChessPiece.PieceType.KING) {
                 boolean valid = true;
                 if(currentTeam == TeamColor.WHITE) {
@@ -104,8 +134,8 @@ public class ChessGame {
                 if(valid)
                 {
                     /* Left */
-                    ChessPosition tempPosition = new ChessPosition(startPosition.getRow(),startPosition.getColumn()-2);
-                    ChessMove tempMove = new ChessMove(startPosition, tempPosition, null);
+                    tempPosition = new ChessPosition(startPosition.getRow(),startPosition.getColumn()-2);
+                    tempMove = new ChessMove(startPosition, tempPosition, null);
                     if(castlingValid(tempMove)) {
                         validMoves.add(tempMove);
                     }
@@ -146,6 +176,37 @@ public class ChessGame {
                         tempPiece = new ChessPiece(currentTeam, move.getPromotionPiece());
                     }
                     thisBoard.addPiece(move.getEndPosition(),tempPiece);
+                    /* en Passant */
+                    if(tempPiece.getPieceType() == ChessPiece.PieceType.PAWN) {
+                        ChessPosition oppPosition;
+                        ChessPiece oppPiece;
+                        if(currentTeam == TeamColor.WHITE) {
+                            doubleMove = move.getStartPosition().getRow() + 2 == move.getEndPosition().getRow();
+                        }
+                        else {
+                            doubleMove = move.getStartPosition().getRow() - 2 == move.getEndPosition().getRow();
+                        }
+                        /* Left */
+                        if(move.getStartPosition().getColumn()-1 >= 1) {
+                            oppPosition = new ChessPosition(move.getStartPosition().getRow(), move.getStartPosition().getColumn()-1);
+                            oppPiece = thisBoard.getPiece(oppPosition);
+                            if(oppPiece != null && oppPiece.getTeamColor() != currentTeam) {
+                                thisBoard.removePiece(oppPosition);
+                            }
+                        }
+                        /* Right */
+                        if(move.getStartPosition().getColumn()+1 <= 8) {
+                            oppPosition = new ChessPosition(move.getStartPosition().getRow(), move.getStartPosition().getColumn()+1);
+                            oppPiece = thisBoard.getPiece(oppPosition);
+                            if(oppPiece != null && oppPiece.getTeamColor() != currentTeam) {
+                                thisBoard.removePiece(oppPosition);
+                            }
+                        }
+                    }
+                    else {
+                        doubleMove = false;
+                    }
+                    /* Castling */
                     if(tempPiece.getPieceType() == ChessPiece.PieceType.KING) {
                         if(currentTeam == TeamColor.WHITE) {
                             if(move.getEndPosition().getColumn() != 7 && move.getEndPosition().getColumn() != 3) {
@@ -238,6 +299,8 @@ public class ChessGame {
 
     private boolean kingMovedBlack;
 
+    private boolean doubleMove;
+
     private TeamColor getOppositeTeam(TeamColor teamColor) {
         if(teamColor == TeamColor.BLACK) {
             return TeamColor.WHITE;
@@ -266,7 +329,6 @@ public class ChessGame {
         Collection<ChessMove> allMoves = new ArrayList<>();
         if(testBoard != null) {
             teamPieces = testBoard.getTeamPieces(teamColor);
-            allMoves = new ArrayList<>();
             for (ChessPosition tempPosition : teamPieces) {
                 ChessPiece tempPiece = testBoard.getPiece(tempPosition);
                 Collection<ChessMove> tempMoves = tempPiece.pieceMoves(testBoard, tempPosition);
@@ -406,6 +468,15 @@ public class ChessGame {
             }
         } catch (CloneNotSupportedException ex){}
         return true;
+    }
+
+    private boolean enPassantValid(ChessMove move){
+        if(doubleMove) {
+            ChessPosition tempPosition = new ChessPosition(move.getStartPosition().getRow(), move.getEndPosition().getColumn());
+            ChessPiece enemyPiece = thisBoard.getPiece(tempPosition);
+            return enemyPiece != null;
+        }
+        return false;
     }
 }
 
