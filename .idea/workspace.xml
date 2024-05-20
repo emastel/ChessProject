@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Past tests work with castling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
-    </list>
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="en passant implemented" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +45,9 @@
     "JUnit.CastlingTests.castlingBlockedByEnemy.executor": "Debug",
     "JUnit.CastlingTests.executor": "Debug",
     "JUnit.CastlingTests.noCastleAfterMove.executor": "Debug",
+    "JUnit.ChessBoardTests.executor": "Debug",
+    "JUnit.ChessMoveTests.executor": "Debug",
+    "JUnit.ChessPositionTests.executor": "Debug",
     "JUnit.EnPassantTests.enPassantBlackLeft.executor": "Debug",
     "JUnit.EnPassantTests.enPassantWhiteLeft.executor": "Debug",
     "JUnit.EnPassantTests.enPassantWhiteRight.executor": "Debug",
@@ -59,6 +59,8 @@
     "JUnit.GameStatusTests.newGame.executor": "Debug",
     "JUnit.GameStatusTests.stalemate.executor": "Debug",
     "JUnit.GameStatusTests.whiteTeamCheckmate.executor": "Debug",
+    "JUnit.KingMoveTests.executor": "Debug",
+    "JUnit.KnightMoveTests.executor": "Debug",
     "JUnit.MakeMoveTests.executor": "Debug",
     "JUnit.MakeMoveTests.invalidMakeMoveCapturedPiece.executor": "Debug",
     "JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor": "Debug",
@@ -76,6 +78,7 @@
     "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
     "JUnit.ValidMovesTests.noPutSelfInDanger.executor": "Debug",
     "JUnit.ValidMovesTests.rookPinnedToKing.executor": "Debug",
+    "JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor": "Debug",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -212,7 +215,7 @@
       <workItem from="1715015332298" duration="275000" />
       <workItem from="1715021981518" duration="45259000" />
       <workItem from="1715365290775" duration="26000" />
-      <workItem from="1715382395230" duration="37332000" />
+      <workItem from="1715382395230" duration="37669000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -366,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715728860547</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="en passant implemented">
+      <option name="closed" value="true" />
+      <created>1715882858540</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715882858540</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,22 +402,7 @@
     <MESSAGE value="Fixes to make all tests pass" />
     <MESSAGE value="Castling tests pass" />
     <MESSAGE value="Past tests work with castling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Past tests work with castling" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/1-chess-game/passoff/chess/game/FullGameTest.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/1-chess-game/passoff/chess/game/FullGameTest.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="en passant implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="en passant implemented" />
   </component>
 </project>
