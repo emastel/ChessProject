@@ -4,6 +4,7 @@ import model.AuthData;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AuthDAO {
 
@@ -17,11 +18,16 @@ public class AuthDAO {
         authTokens.put(input.username(),input);
     }
 
-    public AuthData getAuth(String username) {
-        return authTokens.get(username);
+    public AuthData getAuth(String authToken) {
+        for(Map.Entry<String, AuthData> entry : authTokens.entrySet()) {
+            if(Objects.equals(entry.getValue().authToken(), authToken)) {
+                return entry.getValue();
+            }
+        }
+        return authTokens.get(authToken);
     }
 
-    public void deleteAuth(String username) {
-        authTokens.remove(username);
+    public void deleteAuth(String username, AuthData input) {
+        authTokens.remove(username, input);
     }
 }

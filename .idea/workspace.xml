@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Classes created">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Data Access classes written">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -241,7 +241,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="8639000" />
+      <workItem from="1716303993319" duration="13158000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -419,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716309922412</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Data Access classes written">
+      <option name="closed" value="true" />
+      <created>1716318860781</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1716318860781</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,6 +455,7 @@
     <MESSAGE value="en passant implemented" />
     <MESSAGE value="Phase 3 setup complete" />
     <MESSAGE value="Classes created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Classes created" />
+    <MESSAGE value="Data Access classes written" />
+    <option name="LAST_COMMIT_MESSAGE" value="Data Access classes written" />
   </component>
 </project>
