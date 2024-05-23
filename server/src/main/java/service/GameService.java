@@ -2,7 +2,6 @@ package service;
 
 import chess.ChessGame;
 import dataaccess.AuthDAO;
-import dataaccess.DataAccessException;
 import dataaccess.GameDAO;
 import model.AuthData;
 import model.GameData;
@@ -12,24 +11,24 @@ import java.util.Objects;
 
 public class GameService {
 
-    private AuthDAO authDAO;
+    private AuthDAO authDAO = new AuthDAO();
 
-    private GameDAO gameDAO;
+    private GameDAO gameDAO = new GameDAO();
 
     private int gameIdBase = 0;
 
-    public Map<Integer, GameData> listGames(String authToken) throws DataAccessException {
+    public Map<Integer, GameData> listGames(String authToken) throws UnauthorizedException {
         AuthData retrievedAuth = authDAO.getAuth(authToken);
         if(retrievedAuth == null) {
-            throw new DataAccessException("Error: unauthorized");
+            throw new UnauthorizedException("Error: unauthorized");
         }
         return gameDAO.listGames();
     }
 
-    public GameData createGame(String authToken, String gameName) throws DataAccessException {
+    public GameData createGame(String authToken, String gameName) throws UnauthorizedException {
         AuthData retrievedAuth = authDAO.getAuth(authToken);
         if(retrievedAuth == null) {
-            throw new DataAccessException("Error: unauthorized");
+            throw new UnauthorizedException("Error: unauthorized");
         }
         int gameID = ++gameIdBase;
         gameIdBase += 1;
@@ -38,21 +37,21 @@ public class GameService {
         return gameData;
     }
 
-    public void joinGame(String playerColor, int gameID, String authToken) throws DataAccessException {
+    public void joinGame(String playerColor, int gameID, String authToken) throws AlreadyTakenException, BadRequestException {
         GameData retrievedGame = gameDAO.getGame(gameID);
         AuthData retrievedAuth = authDAO.getAuth(authToken);
         if(retrievedGame == null) {
-            throw new DataAccessException("Error: bad request");
+            throw new BadRequestException("Error: bad request");
         }
         else {
             if(Objects.equals(playerColor, "white")) {
                 if(retrievedGame.whiteUsername() != null) {
-                    throw new DataAccessException("Error: already taken");
+                    throw new AlreadyTakenException("Error: already taken");
                 }
             }
             else if(Objects.equals(playerColor, "black")) {
                 if(retrievedGame.blackUsername() != null) {
-                    throw new DataAccessException("Error: already taken");
+                    throw new AlreadyTakenException("Error: already taken");
                 }
             }
             retrievedGame = new GameData(gameID,retrievedAuth.username(),retrievedGame.blackUsername(),retrievedGame.gameName(),retrievedGame.game());
