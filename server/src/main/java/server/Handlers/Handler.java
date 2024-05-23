@@ -1,57 +1,100 @@
 package server.Handlers;
 
-import dataaccess.DataAccessException;
+import com.google.gson.Gson;
+import model.AuthData;
+import model.UserData;
 import service.AuthService;
 import service.GameService;
 import service.UserService;
+import spark.Request;
+import spark.Response;
 
 public class Handler {
 
-    private UserService userService;
+    private static UserService userService;
 
-    private GameService gameService;
+    private static GameService gameService;
 
-    private AuthService authService;
+    private static AuthService authService;
 
-    public ClearResponse clear() {
-       userService.clearUsers();
-       gameService.clearGames();
-       authService.clearAuth();
+    private static Gson gson = new Gson();
+
+    public static String clearRequest(Request req, Response res) {
+        try {
+            userService.clearUsers();
+            gameService.clearGames();
+            authService.clearAuth();
+        }
+        catch (Exception e) {
+            BlankResponse result = new BlankResponse(e.getMessage());
+            res.status(500);
+            return gson.toJson(result);
+        }
+        res.status(200);
+        return "null";
     }
 
+    public static String registerRequest(Request req, Response res) {
+        RegisterRequest regReq = gson.fromJson(req.body(), RegisterRequest.class);
+        RegisterLoginResponse result = null;
+        try {
+            UserData user = new UserData(regReq.username(), regReq.password(), regReq.email());
+            AuthData retrievedAuthData = userService.register(user);
+            result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
+            res.status(200);
+        }
+        catch (Exception e) {
+            if(e.getMessage().equals("Error: already taken")) {
+                res.status(403);
+            }
+            else if (e.getMessage().equals("Error: bad request")) {
+                res.status(400);
+            }
+            else {
+                res.status(500);
+            }
+            result = new RegisterLoginResponse(e.getMessage(),null,null);
+        }
+        return gson.toJson(result);
+    }
 
+    public static String loginRequest(Request req, Response res) {
+        LoginRequest regReq = gson.fromJson(req.body(), LoginRequest.class);
+        RegisterLoginResponse result = null;
+        try {
+            UserData user = new UserData(regReq.username(), regReq.password(), null);
+            AuthData retrievedAuthData = userService.login(user);
+            result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
+            res.status(200);
+        }
+        catch (Exception e) {
+            if(e.getMessage().equals("Error: unauthorized")) {
+                res.status(401);
+            }
+            else {
+                res.status(500);
+            }
+            result = new RegisterLoginResponse(e.getMessage(),null,null);
+        }
+        return gson.toJson(result);
+    }
 
-//    public RegisterLoginResult register(RegisterRequest input) {
-//        UserData user = new UserData(input.username(), input.password(), input.email());
-//        AuthData retrievedAuthData = null;
-//        try {
-//            retrievedAuthData = userService.register(user);
-//            return new RegisterLoginResult(retrievedAuthData.username(),retrievedAuthData.authToken());
-//        }
-//        catch (DataAccessException e) {
-//
-//        }
-//    }
-//
-//    public RegisterLoginResult login(LoginRequest input) {
-//        UserData user = new UserData(input.username(), input.password(), null);
-//        AuthData retrievedAuthData = null;
-//        try {
-//            retrievedAuthData = userService.login(user);
-//            return new RegisterLoginResult(retrievedAuthData.username(),retrievedAuthData.authToken());
-//        }
-//        catch (DataAccessException e) {
-//
-//        }
-//    }
-//
-//    public void logout(AuthTokenRequest input) {
-//        AuthData retrievedAuthData = null;
-//        try {
-//            userService.logout(input.authToken());
-//        }
-//        catch (DataAccessException e) {
-//
-//        }
-//    }
+    public static String logoutRequest(Request req, Response res) {
+        AuthTokenRequest authReq = gson.fromJson(req.body(), AuthTokenRequest.class);
+        try {
+            userService.logout(authReq.authToken());
+        }
+        catch(Exception e) {
+            if(e.getMessage().equals("Error: unauthorized")) {
+                res.status(401);
+            }
+            else {
+                res.status(500);
+            }
+            BlankResponse result = new BlankResponse(e.getMessage());
+            return gson.toJson(result);
+        }
+        res.status(200);
+        return "null";
+    }
 }

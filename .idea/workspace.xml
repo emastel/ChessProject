@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Service classes written">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/AuthTokenRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ClearResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/CreateGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterLoginResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/service/AuthService.java" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Lots of code written but I don't know if it works">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/BlankResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/service/AlreadyTakenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/service/UnauthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ClearResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterLoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterLoginResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/model/AuthData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/model/AuthData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,145 +58,153 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.BishopMoveTests.bishopBlocked.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.BishopMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CastlingTests.castleWhite.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CastlingTests.castlingBlockedByEnemy.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CastlingTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CastlingTests.noCastleAfterMove.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ChessBoardTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ChessMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ChessPositionTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EnPassantTests.enPassantBlackLeft.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EnPassantTests.enPassantWhiteLeft.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EnPassantTests.enPassantWhiteRight.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EnPassantTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.FullGameTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.FullGameTest.scholarsMate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GameStatusTests.blackTeamPawnCheckmate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GameStatusTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GameStatusTests.newGame.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GameStatusTests.stalemate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GameStatusTests.whiteTeamCheckmate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.KingMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.KnightMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.invalidMakeMoveCapturedPiece.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.makeValidBishopMove.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.makeValidKingMove.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.makeValidRookMove.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.promotionMoves.[1] QUEEN.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MakeMoveTests.promotionMoves.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.PawnMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.QueenMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.RookMoveTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValidMovesTests.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValidMovesTests.forcedMove.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValidMovesTests.moveIntoCheck.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValidMovesTests.noPutSelfInDanger.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValidMovesTests.rookPinnedToKing.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor&quot;: &quot;Debug&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/Users/emmasteele/Desktop/School/CS240/Chess Project/server/src/main/java/dataaccess&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.34252873&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.BishopMoveTests.bishopBlocked.executor": "Debug",
+    "JUnit.BishopMoveTests.executor": "Debug",
+    "JUnit.CastlingTests.castleWhite.executor": "Debug",
+    "JUnit.CastlingTests.castlingBlockedByEnemy.executor": "Debug",
+    "JUnit.CastlingTests.executor": "Debug",
+    "JUnit.CastlingTests.noCastleAfterMove.executor": "Debug",
+    "JUnit.ChessBoardTests.executor": "Debug",
+    "JUnit.ChessMoveTests.executor": "Debug",
+    "JUnit.ChessPositionTests.executor": "Debug",
+    "JUnit.EnPassantTests.enPassantBlackLeft.executor": "Debug",
+    "JUnit.EnPassantTests.enPassantWhiteLeft.executor": "Debug",
+    "JUnit.EnPassantTests.enPassantWhiteRight.executor": "Debug",
+    "JUnit.EnPassantTests.executor": "Debug",
+    "JUnit.FullGameTest.executor": "Debug",
+    "JUnit.FullGameTest.scholarsMate.executor": "Debug",
+    "JUnit.GameStatusTests.blackTeamPawnCheckmate.executor": "Debug",
+    "JUnit.GameStatusTests.executor": "Debug",
+    "JUnit.GameStatusTests.newGame.executor": "Debug",
+    "JUnit.GameStatusTests.stalemate.executor": "Debug",
+    "JUnit.GameStatusTests.whiteTeamCheckmate.executor": "Debug",
+    "JUnit.KingMoveTests.executor": "Debug",
+    "JUnit.KnightMoveTests.executor": "Debug",
+    "JUnit.MakeMoveTests.executor": "Debug",
+    "JUnit.MakeMoveTests.invalidMakeMoveCapturedPiece.executor": "Debug",
+    "JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor": "Debug",
+    "JUnit.MakeMoveTests.makeValidBishopMove.executor": "Debug",
+    "JUnit.MakeMoveTests.makeValidKingMove.executor": "Debug",
+    "JUnit.MakeMoveTests.makeValidRookMove.executor": "Debug",
+    "JUnit.MakeMoveTests.promotionMoves.[1] QUEEN.executor": "Debug",
+    "JUnit.MakeMoveTests.promotionMoves.executor": "Debug",
+    "JUnit.PawnMoveTests.executor": "Debug",
+    "JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor": "Debug",
+    "JUnit.QueenMoveTests.executor": "Debug",
+    "JUnit.RookMoveTests.executor": "Debug",
+    "JUnit.ServiceTests.executor": "Run",
+    "JUnit.ServiceTests.testLogin.executor": "Debug",
+    "JUnit.ServiceTests.testLogout.executor": "Debug",
+    "JUnit.ServiceTests.testRegister.executor": "Debug",
+    "JUnit.StandardAPITests.executor": "Debug",
+    "JUnit.ValidMovesTests.executor": "Debug",
+    "JUnit.ValidMovesTests.forcedMove.executor": "Debug",
+    "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
+    "JUnit.ValidMovesTests.noPutSelfInDanger.executor": "Debug",
+    "JUnit.ValidMovesTests.rookPinnedToKing.executor": "Debug",
+    "JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/Users/emmasteele/Desktop/School/CS240/Chess Project/server/src/main/java/dataaccess",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.34252873",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ChessPositionTests">
-    <configuration name="ChessBoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
+  <component name="RunManager" selected="JUnit.ServiceTests.testLogout">
+    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.ChessBoardTests" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
+    <configuration name="ServiceTests.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.ChessMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="testLogin" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessPositionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
+    <configuration name="ServiceTests.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.ChessPositionTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="testLogout" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QueenMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
+    <configuration name="ServiceTests.testRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.QueenMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="testRegister" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RookMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="PATTERN" value="passoff.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.RookMoveTests" />
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -218,11 +225,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ChessPositionTests" />
-        <item itemvalue="JUnit.ChessMoveTests" />
-        <item itemvalue="JUnit.ChessBoardTests" />
-        <item itemvalue="JUnit.RookMoveTests" />
-        <item itemvalue="JUnit.QueenMoveTests" />
+        <item itemvalue="JUnit.ServiceTests.testLogout" />
+        <item itemvalue="JUnit.ServiceTests.testLogin" />
+        <item itemvalue="JUnit.ServiceTests" />
+        <item itemvalue="JUnit.ServiceTests.testRegister" />
+        <item itemvalue="JUnit.StandardAPITests" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +254,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="24909000" />
+      <workItem from="1716303993319" duration="35725000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -441,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716325691453</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Lots of code written but I don't know if it works">
+      <option name="closed" value="true" />
+      <created>1716480738139</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716480738139</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,6 +486,7 @@
     <MESSAGE value="Classes created" />
     <MESSAGE value="Data Access classes written" />
     <MESSAGE value="Service classes written" />
-    <option name="LAST_COMMIT_MESSAGE" value="Service classes written" />
+    <MESSAGE value="Lots of code written but I don't know if it works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lots of code written but I don't know if it works" />
   </component>
 </project>
