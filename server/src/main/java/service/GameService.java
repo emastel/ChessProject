@@ -32,24 +32,35 @@ public class GameService {
             throw new DataAccessException("Error: unauthorized");
         }
         int gameID = ++gameIdBase;
+        gameIdBase += 1;
         GameData gameData = new GameData(gameID, null, null, gameName, new ChessGame());
         gameDAO.createGame(gameData);
         return gameData;
     }
 
-    public void joinGame(String playerColor, int gameID) throws DataAccessException {
+    public void joinGame(String playerColor, int gameID, String authToken) throws DataAccessException {
         GameData retrievedGame = gameDAO.getGame(gameID);
-        if(Objects.equals(playerColor, "white")) {
-            if(retrievedGame.whiteUsername() != null) {
-                throw new DataAccessException("Error: already taken");
-            }
-            //TODO: update color to username
+        AuthData retrievedAuth = authDAO.getAuth(authToken);
+        if(retrievedGame == null) {
+            throw new DataAccessException("Error: bad request");
         }
-        else if(Objects.equals(playerColor, "black")) {
-            if(retrievedGame.blackUsername() != null) {
-                throw new DataAccessException("Error: already taken");
+        else {
+            if(Objects.equals(playerColor, "white")) {
+                if(retrievedGame.whiteUsername() != null) {
+                    throw new DataAccessException("Error: already taken");
+                }
             }
-            //TODO: update color to username
+            else if(Objects.equals(playerColor, "black")) {
+                if(retrievedGame.blackUsername() != null) {
+                    throw new DataAccessException("Error: already taken");
+                }
+            }
+            retrievedGame = new GameData(gameID,retrievedAuth.username(),retrievedGame.blackUsername(),retrievedGame.gameName(),retrievedGame.game());
         }
+
+    }
+
+    public void clearGames() {
+        gameDAO.clear();
     }
 }

@@ -41,9 +41,13 @@ public class UserService {
         return authData;
     }
 
-    public void logout(UserData user) throws DataAccessException {
-        AuthData retrievedAuth = authDAO.getAuth(user.username());
-        authDAO.deleteAuth(user.username(), retrievedAuth);
+    public void logout(String authToken) throws DataAccessException {
+        AuthData retrievedUser = authDAO.getAuth(authToken);
+        authDAO.deleteAuth(retrievedUser.username(), retrievedUser);
+    }
+
+    public void clearUsers() {
+        userDAO.clear();
     }
 
 }

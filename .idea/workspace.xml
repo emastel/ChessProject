@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Data Access classes written">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Service classes written">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/AuthTokenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ClearResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/CreateGameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterLoginResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" afterDir="false" />
     </list>
@@ -22,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Record" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -241,7 +247,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="13158000" />
+      <workItem from="1716303993319" duration="24909000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -427,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716318860781</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Service classes written">
+      <option name="closed" value="true" />
+      <created>1716325691453</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1716325691453</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,6 +470,7 @@
     <MESSAGE value="Phase 3 setup complete" />
     <MESSAGE value="Classes created" />
     <MESSAGE value="Data Access classes written" />
-    <option name="LAST_COMMIT_MESSAGE" value="Data Access classes written" />
+    <MESSAGE value="Service classes written" />
+    <option name="LAST_COMMIT_MESSAGE" value="Service classes written" />
   </component>
 </project>
