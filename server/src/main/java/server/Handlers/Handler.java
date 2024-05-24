@@ -81,9 +81,9 @@ public class Handler {
     }
 
     public static String logoutRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization"), AuthTokenRequest.class);
+        String authToken = req.headers("authorization");
         try {
-            userService.logout(authReq.authToken());
+            userService.logout(authToken);
         }
         catch(Exception e) {
             if(e.getMessage().equals("Error: unauthorized")) {
@@ -100,9 +100,9 @@ public class Handler {
     }
 
     public static String listGamesRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.body(), AuthTokenRequest.class);
+        String authToken = req.headers("authorization");
         try {
-            GameData[] games = gameService.listGames(authReq.authToken());
+            GameData[] games = gameService.listGames(authToken);
             ListGamesResponse result = new ListGamesResponse(games);
             return gson.toJson(result);
         }
@@ -119,11 +119,11 @@ public class Handler {
     }
 
     public static String createGameRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization"), AuthTokenRequest.class);
+        String authToken = req.headers("authorization");
         String gameName = req.body();
         try {
-            GameData game = gameService.createGame(authReq.authToken(),gameName);
-            CreateGameResponse result = new CreateGameResponse(null, game.gameID());
+            GameData game = gameService.createGame(authToken,gameName);
+            CreateGameResponse result = new CreateGameResponse(null, game.getGameId());
             return gson.toJson(result);
         }
         catch (Exception e) {
@@ -142,10 +142,10 @@ public class Handler {
     }
 
     public static String joinGameRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization"), AuthTokenRequest.class);
+        String authToken = req.headers("authorization");
         JoinGameRequest gameReq = gson.fromJson(req.body(), JoinGameRequest.class);
         try {
-            gameService.joinGame(gameReq.playerColor(), gameReq.gameID(),authReq.authToken());
+            gameService.joinGame(gameReq.playerColor(), gameReq.gameID(),authToken);
             res.status(200);
             return "null";
         }

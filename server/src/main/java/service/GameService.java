@@ -38,22 +38,26 @@ public class GameService {
 
     public void joinGame(String playerColor, int gameID, String authToken) throws AlreadyTakenException, BadRequestException {
         GameData retrievedGame = gameDAO.getGame(gameID);
+        if(authToken == null) {
+            throw new BadRequestException("Error: unauthorized");
+        }
         AuthData retrievedAuth = authDAO.getAuth(authToken);
         if(retrievedGame == null) {
             throw new BadRequestException("Error: bad request");
         }
         else {
-            if(Objects.equals(playerColor, "white")) {
-                if(retrievedGame.whiteUsername() != null) {
+            if(Objects.equals(playerColor, "WHITE")) {
+                if(retrievedGame.getWhiteUsername() != null) {
                     throw new AlreadyTakenException("Error: already taken");
                 }
+                retrievedGame.setWhiteUsername(playerColor);
             }
-            else if(Objects.equals(playerColor, "black")) {
-                if(retrievedGame.blackUsername() != null) {
+            else if(Objects.equals(playerColor, "BLACK")) {
+                if(retrievedGame.getBlackUsername() != null) {
                     throw new AlreadyTakenException("Error: already taken");
                 }
+                retrievedGame.setBlackUsername(playerColor);
             }
-            retrievedGame = new GameData(gameID,retrievedAuth.username(),retrievedGame.blackUsername(),retrievedGame.gameName(),retrievedGame.game());
         }
 
     }

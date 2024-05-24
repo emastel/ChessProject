@@ -60,7 +60,7 @@ public class ServiceTests {
             userService.register(user);
             AuthData authData = userService.login(user);
             GameData gameResult = gameService.createGame(authData.authToken(),"testGame");
-            assertGame("testGame",gameResult.gameName());
+            assertGame("testGame",gameResult.getGameName());
         }
         catch (Exception e) {
             Assertions.fail(e.getMessage());

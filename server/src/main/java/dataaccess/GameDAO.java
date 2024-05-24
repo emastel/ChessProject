@@ -14,7 +14,7 @@ public class GameDAO {
     }
 
     public void createGame(GameData input) {
-        games.put(input.gameID(),input);
+        games.put(input.getGameId(),input);
     }
 
     public GameData getGame(int gameID) {
@@ -26,6 +26,6 @@ public class GameDAO {
     }
 
     public void updateGame(GameData input) {
-        games.put(input.gameID(),input);
+        games.put(input.getGameId(), input);
     }
 }
