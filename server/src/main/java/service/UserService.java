@@ -14,7 +14,10 @@ public class UserService {
 
     private AuthDAO authDAO = new AuthDAO();
 
-    public AuthData register(UserData user) throws AlreadyTakenException {
+    public AuthData register(UserData user) throws AlreadyTakenException, BadRequestException {
+        if(user.username() == null || user.password() == null || user.username().isEmpty() || user.password().isEmpty()) {
+            throw new BadRequestException("Error: bad request");
+        }
         UserData retrievedUser = userDAO.getUser(user.username());
         if(retrievedUser != null && Objects.equals(retrievedUser.password(), user.password())) {
             throw new AlreadyTakenException("Error: already taken");

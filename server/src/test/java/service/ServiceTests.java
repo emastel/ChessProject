@@ -67,6 +67,21 @@ public class ServiceTests {
         }
     }
 
+    @Test
+    @DisplayName("List Games")
+    public void testListGames() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+            AuthData authData = userService.login(user);
+            gameService.createGame(authData.authToken(),"testGame");
+            gameService.listGames(authData.authToken());
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
     private void assertUsername(String expected, String actual) {
         Assertions.assertEquals(expected, actual, "username is incorrect");

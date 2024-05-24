@@ -6,7 +6,6 @@ import dataaccess.GameDAO;
 import model.AuthData;
 import model.GameData;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class GameService {
@@ -17,12 +16,12 @@ public class GameService {
 
     private int gameIdBase = 0;
 
-    public Map<Integer, GameData> listGames(String authToken) throws UnauthorizedException {
+    public GameData[] listGames(String authToken) throws UnauthorizedException {
         AuthData retrievedAuth = authDAO.getAuth(authToken);
         if(retrievedAuth == null) {
             throw new UnauthorizedException("Error: unauthorized");
         }
-        return gameDAO.listGames();
+        return gameDAO.listGames().values().toArray(new GameData[0]);
     }
 
     public GameData createGame(String authToken, String gameName) throws UnauthorizedException {

@@ -10,15 +10,13 @@ import service.UserService;
 import spark.Request;
 import spark.Response;
 
-import java.util.Map;
-
 public class Handler {
 
-    private static UserService userService;
+    private static UserService userService = new UserService();
 
-    private static GameService gameService;
+    private static GameService gameService = new GameService();
 
-    private static AuthService authService;
+    private static AuthService authService = new AuthService();
 
     private static Gson gson = new Gson();
 
@@ -83,7 +81,7 @@ public class Handler {
     }
 
     public static String logoutRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.body(), AuthTokenRequest.class);
+        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization"), AuthTokenRequest.class);
         try {
             userService.logout(authReq.authToken());
         }
@@ -103,10 +101,10 @@ public class Handler {
 
     public static String listGamesRequest(Request req, Response res) {
         AuthTokenRequest authReq = gson.fromJson(req.body(), AuthTokenRequest.class);
-        ListGamesResponse result = null;
         try {
-            Map<Integer, GameData> games = gameService.listGames(authReq.authToken());
-            result = new ListGamesResponse();
+            GameData[] games = gameService.listGames(authReq.authToken());
+            ListGamesResponse result = new ListGamesResponse(games);
+            return gson.toJson(result);
         }
         catch (Exception e) {
             if(e.getMessage().equals("Error: unauthorized")) {
@@ -115,13 +113,13 @@ public class Handler {
             else {
                 res.status(500);
             }
-            result = new ListGamesResponse();
+            BlankResponse result = new BlankResponse(e.getMessage());
+            return gson.toJson(result);
         }
-        return gson.toJson(result);
     }
 
     public static String createGameRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization:"), AuthTokenRequest.class);
+        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization"), AuthTokenRequest.class);
         String gameName = req.body();
         try {
             GameData game = gameService.createGame(authReq.authToken(),gameName);
@@ -144,7 +142,7 @@ public class Handler {
     }
 
     public static String joinGameRequest(Request req, Response res) {
-        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization:"), AuthTokenRequest.class);
+        AuthTokenRequest authReq = gson.fromJson(req.headers("authorization"), AuthTokenRequest.class);
         JoinGameRequest gameReq = gson.fromJson(req.body(), JoinGameRequest.class);
         try {
             gameService.joinGame(gameReq.playerColor(), gameReq.gameID(),authReq.authToken());

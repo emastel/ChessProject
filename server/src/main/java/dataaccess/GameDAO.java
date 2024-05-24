@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class GameDAO {
 
-    private Map<Integer, GameData> games = new HashMap<>();
+    private static Map<Integer, GameData> games = new HashMap<>();
 
     public void clear() {
         games.clear();

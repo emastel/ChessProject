@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="User functions in server and tested service wise">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/CreateGameResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/JoinGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ListGamesResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/service/BadRequestException.java" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Game functions in server and not yet tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/CreateGameRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ListGamesResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ListGamesResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,10 +96,12 @@
     "JUnit.RookMoveTests.executor": "Debug",
     "JUnit.ServiceTests.executor": "Run",
     "JUnit.ServiceTests.testCreateGames.executor": "Debug",
+    "JUnit.ServiceTests.testListGames.executor": "Debug",
     "JUnit.ServiceTests.testLogin.executor": "Debug",
     "JUnit.ServiceTests.testLogout.executor": "Debug",
     "JUnit.ServiceTests.testRegister.executor": "Debug",
     "JUnit.StandardAPITests.executor": "Debug",
+    "JUnit.StandardAPITests.successLogin.executor": "Debug",
     "JUnit.ValidMovesTests.executor": "Debug",
     "JUnit.ValidMovesTests.forcedMove.executor": "Debug",
     "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
@@ -132,22 +133,7 @@
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServiceTests.testCreateGames">
-    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.StandardAPITests">
     <configuration name="ServiceTests.testCreateGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -164,7 +150,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceTests.testListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -174,39 +160,54 @@
       </extension>
       <option name="PACKAGE_NAME" value="service" />
       <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
-      <option name="METHOD_NAME" value="testLogin" />
+      <option name="METHOD_NAME" value="testListGames" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="passoff.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
-      <option name="METHOD_NAME" value="testLogout" />
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.successLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="METHOD_NAME" value="successLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.testRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.successLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="passoff.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
-      <option name="METHOD_NAME" value="testRegister" />
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="METHOD_NAME" value="successLogout" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -227,11 +228,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="JUnit.StandardAPITests.successLogout" />
+        <item itemvalue="JUnit.StandardAPITests.successLogin" />
+        <item itemvalue="JUnit.ServiceTests.testListGames" />
         <item itemvalue="JUnit.ServiceTests.testCreateGames" />
-        <item itemvalue="JUnit.ServiceTests.testLogout" />
-        <item itemvalue="JUnit.ServiceTests.testLogin" />
-        <item itemvalue="JUnit.ServiceTests" />
-        <item itemvalue="JUnit.ServiceTests.testRegister" />
       </list>
     </recent_temporary>
   </component>
@@ -256,7 +257,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="41043000" />
+      <workItem from="1716303993319" duration="43611000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -466,14 +467,21 @@
       <option name="project" value="LOCAL" />
       <updated>1716498558537</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Game functions in server and not yet tested">
+      <option name="closed" value="true" />
+      <created>1716504693380</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1716504693380</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add(client) dependency on server for running tests." />
     <MESSAGE value="fix(shared) maven resource reference" />
     <MESSAGE value="file cleanup" />
     <MESSAGE value="Gets and setters implemented" />
@@ -498,6 +506,7 @@
     <MESSAGE value="Service classes written" />
     <MESSAGE value="Lots of code written but I don't know if it works" />
     <MESSAGE value="User functions in server and tested service wise" />
-    <option name="LAST_COMMIT_MESSAGE" value="User functions in server and tested service wise" />
+    <MESSAGE value="Game functions in server and not yet tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game functions in server and not yet tested" />
   </component>
 </project>

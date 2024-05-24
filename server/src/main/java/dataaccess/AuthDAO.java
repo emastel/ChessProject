@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class AuthDAO {
 
-    private Map<String, AuthData> authTokens = new HashMap<>();
+    private static Map<String, AuthData> authTokens = new HashMap<>();
 
     public void clearAuth() {
         authTokens.clear();

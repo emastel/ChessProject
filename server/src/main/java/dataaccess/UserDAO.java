@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class UserDAO {
 
-    private Map<String, UserData> users = new HashMap<>();
+    private static Map<String, UserData> users = new HashMap<>();
 
     public void clear() {
         users.clear();

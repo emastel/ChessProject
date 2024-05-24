@@ -1,4 +1,6 @@
 package server.Handlers;
 
-public record ListGamesResponse() {
+import model.GameData;
+
+public record ListGamesResponse(GameData[] games) {
 }
