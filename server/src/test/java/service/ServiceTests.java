@@ -165,6 +165,30 @@ public class ServiceTests {
         }
     }
 
+    @Test
+    @Order(11)
+    @DisplayName("User Clear")
+    public void testUserClear() {
+        try {
+            userService.clearUsers();
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(12)
+    @DisplayName("Game Clear")
+    public void testGameClear() {
+        try {
+            gameService.clearGames();
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
 
     private void assertUsername(String expected, String actual) {
         Assertions.assertEquals(expected, actual, "username is incorrect");
@@ -181,8 +205,6 @@ public class ServiceTests {
     private void assertUnauthorized(String actual) {
         Assertions.assertEquals("Error: unauthorized", actual, "different error");
     }
-
-
 
 
     private UserService userService = new UserService();
