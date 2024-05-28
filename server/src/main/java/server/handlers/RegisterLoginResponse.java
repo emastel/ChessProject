@@ -1,4 +1,4 @@
-package server.Handlers;
+package server.handlers;
 
 public record RegisterLoginResponse(String message, String username, String authToken) {
 }

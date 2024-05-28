@@ -1,4 +1,4 @@
-package server.Handlers;
+package server.handlers;
 
 import com.google.gson.Gson;
 import model.AuthData;

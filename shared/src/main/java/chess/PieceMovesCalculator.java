@@ -13,6 +13,28 @@ public class PieceMovesCalculator {
         thisPosition = position;
     }
 
+    private boolean rangeCheck (int row, int col) {
+        return (row<=8 && col<=8 && row>=1 && col>=1);
+    }
+
+    private ArrayList<ChessMove> diagonal(ArrayList<ChessMove> validMoves, int tempRow, int tempColumn, int team, int upDown, int leftRight) {
+        while(rangeCheck(tempRow, tempColumn)) {
+            tempRow -= team * upDown;
+            tempColumn += leftRight;
+            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
+                break;
+            }
+            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
+            {
+                validMoves.add(makeNewMove(tempRow,tempColumn, null));
+            }
+            if(enemyPresent(tempRow,tempColumn) || isTaken(tempRow,tempColumn)) {
+                break;
+            }
+        }
+        return validMoves;
+    }
+
     private ChessMove makeNewMove(int row, int col, ChessPiece.PieceType type) {
         ChessPosition newPosition = new ChessPosition(row,col);
         new ChessMove(thisPosition,newPosition,type);
@@ -46,81 +68,29 @@ public class PieceMovesCalculator {
         return direction;
     }
 
-    public Collection<ChessMove> BishopMoves() {
+    public Collection<ChessMove> bishopMoves() {
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
         int direction = getDirection(thisBoard.getPiece(thisPosition).getTeamColor());
         /* right down */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow -= direction;
-            ++tempColumn;
-            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn) || isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
+        validMoves.addAll(diagonal(validMoves,tempRow,tempColumn,direction, -1, 1));
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
         /* right up */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow += direction;
-            ++tempColumn;
-            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)|| isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
+        validMoves.addAll(diagonal(validMoves,tempRow,tempColumn,direction, 1, 1));
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
         /* left up */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow += direction;
-            --tempColumn;
-            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)|| isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
+        validMoves.addAll(diagonal(validMoves,tempRow,tempColumn,direction, 1, -1));
         tempRow = thisPosition.getRow();
         tempColumn = thisPosition.getColumn();
         /* left down */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow -= direction;
-            --tempColumn;
-            if(tempRow>8 || tempRow<1 || tempColumn>8 || tempColumn<1) {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)|| isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
+        validMoves.addAll(diagonal(validMoves,tempRow,tempColumn,direction, -1, -1));
         return validMoves;
     }
 
-    public Collection<ChessMove> KingMoves() {
+    public Collection<ChessMove> kingMoves() {
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
@@ -159,84 +129,90 @@ public class PieceMovesCalculator {
         return validMoves;
     }
 
-    public Collection<ChessMove> KnightMoves(){
-        ArrayList<ChessMove> validMoves = new ArrayList<>();
-        int tempRow = thisPosition.getRow();
-        int tempColumn = thisPosition.getColumn();
-        int direction = getDirection(thisBoard.getPiece(thisPosition).getTeamColor());
-        /* Up Left Highest */
-        tempRow += 2*direction;
-        tempColumn -= 1;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+    private  ArrayList<ChessMove> knightPosition(ArrayList<ChessMove> validMoves, int tempRow, int tempColumn, int team, boolean up, int leftRight, boolean high) {
+        if(high){
+            if(up) {
+                tempRow += 2*team;
+            }
+            else
+            {
+                tempRow -= 2*team;
+            }
+            tempColumn += leftRight;
         }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Up Left Lowest */
-        tempRow += direction;
-        tempColumn -= 2;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
+        else {
+            if(up) {
+                tempRow += team;
+            }
+            else
+            {
+                tempRow -= team;
+            }
+            tempColumn += 2*leftRight;
         }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Up Right Highest */
-        tempRow += 2*direction;
-        tempColumn += 1;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Up Right Lowest */
-        tempRow += direction;
-        tempColumn += 2;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Down Left Lowest */
-        tempRow -= 2*direction;
-        tempColumn -= 1;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Down Left Highest */
-        tempRow -= direction;
-        tempColumn -= 2;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Down Right Lowest */
-        tempRow -= 2*direction;
-        tempColumn += 1;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
-        {
-            validMoves.add(makeNewMove(tempRow,tempColumn, null));
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* Down Right Highest */
-        tempRow -= direction;
-        tempColumn += 2;
-        if((tempRow<=8&&tempRow>=1&&tempColumn>=1&&tempColumn<=8)&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
+        if((rangeCheck(tempRow,tempColumn))&&(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)))
         {
             validMoves.add(makeNewMove(tempRow,tempColumn, null));
         }
         return validMoves;
     }
-    public Collection<ChessMove> PawnMoves(){
+    public Collection<ChessMove> knightMoves(){
+        ArrayList<ChessMove> validMoves = new ArrayList<>();
+        int tempRow = thisPosition.getRow();
+        int tempColumn = thisPosition.getColumn();
+        int direction = getDirection(thisBoard.getPiece(thisPosition).getTeamColor());
+        /* Up Left Highest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,true,-1,true));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Up Left Lowest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,true,-1,false));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Up Right Highest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,true,1,true));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Up Right Lowest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,true,1,false));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Left Lowest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,false,-1,true));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Left Highest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,false,-1,false));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Right Lowest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,false,1,true));
+        tempRow = thisPosition.getRow();
+        tempColumn = thisPosition.getColumn();
+        /* Down Right Highest */
+        validMoves.addAll(knightPosition(validMoves,tempRow,tempColumn,direction,false,1,false));
+        return validMoves;
+    }
+
+    private ArrayList<ChessMove> pawnPromotion(ArrayList<ChessMove> validMoves, int tempRow, int tempColumn, ChessGame.TeamColor teamColor, boolean diagonal)
+    {
+        if(rangeCheck(tempRow,tempColumn)){
+            if((enemyPresent(tempRow,tempColumn) && diagonal) || (!enemyPresent(tempRow,tempColumn) && !diagonal && !isTaken(tempRow,tempColumn))) {
+                if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
+                    validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
+                }
+                else{
+                    validMoves.add(makeNewMove(tempRow,tempColumn, null));
+                }
+            }
+        }
+        return validMoves;
+    }
+
+    public Collection<ChessMove> pawnMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
@@ -245,45 +221,14 @@ public class PieceMovesCalculator {
         int direction = getDirection(teamColor);
         /* Up One */
         tempRow += direction;
-        if((tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1)&&(!isTaken(tempRow,tempColumn) && !enemyPresent(tempRow,tempColumn)))
-        {
-            if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
-            }
-            else{
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-        }
+        validMoves.addAll(pawnPromotion(validMoves,tempRow,tempColumn,teamColor,false));
         /* Diagonal Right */
         tempColumn += 1;
-        if((tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1)&&enemyPresent(tempRow,tempColumn)) {
-            if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
-            }
-            else{
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-        }
+        validMoves.addAll(pawnPromotion(validMoves,tempRow,tempColumn,teamColor,true));
         tempColumn = thisPosition.getColumn();
         /* Diagonal Left */
         tempColumn -= 1;
-        if((tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1)&&enemyPresent(tempRow,tempColumn)) {
-            if((tempRow==8 && teamColor== ChessGame.TeamColor.WHITE)||(tempRow==1 && teamColor==ChessGame.TeamColor.BLACK)) {
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.QUEEN));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.KNIGHT));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.BISHOP));
-                validMoves.add(makeNewMove(tempRow,tempColumn, ChessPiece.PieceType.ROOK));
-            }
-            else{
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-        }
+        validMoves.addAll(pawnPromotion(validMoves,tempRow,tempColumn,teamColor,true));
         tempColumn = thisPosition.getColumn();
         tempRow = thisPosition.getRow();
         if((tempRow == 2 && teamColor == ChessGame.TeamColor.WHITE) || (tempRow == 7 && teamColor == ChessGame.TeamColor.BLACK)) {
@@ -297,132 +242,18 @@ public class PieceMovesCalculator {
         return validMoves;
     }
 
-    public Collection<ChessMove> QueenMoves(){
+    public Collection<ChessMove> queenMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
-        int tempRow = thisPosition.getRow();
-        int tempColumn = thisPosition.getColumn();
-        int direction = getDirection(thisBoard.getPiece(thisPosition).getTeamColor());
-        /* Up */
+        validMoves.addAll(rookMoves());
+        validMoves.addAll(bishopMoves());
+        return validMoves;
+    }
+
+    private ArrayList<ChessMove> rookPosition(ArrayList<ChessMove> validMoves, int tempRow, int tempColumn, int direction, int upDown)
+    {
         while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow += direction;
-            if(tempRow>8 || tempRow<1)
-            {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempRow = thisPosition.getRow();
-        /* Down */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow -= direction;
-            if(tempRow>8 || tempRow<1)
-            {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempRow = thisPosition.getRow();
-        /* Right */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            ++tempColumn;
-            if(tempColumn>8)
-            {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempColumn = thisPosition.getColumn();
-        /* Left */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            --tempColumn;
-            if(tempColumn<1)
-            {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* right down */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow += direction;
-            ++tempColumn;
-            if(tempRow>8 || tempColumn>8 || tempRow<1){
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* right up */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow -= direction;
-            ++tempColumn;
-            if(tempRow<1 || tempColumn>8 || tempRow>8){
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* left up */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow -= direction;
-            --tempColumn;
-            if(tempRow<1 || tempColumn<1 || tempRow>8){
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
-        tempRow = thisPosition.getRow();
-        tempColumn = thisPosition.getColumn();
-        /* left down */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow += direction;
-            --tempColumn;
-            if(tempRow>8 || tempColumn<1 || tempRow<1){
+            tempRow += direction*upDown;
+            if(tempRow>8 || tempRow<1) {
                 break;
             }
             if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
@@ -436,39 +267,16 @@ public class PieceMovesCalculator {
         return validMoves;
     }
 
-    public Collection<ChessMove> RookMoves(){
+    public Collection<ChessMove> rookMoves(){
         ArrayList<ChessMove> validMoves = new ArrayList<>();
         int tempRow = thisPosition.getRow();
         int tempColumn = thisPosition.getColumn();
         int direction = getDirection(thisBoard.getPiece(thisPosition).getTeamColor());
         /* Up */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow += direction;
-            if(tempRow>8 || tempRow<1) {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn))
-            {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
+        validMoves.addAll(rookPosition(validMoves,tempRow,tempColumn,direction,1));
         tempRow = thisPosition.getRow();
         /* Down */
-        while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
-            tempRow -= direction;
-            if(tempRow>8 || tempRow<1) {
-                break;
-            }
-            if(!isTaken(tempRow,tempColumn) || enemyPresent(tempRow,tempColumn)) {
-                validMoves.add(makeNewMove(tempRow,tempColumn, null));
-            }
-            if(enemyPresent(tempRow,tempColumn)||isTaken(tempRow,tempColumn)) {
-                break;
-            }
-        }
+        validMoves.addAll(rookPosition(validMoves,tempRow,tempColumn,direction,-1));
         tempRow = thisPosition.getRow();
         /* Right */
         while(tempRow<=8 && tempColumn<=8 && tempRow>=1 && tempColumn>=1) {
@@ -499,5 +307,4 @@ public class PieceMovesCalculator {
         }
         return validMoves;
     }
-
 }

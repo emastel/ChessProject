@@ -1,4 +1,4 @@
-package server.Handlers;
+package server.handlers;
 
 public record LoginRequest(String username, String password) {
 }

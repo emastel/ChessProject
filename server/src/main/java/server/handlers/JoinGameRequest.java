@@ -1,4 +1,4 @@
-package server.Handlers;
+package server.handlers;
 
 public record JoinGameRequest(String playerColor, int gameID) {
 }

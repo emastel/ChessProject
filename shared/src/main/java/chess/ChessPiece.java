@@ -34,22 +34,22 @@ public class ChessPiece {
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         PieceMovesCalculator moveType = new PieceMovesCalculator(board, myPosition);
         if(thisType == PieceType.BISHOP) {
-            return moveType.BishopMoves();
+            return moveType.bishopMoves();
         }
         else if(thisType == PieceType.KING) {
-            return moveType.KingMoves();
+            return moveType.kingMoves();
         }
         else if(thisType == PieceType.KNIGHT) {
-            return moveType.KnightMoves();
+            return moveType.knightMoves();
         }
         else if(thisType == PieceType.PAWN) {
-            return moveType.PawnMoves();
+            return moveType.pawnMoves();
         }
         else if(thisType == PieceType.ROOK) {
-            return moveType.RookMoves();
+            return moveType.rookMoves();
         }
         else if(thisType == PieceType.QUEEN) {
-            return moveType.QueenMoves();
+            return moveType.queenMoves();
         }
         return null;
     }
