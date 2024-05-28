@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="All tests passing">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Code cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shared/chess/ChessPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/chess/ChessPiece.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/shared/chess/PieceMovesCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/chess/PieceMovesCalculator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/AuthTokenRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/AuthTokenRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/BlankResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/BlankResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/CreateGameResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/CreateGameResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/JoinGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/ListGamesResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/ListGamesResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterLoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/RegisterLoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/PieceMovesCalculator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -145,7 +133,7 @@
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ChessBoardTests">
+  <component name="RunManager" selected="JUnit.ChessPositionTests">
     <configuration name="ChessBoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shared" />
       <extension name="coverage">
@@ -191,22 +179,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PawnMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ValidMovesTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shared" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.chess.piece.*" />
+          <option name="PATTERN" value="passoff.chess.game.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.PawnMoveTests" />
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.ValidMovesTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RookMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="passoff.chess.piece in shared" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shared" />
       <extension name="coverage">
         <pattern>
@@ -215,8 +203,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.piece.RookMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,11 +223,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ChessBoardTests" />
-        <item itemvalue="JUnit.ChessMoveTests" />
         <item itemvalue="JUnit.ChessPositionTests" />
-        <item itemvalue="JUnit.RookMoveTests" />
-        <item itemvalue="JUnit.PawnMoveTests" />
+        <item itemvalue="JUnit.ChessMoveTests" />
+        <item itemvalue="JUnit.ChessBoardTests" />
+        <item itemvalue="JUnit.passoff.chess.piece in shared" />
+        <item itemvalue="JUnit.ValidMovesTests" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +252,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="62586000" />
+      <workItem from="1716303993319" duration="63702000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -523,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716916355932</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Code cleanup">
+      <option name="closed" value="true" />
+      <created>1716925191762</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1716925191762</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="makeMove is written" />
     <MESSAGE value="validMoves is written" />
     <MESSAGE value="isInStalemate is written" />
     <MESSAGE value="Some move tests pass" />
@@ -566,6 +560,7 @@
     <MESSAGE value="GameData changed into a class" />
     <MESSAGE value="All tests except list games passing" />
     <MESSAGE value="All tests passing" />
-    <option name="LAST_COMMIT_MESSAGE" value="All tests passing" />
+    <MESSAGE value="Code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code cleanup" />
   </component>
 </project>
