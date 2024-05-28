@@ -4,17 +4,18 @@ import dataaccess.AuthDAO;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class ServiceTests {
 
     @Test
+    @Order(1)
+
     @DisplayName("Register")
     public void testRegister() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
+            userService.clearUsers();
             AuthData testResult = userService.register(user);
             assertUsername(user.username(),testResult.username());
         }
@@ -24,6 +25,7 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(2)
     @DisplayName("Fail Register")
     public void failRegister() {
         UserData user = new UserData(null, null, null);
@@ -35,12 +37,25 @@ public class ServiceTests {
         }
     }
 
+    @BeforeEach
+    public void setup() {
+        userService.clearUsers();
+        gameService.clearGames();
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
     @Test
+    @Order(3)
     @DisplayName("Login")
     public void testLogin() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             AuthData testResult = userService.login(user);
             assertUsername(user.username(),testResult.username());
         }
@@ -50,11 +65,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(4)
     @DisplayName("Bad Login")
     public void badLogin() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             UserData badUser = new UserData("not", "the", "same");
             userService.login(badUser);
         }
@@ -64,11 +79,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(5)
     @DisplayName("Logout")
     public void testLogout() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             AuthData testResult = userService.login(user);
             userService.logout(testResult.authToken());
             Assertions.assertNull(authDAO.getAuth(testResult.authToken()));
@@ -79,11 +94,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(6)
     @DisplayName("Bad Logout")
     public void badLogout() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             userService.login(user);
             userService.logout("notAnAuthtoken");
         }
@@ -93,11 +108,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(7)
     @DisplayName("Create Games")
     public void testCreateGames() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             AuthData authData = userService.login(user);
             GameData gameResult = gameService.createGame(authData.authToken(),"testGame");
             assertGame("testGame",gameResult.getGameName());
@@ -108,12 +123,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(8)
     @DisplayName("Bad Create Games")
     public void badCreateGames() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
-            userService.login(user);
             gameService.createGame("notAnAuthToken","testGame");
         }
         catch (Exception e) {
@@ -122,11 +136,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(9)
     @DisplayName("List Games")
     public void testListGames() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             AuthData authData = userService.login(user);
             gameService.createGame(authData.authToken(),"testGame");
             gameService.listGames(authData.authToken());
@@ -137,11 +151,11 @@ public class ServiceTests {
     }
 
     @Test
+    @Order(10)
     @DisplayName("Bad List Games")
     public void badListGames() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
         try {
-            userService.register(user);
             AuthData authData = userService.login(user);
             gameService.createGame(authData.authToken(),"testGame");
             gameService.listGames("notAnAuthToken");
