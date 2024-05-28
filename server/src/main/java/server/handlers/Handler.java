@@ -59,25 +59,30 @@ public class Handler {
         return gson.toJson(result);
     }
 
+    private static BlankResponse unauthorizedError(Response res, Exception e) {
+        if(e.getMessage().equals("Error: unauthorized")) {
+            res.status(401);
+        }
+        else {
+            res.status(500);
+        }
+         return new BlankResponse(e.getMessage());
+    }
+
     public static String loginRequest(Request req, Response res) {
         LoginRequest regReq = gson.fromJson(req.body(), LoginRequest.class);
-        RegisterLoginResponse result = null;
         try {
             UserData user = new UserData(regReq.username(), regReq.password(), null);
             AuthData retrievedAuthData = userService.login(user);
-            result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
+            RegisterLoginResponse result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
             res.status(200);
+            return gson.toJson(result);
         }
         catch (Exception e) {
-            if(e.getMessage().equals("Error: unauthorized")) {
-                res.status(401);
-            }
-            else {
-                res.status(500);
-            }
-            result = new RegisterLoginResponse(e.getMessage(),null,null);
+            BlankResponse result = unauthorizedError(res, e);
+            return gson.toJson(result);
         }
-        return gson.toJson(result);
+
     }
 
     public static String logoutRequest(Request req, Response res) {
@@ -86,13 +91,7 @@ public class Handler {
             userService.logout(authToken);
         }
         catch(Exception e) {
-            if(e.getMessage().equals("Error: unauthorized")) {
-                res.status(401);
-            }
-            else {
-                res.status(500);
-            }
-            BlankResponse result = new BlankResponse(e.getMessage());
+            BlankResponse result = unauthorizedError(res, e);
             return gson.toJson(result);
         }
         res.status(200);
@@ -107,13 +106,7 @@ public class Handler {
             return gson.toJson(result);
         }
         catch (Exception e) {
-            if(e.getMessage().equals("Error: unauthorized")) {
-                res.status(401);
-            }
-            else {
-                res.status(500);
-            }
-            BlankResponse result = new BlankResponse(e.getMessage());
+            BlankResponse result = unauthorizedError(res, e);
             return gson.toJson(result);
         }
     }

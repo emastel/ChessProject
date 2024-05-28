@@ -24,10 +24,6 @@ public class GameData {
         return this.gameID;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
-    }
-
     public String getWhiteUsername() {
         return this.whiteUsername;
     }
@@ -48,15 +44,8 @@ public class GameData {
         return this.gameName;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
-
     public ChessGame getGame() {
         return this.game;
     }
 
-    public void setGame(ChessGame game) {
-        this.game = game;
-    }
 }
