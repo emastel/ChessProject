@@ -42,7 +42,10 @@ public class GameService {
             throw new BadRequestException("Error: unauthorized");
         }
         AuthData retrievedAuth = authDAO.getAuth(authToken);
-        if(retrievedGame == null) {
+        if(retrievedAuth == null) {
+            throw new BadRequestException("Error: unauthorized");
+        }
+        if(retrievedGame == null || playerColor == null) {
             throw new BadRequestException("Error: bad request");
         }
         else {
@@ -50,13 +53,15 @@ public class GameService {
                 if(retrievedGame.getWhiteUsername() != null) {
                     throw new AlreadyTakenException("Error: already taken");
                 }
-                retrievedGame.setWhiteUsername(playerColor);
+                retrievedGame.setWhiteUsername(retrievedAuth.username());
+                gameDAO.updateGame(retrievedGame);
             }
             else if(Objects.equals(playerColor, "BLACK")) {
                 if(retrievedGame.getBlackUsername() != null) {
                     throw new AlreadyTakenException("Error: already taken");
                 }
-                retrievedGame.setBlackUsername(playerColor);
+                retrievedGame.setBlackUsername(retrievedAuth.username());
+                gameDAO.updateGame(retrievedGame);
             }
         }
 

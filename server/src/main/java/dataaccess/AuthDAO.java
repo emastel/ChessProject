@@ -11,7 +11,9 @@ public class AuthDAO {
     private static Map<String, AuthData> authTokens = new HashMap<>();
 
     public void clearAuth() {
-        authTokens.clear();
+        if(!authTokens.isEmpty() && authTokens != null) {
+            authTokens.clear();
+        }
     }
 
     public void createAuth(AuthData input) {

@@ -4,7 +4,7 @@ import dataaccess.AuthDAO;
 
 public class AuthService {
 
-    private AuthDAO authDAO;
+    private AuthDAO authDAO = new AuthDAO();
 
     public void clearAuth() {
         authDAO.clearAuth();

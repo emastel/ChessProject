@@ -10,7 +10,9 @@ public class GameDAO {
     private static Map<Integer, GameData> games = new HashMap<>();
 
     public void clear() {
-        games.clear();
+        if(!games.isEmpty()) {
+            games.clear();
+        }
     }
 
     public void createGame(GameData input) {

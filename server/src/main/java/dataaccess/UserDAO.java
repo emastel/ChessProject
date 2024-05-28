@@ -10,7 +10,9 @@ public class UserDAO {
     private static Map<String, UserData> users = new HashMap<>();
 
     public void clear() {
-        users.clear();
+        if(!users.isEmpty()) {
+            users.clear();
+        }
     }
 
     public void createUser(UserData input) {
