@@ -4,30 +4,32 @@ import chess.ChessGame;
 
 public class GameData {
 
-    private int gameId;
+    private int gameID;
     private String whiteUsername;
     private String blackUsername;
-    private String thisGameName;
-    private ChessGame thisGame;
+    private String gameName;
+    private ChessGame game;
 
-    public GameData(int gameID, String whiteUser, String blackUser, String gameName, ChessGame game) {
-        gameId = gameID;
-        whiteUsername = whiteUser;
-        blackUsername = blackUser;
-        thisGame = game;
-        thisGameName = gameName;
+    public GameData() {}
+
+    public GameData(int gameID, String whiteUsername, String blackUsername, String gameName, ChessGame game) {
+        this.gameID = gameID;
+        this.whiteUsername = whiteUsername;
+        this.blackUsername = blackUsername;
+        this.game = game;
+        this.gameName = gameName;
     }
 
-    public int getGameId() {
-        return gameId;
+    public int getGameID() {
+        return this.gameID;
     }
 
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 
     public String getWhiteUsername() {
-        return whiteUsername;
+        return this.whiteUsername;
     }
 
     public void setWhiteUsername(String whiteUsername) {
@@ -35,7 +37,7 @@ public class GameData {
     }
 
     public String getBlackUsername() {
-        return blackUsername;
+        return this.blackUsername;
     }
 
     public void setBlackUsername(String blackUsername) {
@@ -43,18 +45,18 @@ public class GameData {
     }
 
     public String getGameName() {
-        return thisGameName;
+        return this.gameName;
     }
 
     public void setGameName(String gameName) {
-        this.thisGameName = gameName;
+        this.gameName = gameName;
     }
 
     public ChessGame getGame() {
-        return thisGame;
+        return this.game;
     }
 
     public void setGame(ChessGame game) {
-        this.thisGame = game;
+        this.game = game;
     }
 }

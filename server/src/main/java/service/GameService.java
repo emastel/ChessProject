@@ -30,7 +30,7 @@ public class GameService {
             throw new UnauthorizedException("Error: unauthorized");
         }
         int gameID = ++gameIdBase;
-        gameIdBase += 1;
+        //gameIdBase += 1;
         GameData gameData = new GameData(gameID, null, null, gameName, new ChessGame());
         gameDAO.createGame(gameData);
         return gameData;

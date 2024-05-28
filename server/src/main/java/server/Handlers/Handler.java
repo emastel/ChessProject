@@ -123,7 +123,7 @@ public class Handler {
         String gameName = req.body();
         try {
             GameData game = gameService.createGame(authToken,gameName);
-            CreateGameResponse result = new CreateGameResponse(null, game.getGameId());
+            CreateGameResponse result = new CreateGameResponse(null, game.getGameID());
             return gson.toJson(result);
         }
         catch (Exception e) {

@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="GameData changed into a class">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="All tests except list games passing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/server/dataaccess/AuthDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/dataaccess/AuthDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/server/dataaccess/GameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/dataaccess/GameDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/dataaccess/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/dataaccess/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/service/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/server/service/GameService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/service/GameService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/shared/model/GameData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/model/GameData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" afterDir="false" />
     </list>
@@ -107,6 +105,7 @@
     "JUnit.StandardAPITests.badAuthJoin.executor": "Debug",
     "JUnit.StandardAPITests.clearData.executor": "Debug",
     "JUnit.StandardAPITests.executor": "Debug",
+    "JUnit.StandardAPITests.failLogout.executor": "Debug",
     "JUnit.StandardAPITests.gamesList.executor": "Debug",
     "JUnit.StandardAPITests.successLogin.executor": "Debug",
     "JUnit.StandardAPITests.successLogout.executor": "Run",
@@ -142,7 +141,7 @@
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests.gamesList">
+  <component name="RunManager" selected="JUnit.StandardAPITests">
     <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -158,22 +157,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.badAuthJoin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="METHOD_NAME" value="badAuthJoin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StandardAPITests.clearData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -185,6 +168,22 @@
       <option name="PACKAGE_NAME" value="passoff.server" />
       <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
       <option name="METHOD_NAME" value="clearData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.failLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="METHOD_NAME" value="failLogout" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -237,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests.gamesList" />
         <item itemvalue="JUnit.StandardAPITests" />
-        <item itemvalue="JUnit.StandardAPITests.clearData" />
+        <item itemvalue="JUnit.StandardAPITests.gamesList" />
+        <item itemvalue="JUnit.StandardAPITests.failLogout" />
         <item itemvalue="JUnit.StandardAPITests.uniqueAuthorizationTokens" />
-        <item itemvalue="JUnit.StandardAPITests.badAuthJoin" />
+        <item itemvalue="JUnit.StandardAPITests.clearData" />
       </list>
     </recent_temporary>
   </component>
@@ -266,7 +265,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="49711000" />
+      <workItem from="1716303993319" duration="54507000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -508,14 +507,32 @@
       <option name="project" value="LOCAL" />
       <updated>1716588525914</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="All tests except list games passing">
+      <option name="closed" value="true" />
+      <created>1716910325830</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1716910325830</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Gets and setters implemented" />
     <MESSAGE value="isInCheck is written" />
     <MESSAGE value="makeMove is written" />
     <MESSAGE value="validMoves is written" />
@@ -540,22 +557,7 @@
     <MESSAGE value="Game functions in server and not yet tested" />
     <MESSAGE value="Login and register tests passing" />
     <MESSAGE value="GameData changed into a class" />
-    <option name="LAST_COMMIT_MESSAGE" value="GameData changed into a class" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/service/GameService.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/server/Handlers/Handler.java</url>
-          <line>105</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="All tests except list games passing" />
+    <option name="LAST_COMMIT_MESSAGE" value="All tests except list games passing" />
   </component>
 </project>

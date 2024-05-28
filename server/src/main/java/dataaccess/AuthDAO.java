@@ -2,34 +2,38 @@ package dataaccess;
 
 import model.AuthData;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class AuthDAO {
 
-    private static Map<String, AuthData> authTokens = new HashMap<>();
+    private static Map<String, List<AuthData>> authTokens = new HashMap<>();
+    private static List<AuthData> tokens = new ArrayList<>();
 
     public void clearAuth() {
-        if(!authTokens.isEmpty() && authTokens != null) {
+        if(!authTokens.isEmpty()) {
             authTokens.clear();
         }
     }
 
     public void createAuth(AuthData input) {
-        authTokens.put(input.username(),input);
+        tokens.add(input);
+        authTokens.put(input.username(),tokens);
     }
 
     public AuthData getAuth(String authToken) {
-        for(Map.Entry<String, AuthData> entry : authTokens.entrySet()) {
-            if(Objects.equals(entry.getValue().authToken(), authToken)) {
-                return entry.getValue();
+        for(Map.Entry<String, List<AuthData>> entry : authTokens.entrySet()) {
+            for(AuthData authData : entry.getValue()) {
+                if(Objects.equals(authData.authToken(), authToken)) {
+                    return authData;
+                }
             }
         }
-        return authTokens.get(authToken);
+        return null;
     }
 
     public void deleteAuth(String username, AuthData input) {
-        authTokens.remove(username, input);
+        tokens.remove(input);
+        authTokens.remove(username);
+        authTokens.put(input.username(),tokens);
     }
 }
