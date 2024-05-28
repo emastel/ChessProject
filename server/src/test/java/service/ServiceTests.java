@@ -1,6 +1,7 @@
 package service;
 
 import dataaccess.AuthDAO;
+import dataaccess.GameDAO;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -189,6 +190,40 @@ public class ServiceTests {
         }
     }
 
+    @Test
+    @Order(13)
+    @DisplayName("Join Game")
+    public void testJoinGame() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            AuthData authData = userService.login(user);
+            GameData gameResult = gameService.createGame(authData.authToken(),"testGame");
+            gameService.joinGame("WHITE", gameResult.getGameID(),authData.authToken());
+            GameData joinedGame = gameDAO.getGame(gameResult.getGameID());
+            assertUsername("testUser", joinedGame.getWhiteUsername());
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(13)
+    @DisplayName("Bad Join Game")
+    public void badJoinGame() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            AuthData authData = userService.login(user);
+            GameData gameResult = gameService.createGame(authData.authToken(),"testGame");
+            gameService.joinGame("WHITE", gameResult.getGameID(),"invalid");
+        }
+        catch (Exception e) {
+            assertUnauthorized(e.getMessage());
+        }
+    }
+
+
+
 
     private void assertUsername(String expected, String actual) {
         Assertions.assertEquals(expected, actual, "username is incorrect");
@@ -207,11 +242,14 @@ public class ServiceTests {
     }
 
 
+
     private UserService userService = new UserService();
 
     private GameService gameService = new GameService();
 
     private AuthDAO authDAO = new AuthDAO();
+
+    private GameDAO gameDAO = new GameDAO();
 
 
 }

@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="unit test cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/server/service/ServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/server/service/ServiceTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -265,7 +263,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="66823000" />
+      <workItem from="1716303993319" duration="67384000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -555,7 +553,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716928041700</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="unit test cleanup">
+      <option name="closed" value="true" />
+      <created>1716930250337</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1716930250337</updated>
+    </task>
+    <task id="LOCAL-00038" summary="unit test cleanup">
+      <option name="closed" value="true" />
+      <created>1716930425438</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1716930425438</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
