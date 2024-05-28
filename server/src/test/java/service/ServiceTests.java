@@ -24,6 +24,18 @@ public class ServiceTests {
     }
 
     @Test
+    @DisplayName("Fail Register")
+    public void failRegister() {
+        UserData user = new UserData(null, null, null);
+        try {
+            userService.register(user);
+        }
+        catch (Exception e) {
+            assertBadRequest("Error: bad request",e.getMessage());
+        }
+    }
+
+    @Test
     @DisplayName("Login")
     public void testLogin() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
@@ -34,6 +46,20 @@ public class ServiceTests {
         }
         catch (Exception e) {
             Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Bad Login")
+    public void badLogin() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+            UserData badUser = new UserData("not", "the", "same");
+            userService.login(badUser);
+        }
+        catch (Exception e) {
+            assertUnauthorized(e.getMessage());
         }
     }
 
@@ -53,6 +79,20 @@ public class ServiceTests {
     }
 
     @Test
+    @DisplayName("Bad Logout")
+    public void badLogout() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+            userService.login(user);
+            userService.logout("notAnAuthtoken");
+        }
+        catch (Exception e) {
+            assertUnauthorized(e.getMessage());
+        }
+    }
+
+    @Test
     @DisplayName("Create Games")
     public void testCreateGames() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
@@ -64,6 +104,20 @@ public class ServiceTests {
         }
         catch (Exception e) {
             Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Bad Create Games")
+    public void badCreateGames() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+            userService.login(user);
+            gameService.createGame("notAnAuthToken","testGame");
+        }
+        catch (Exception e) {
+            assertUnauthorized(e.getMessage());
         }
     }
 
@@ -82,6 +136,21 @@ public class ServiceTests {
         }
     }
 
+    @Test
+    @DisplayName("Bad List Games")
+    public void badListGames() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+            AuthData authData = userService.login(user);
+            gameService.createGame(authData.authToken(),"testGame");
+            gameService.listGames("notAnAuthToken");
+        }
+        catch (Exception e) {
+            assertUnauthorized(e.getMessage());
+        }
+    }
+
 
     private void assertUsername(String expected, String actual) {
         Assertions.assertEquals(expected, actual, "username is incorrect");
@@ -90,6 +159,16 @@ public class ServiceTests {
     private void assertGame(String expected, String actual) {
         Assertions.assertEquals(expected, actual, "game is incorrect");
     }
+
+    private void assertBadRequest(String expected, String actual) {
+        Assertions.assertEquals(expected, actual, "different error");
+    }
+
+    private void assertUnauthorized(String actual) {
+        Assertions.assertEquals("Error: unauthorized", actual, "different error");
+    }
+
+
 
 
     private UserService userService = new UserService();

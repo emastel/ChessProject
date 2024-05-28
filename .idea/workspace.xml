@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Code cleanup all previous tests pass">
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="More code cleanup">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/server/service/ServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/server/service/ServiceTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,13 @@
     "JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor": "Debug",
     "JUnit.QueenMoveTests.executor": "Debug",
     "JUnit.RookMoveTests.executor": "Debug",
+    "JUnit.ServiceTests.BadreateGames.executor": "Debug",
+    "JUnit.ServiceTests.badCreateGames.executor": "Debug",
+    "JUnit.ServiceTests.badListGames.executor": "Debug",
+    "JUnit.ServiceTests.badLogin.executor": "Debug",
+    "JUnit.ServiceTests.badLogout.executor": "Debug",
     "JUnit.ServiceTests.executor": "Run",
+    "JUnit.ServiceTests.failRegister.executor": "Debug",
     "JUnit.ServiceTests.testCreateGames.executor": "Debug",
     "JUnit.ServiceTests.testListGames.executor": "Debug",
     "JUnit.ServiceTests.testLogin.executor": "Debug",
@@ -135,76 +141,83 @@
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoff.server in server">
-    <configuration name="ChessBoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.ChessBoardTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ChessMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.ChessMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ChessPositionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess" />
-      <option name="MAIN_CLASS_NAME" value="passoff.chess.ChessPositionTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="passoff.chess.piece in shared" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.chess.piece.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.chess.piece" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="passoff.server in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ServiceTests.badListGames">
+    <configuration name="ServiceTests.BadreateGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="BadreateGames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.badCreateGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="badCreateGames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.badListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="badListGames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.badLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="badLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.badLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="badLogout" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -224,11 +237,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.passoff.server in server" />
-        <item itemvalue="JUnit.ChessPositionTests" />
-        <item itemvalue="JUnit.ChessMoveTests" />
-        <item itemvalue="JUnit.ChessBoardTests" />
-        <item itemvalue="JUnit.passoff.chess.piece in shared" />
+        <item itemvalue="JUnit.ServiceTests.badListGames" />
+        <item itemvalue="JUnit.ServiceTests.badCreateGames" />
+        <item itemvalue="JUnit.ServiceTests.BadreateGames" />
+        <item itemvalue="JUnit.ServiceTests.badLogout" />
+        <item itemvalue="JUnit.ServiceTests.badLogin" />
       </list>
     </recent_temporary>
   </component>
@@ -253,7 +266,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="64615000" />
+      <workItem from="1716303993319" duration="65561000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -527,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716926418739</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="More code cleanup">
+      <option name="closed" value="true" />
+      <created>1716927087967</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1716927087967</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +566,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="isInStalemate is written" />
     <MESSAGE value="Some move tests pass" />
     <MESSAGE value="King moves fixed" />
     <MESSAGE value="Directions added to piece moves" />
@@ -570,6 +590,7 @@
     <MESSAGE value="All tests passing" />
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="Code cleanup all previous tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code cleanup all previous tests pass" />
+    <MESSAGE value="More code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="More code cleanup" />
   </component>
 </project>
