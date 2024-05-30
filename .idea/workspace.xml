@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="unit test cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Project 4 setup">
+      <change beforePath="$PROJECT_DIR$/starter-code/4-database/dataaccess/DatabaseManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/starter-code/4-database/passoff/server/DatabaseTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/starter-code/4-database/resources/db.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +265,7 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="69033000" />
+      <workItem from="1716303993319" duration="69854000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -586,7 +587,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716930911512</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Project 4 setup">
+      <option name="closed" value="true" />
+      <created>1716935167036</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1716935167036</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +613,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="King moves fixed" />
     <MESSAGE value="Directions added to piece moves" />
     <MESSAGE value="ValidMovesTests passing" />
     <MESSAGE value="Cloned the board instead" />
@@ -629,6 +637,7 @@
     <MESSAGE value="Code cleanup all previous tests pass" />
     <MESSAGE value="More code cleanup" />
     <MESSAGE value="unit test cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="unit test cleanup" />
+    <MESSAGE value="Project 4 setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project 4 setup" />
   </component>
 </project>
