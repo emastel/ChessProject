@@ -1,4 +1,4 @@
-package service;
+package unit;
 
 import chess.ChessGame;
 import dataaccess.AuthDAO;
@@ -13,6 +13,8 @@ public class GameService {
     private AuthDAO authDAO = new AuthDAO();
 
     private GameDAO gameDAO = new GameDAO();
+
+
 
     private int gameIdBase = 0;
 

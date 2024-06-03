@@ -4,6 +4,7 @@ import model.GameData;
 
 import java.util.HashMap;
 import java.util.Map;
+import static server.handlers.Handler.gson;
 
 public class GameDAO {
 
@@ -29,5 +30,9 @@ public class GameDAO {
 
     public void updateGame(GameData input) {
         games.put(input.getGameID(), input);
+    }
+
+    public String gameToString(GameData theGame) {
+        return gson.toJson(theGame.getGame());
     }
 }

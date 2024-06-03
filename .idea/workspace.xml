@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Project 4 setup">
-      <change beforePath="$PROJECT_DIR$/starter-code/4-database/dataaccess/DatabaseManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-code/4-database/passoff/server/DatabaseTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-code/4-database/resources/db.properties" beforeDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="User database setup">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mindrot_jbcrypt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/unit/databaseTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/dataaccess/GameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/dataaccess/GameDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/AlreadyTakenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/AlreadyTakenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/BadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/BadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/UnauthorizedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/UnauthorizedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,124 +70,130 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.BishopMoveTests.bishopBlocked.executor": "Debug",
-    "JUnit.BishopMoveTests.executor": "Debug",
-    "JUnit.CastlingTests.castleWhite.executor": "Debug",
-    "JUnit.CastlingTests.castlingBlockedByEnemy.executor": "Debug",
-    "JUnit.CastlingTests.executor": "Debug",
-    "JUnit.CastlingTests.noCastleAfterMove.executor": "Debug",
-    "JUnit.ChessBoardTests.executor": "Debug",
-    "JUnit.ChessMoveTests.executor": "Debug",
-    "JUnit.ChessPositionTests.executor": "Debug",
-    "JUnit.EnPassantTests.enPassantBlackLeft.executor": "Debug",
-    "JUnit.EnPassantTests.enPassantWhiteLeft.executor": "Debug",
-    "JUnit.EnPassantTests.enPassantWhiteRight.executor": "Debug",
-    "JUnit.EnPassantTests.executor": "Debug",
-    "JUnit.FullGameTest.executor": "Debug",
-    "JUnit.FullGameTest.scholarsMate.executor": "Debug",
-    "JUnit.GameStatusTests.blackTeamPawnCheckmate.executor": "Debug",
-    "JUnit.GameStatusTests.executor": "Debug",
-    "JUnit.GameStatusTests.newGame.executor": "Debug",
-    "JUnit.GameStatusTests.stalemate.executor": "Debug",
-    "JUnit.GameStatusTests.whiteTeamCheckmate.executor": "Debug",
-    "JUnit.KingMoveTests.executor": "Debug",
-    "JUnit.KnightMoveTests.executor": "Debug",
-    "JUnit.MakeMoveTests.executor": "Debug",
-    "JUnit.MakeMoveTests.invalidMakeMoveCapturedPiece.executor": "Debug",
-    "JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor": "Debug",
-    "JUnit.MakeMoveTests.makeValidBishopMove.executor": "Debug",
-    "JUnit.MakeMoveTests.makeValidKingMove.executor": "Debug",
-    "JUnit.MakeMoveTests.makeValidRookMove.executor": "Debug",
-    "JUnit.MakeMoveTests.promotionMoves.[1] QUEEN.executor": "Debug",
-    "JUnit.MakeMoveTests.promotionMoves.executor": "Debug",
-    "JUnit.PawnMoveTests.executor": "Debug",
-    "JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor": "Debug",
-    "JUnit.QueenMoveTests.executor": "Debug",
-    "JUnit.RookMoveTests.executor": "Debug",
-    "JUnit.ServiceTests.BadreateGames.executor": "Debug",
-    "JUnit.ServiceTests.badCreateGames.executor": "Debug",
-    "JUnit.ServiceTests.badListGames.executor": "Debug",
-    "JUnit.ServiceTests.badLogin.executor": "Debug",
-    "JUnit.ServiceTests.badLogout.executor": "Debug",
-    "JUnit.ServiceTests.executor": "Debug",
-    "JUnit.ServiceTests.failRegister.executor": "Debug",
-    "JUnit.ServiceTests.testCreateGames.executor": "Debug",
-    "JUnit.ServiceTests.testListGames.executor": "Debug",
-    "JUnit.ServiceTests.testLogin.executor": "Debug",
-    "JUnit.ServiceTests.testLogout.executor": "Debug",
-    "JUnit.ServiceTests.testRegister.executor": "Debug",
-    "JUnit.StandardAPITests.badAuthJoin.executor": "Debug",
-    "JUnit.StandardAPITests.clearData.executor": "Debug",
-    "JUnit.StandardAPITests.executor": "Debug",
-    "JUnit.StandardAPITests.failLogout.executor": "Debug",
-    "JUnit.StandardAPITests.gamesList.executor": "Debug",
-    "JUnit.StandardAPITests.successLogin.executor": "Debug",
-    "JUnit.StandardAPITests.successLogout.executor": "Run",
-    "JUnit.StandardAPITests.uniqueAuthorizationTokens.executor": "Debug",
-    "JUnit.ValidMovesTests.executor": "Debug",
-    "JUnit.ValidMovesTests.forcedMove.executor": "Debug",
-    "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
-    "JUnit.ValidMovesTests.noPutSelfInDanger.executor": "Debug",
-    "JUnit.ValidMovesTests.rookPinnedToKing.executor": "Debug",
-    "JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor": "Debug",
-    "JUnit.passoff.chess.piece in shared.executor": "Debug",
-    "JUnit.passoff.server in server.executor": "Debug",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "/Users/emmasteele/Desktop/School/CS240/Chess Project/server/src/main/java/dataaccess",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.34252873",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.BishopMoveTests.bishopBlocked.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BishopMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CastlingTests.castleWhite.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CastlingTests.castlingBlockedByEnemy.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CastlingTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.CastlingTests.noCastleAfterMove.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessBoardTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessPositionTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DatabaseTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EnPassantTests.enPassantBlackLeft.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.EnPassantTests.enPassantWhiteLeft.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.EnPassantTests.enPassantWhiteRight.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.EnPassantTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.FullGameTest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.FullGameTest.scholarsMate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameStatusTests.blackTeamPawnCheckmate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameStatusTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameStatusTests.newGame.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameStatusTests.stalemate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameStatusTests.whiteTeamCheckmate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.KingMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.KnightMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveCapturedPiece.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.makeValidBishopMove.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.makeValidKingMove.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.makeValidRookMove.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.promotionMoves.[1] QUEEN.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MakeMoveTests.promotionMoves.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PawnMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.QueenMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.RookMoveTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.BadreateGames.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.badCreateGames.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.badListGames.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.badLogin.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.badLogout.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.failRegister.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.testCreateGames.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.testListGames.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.testLogin.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.testLogout.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ServiceTests.testRegister.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.badAuthJoin.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.clearData.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.failLogout.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.gamesList.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.successLogin.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.successLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.uniqueAuthorizationTokens.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValidMovesTests.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValidMovesTests.forcedMove.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValidMovesTests.moveIntoCheck.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValidMovesTests.noPutSelfInDanger.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValidMovesTests.rookPinnedToKing.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.passoff.chess.piece in shared.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.passoff.server in server.executor&quot;: &quot;Debug&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/emmasteele/Desktop/School/CS240/Chess Project/server/src/main/java/dataaccess&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.34252873&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServiceTests">
-    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ServiceTests.testRegister">
+    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="passoff.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.DatabaseTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.badListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
-      <option name="METHOD_NAME" value="badListGames" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="unit.ServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,12 +202,12 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="MAIN_CLASS_NAME" value="unit.ServiceTests" />
       <option name="METHOD_NAME" value="failRegister" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -193,12 +218,12 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="MAIN_CLASS_NAME" value="unit.ServiceTests" />
       <option name="METHOD_NAME" value="testLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -209,12 +234,12 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="MAIN_CLASS_NAME" value="unit.ServiceTests" />
       <option name="METHOD_NAME" value="testRegister" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -236,11 +261,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ServiceTests" />
         <item itemvalue="JUnit.ServiceTests.testRegister" />
+        <item itemvalue="JUnit.DatabaseTests" />
+        <item itemvalue="JUnit.ServiceTests" />
         <item itemvalue="JUnit.ServiceTests.failRegister" />
         <item itemvalue="JUnit.ServiceTests.testLogin" />
-        <item itemvalue="JUnit.ServiceTests.badListGames" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +290,9 @@
       <workItem from="1715365290775" duration="26000" />
       <workItem from="1715382395230" duration="37669000" />
       <workItem from="1716219637275" duration="4800000" />
-      <workItem from="1716303993319" duration="69854000" />
+      <workItem from="1716303993319" duration="86062000" />
+      <workItem from="1717363234858" duration="3568000" />
+      <workItem from="1717429358412" duration="86000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -595,7 +622,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716935167036</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Project 4 setup">
+      <option name="closed" value="true" />
+      <created>1717081812998</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1717081812998</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +648,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Directions added to piece moves" />
     <MESSAGE value="ValidMovesTests passing" />
     <MESSAGE value="Cloned the board instead" />
     <MESSAGE value="MakeMoveTests passing" />
@@ -638,6 +672,18 @@
     <MESSAGE value="More code cleanup" />
     <MESSAGE value="unit test cleanup" />
     <MESSAGE value="Project 4 setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project 4 setup" />
+    <MESSAGE value="User database setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="User database setup" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

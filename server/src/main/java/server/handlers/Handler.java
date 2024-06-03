@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
-import service.AuthService;
-import service.GameService;
-import service.UserService;
+import unit.AuthService;
+import unit.GameService;
+import unit.UserService;
 import spark.Request;
 import spark.Response;
 
@@ -18,7 +18,7 @@ public class Handler {
 
     private static AuthService authService = new AuthService();
 
-    private static Gson gson = new Gson();
+    public static Gson gson = new Gson();
 
     public static String clearRequest(Request req, Response res) {
         try {
@@ -85,18 +85,18 @@ public class Handler {
 
     }
 
-    public static String logoutRequest(Request req, Response res) {
-        String authToken = req.headers("authorization");
-        try {
-            userService.logout(authToken);
-        }
-        catch(Exception e) {
-            BlankResponse result = unauthorizedError(res, e);
-            return gson.toJson(result);
-        }
-        res.status(200);
-        return "null";
-    }
+//    public static String logoutRequest(Request req, Response res) {
+//        String authToken = req.headers("authorization");
+//        try {
+//            userService.logout(authToken);
+//        }
+//        catch(Exception e) {
+//            BlankResponse result = unauthorizedError(res, e);
+//            return gson.toJson(result);
+//        }
+//        res.status(200);
+//        return "null";
+//    }
 
     public static String listGamesRequest(Request req, Response res) {
         String authToken = req.headers("authorization");

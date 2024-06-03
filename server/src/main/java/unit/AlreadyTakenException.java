@@ -1,4 +1,4 @@
-package service;
+package unit;
 
 public class AlreadyTakenException extends Exception{
     public AlreadyTakenException(String message){

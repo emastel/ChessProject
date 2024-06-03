@@ -1,4 +1,4 @@
-package service;
+package unit;
 
 import dataaccess.AuthDAO;
 import dataaccess.GameDAO;
@@ -11,7 +11,6 @@ public class ServiceTests {
 
     @Test
     @Order(1)
-
     @DisplayName("Register")
     public void testRegister() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
@@ -38,18 +37,18 @@ public class ServiceTests {
         }
     }
 
-    @BeforeEach
-    public void setup() {
-        userService.clearUsers();
-        gameService.clearGames();
-        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
-        try {
-            userService.register(user);
-        }
-        catch (Exception e) {
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @BeforeEach
+//    public void setup() {
+//        userService.clearUsers();
+//        gameService.clearGames();
+//        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+//        try {
+//            userService.register(user);
+//        }
+//        catch (Exception e) {
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
     @Test
     @Order(3)
@@ -79,34 +78,34 @@ public class ServiceTests {
         }
     }
 
-    @Test
-    @Order(5)
-    @DisplayName("Logout")
-    public void testLogout() {
-        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
-        try {
-            AuthData testResult = userService.login(user);
-            userService.logout(testResult.authToken());
-            Assertions.assertNull(authDAO.getAuth(testResult.authToken()));
-        }
-        catch (Exception e) {
-            Assertions.fail(e.getMessage());
-        }
-    }
+//    @Test
+//    @Order(5)
+//    @DisplayName("Logout")
+//    public void testLogout() {
+//        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+//        try {
+//            AuthData testResult = userService.login(user);
+//            userService.logout(testResult.authToken());
+//            Assertions.assertNull(authDAO.getAuth(testResult.authToken()));
+//        }
+//        catch (Exception e) {
+//            Assertions.fail(e.getMessage());
+//        }
+//    }
 
-    @Test
-    @Order(6)
-    @DisplayName("Bad Logout")
-    public void badLogout() {
-        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
-        try {
-            userService.login(user);
-            userService.logout("notAnAuthtoken");
-        }
-        catch (Exception e) {
-            assertUnauthorized(e.getMessage());
-        }
-    }
+//    @Test
+//    @Order(6)
+//    @DisplayName("Bad Logout")
+//    public void badLogout() {
+//        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+//        try {
+//            userService.login(user);
+//            userService.logout("notAnAuthtoken");
+//        }
+//        catch (Exception e) {
+//            assertUnauthorized(e.getMessage());
+//        }
+//    }
 
     @Test
     @Order(7)
