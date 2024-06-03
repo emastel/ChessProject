@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="password encryption">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="previous tests pass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +149,22 @@
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests">
+  <component name="RunManager" selected="JUnit.DatabaseTests">
+    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.DatabaseTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -203,22 +212,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.goodJoin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="METHOD_NAME" value="goodJoin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StandardAPITests.uniqueAuthorizationTokens" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -250,11 +243,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DatabaseTests" />
         <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="JUnit.StandardAPITests.clearData" />
         <item itemvalue="JUnit.StandardAPITests.uniqueAuthorizationTokens" />
         <item itemvalue="JUnit.StandardAPITests.gamesList" />
-        <item itemvalue="JUnit.StandardAPITests.goodJoin" />
       </list>
     </recent_temporary>
   </component>
@@ -282,15 +275,7 @@
       <workItem from="1716303993319" duration="86062000" />
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
-      <workItem from="1717429501953" duration="17799000" />
-    </task>
-    <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
-      <option name="closed" value="true" />
-      <created>1703044500221</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1703044500221</updated>
+      <workItem from="1717429501953" duration="20499000" />
     </task>
     <task id="LOCAL-00002" summary="fix(shared) maven resource reference">
       <option name="closed" value="true" />
@@ -676,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717448376396</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="previous tests pass">
+      <option name="closed" value="true" />
+      <created>1717454524197</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1717454524198</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,7 +687,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Past tests work with castling" />
     <MESSAGE value="en passant implemented" />
     <MESSAGE value="Phase 3 setup complete" />
     <MESSAGE value="Classes created" />
@@ -719,15 +711,21 @@
     <MESSAGE value="sql game dao written" />
     <MESSAGE value="game tests pass" />
     <MESSAGE value="password encryption" />
-    <option name="LAST_COMMIT_MESSAGE" value="password encryption" />
+    <MESSAGE value="previous tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="previous tests pass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/passoff/server/StandardAPITests.java</url>
-          <line>365</line>
-          <option name="timeStamp" value="51" />
+          <url>file://$PROJECT_DIR$/server/src/test/java/passoff/server/DatabaseTests.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dataaccess.DataAccessException;
 import model.AuthData;
 import model.GameData;
+import model.GameName;
 import model.UserData;
 import org.mindrot.jbcrypt.BCrypt;
 import unit.AuthService;
@@ -119,9 +120,9 @@ public class Handler {
 
     public static String createGameRequest(Request req, Response res) {
         String authToken = req.headers("authorization");
-        String gameName = req.body();
+        GameName gameName = gson.fromJson(req.body(), GameName.class);;
         try {
-            GameData game = gameService.createGame(authToken,gameName);
+            GameData game = gameService.createGame(authToken,gameName.gameName());
             CreateGameResponse result = new CreateGameResponse(null, game.getGameID());
             return gson.toJson(result);
         }
