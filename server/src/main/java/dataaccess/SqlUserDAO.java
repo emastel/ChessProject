@@ -40,10 +40,8 @@ public class SqlUserDAO {
                 preparedStatement.setString(1, username);
                 try(var rs = preparedStatement.executeQuery()) {
                     while(rs.next()) {
-                        var id = rs.getInt("id");
                         var name = rs.getString("username");
                         var password = rs.getString("password");
-                        var email = rs.getString("email");
 
                         if(type.equals("password")) {
                             return password;

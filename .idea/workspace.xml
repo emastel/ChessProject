@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="sql syntax corrections">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="User unit tests pass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +275,7 @@
       <workItem from="1716303993319" duration="86062000" />
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
-      <workItem from="1717429501953" duration="8272000" />
+      <workItem from="1717429501953" duration="9995000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -640,7 +637,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717432688389</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="User unit tests pass">
+      <option name="closed" value="true" />
+      <created>1717443334658</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1717443334658</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +663,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="MakeMoveTests passing" />
     <MESSAGE value="GameStatusTests all passing" />
     <MESSAGE value="Fixes to make all tests pass" />
     <MESSAGE value="Castling tests pass" />
@@ -683,17 +687,7 @@
     <MESSAGE value="User database setup" />
     <MESSAGE value="Auth database setup" />
     <MESSAGE value="sql syntax corrections" />
-    <option name="LAST_COMMIT_MESSAGE" value="sql syntax corrections" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/unit/UserService.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="User unit tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="User unit tests pass" />
   </component>
 </project>
