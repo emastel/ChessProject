@@ -197,8 +197,8 @@ public class ServiceTests {
             AuthData authData = userService.login(user);
             GameData gameResult = gameService.createGame(authData.authToken(),"testGame");
             gameService.joinGame("WHITE", gameResult.getGameID(),authData.authToken());
-//            GameData joinedGame = gameDAO.getGame(gameResult.getGameID());
-//            assertUsername("testUser", joinedGame.getWhiteUsername());
+            GameData joinedGame = gameDAO.getGame(gameResult.getGameID());
+            assertUsername("testUser", joinedGame.getWhiteUsername());
         }
         catch (Exception e) {
             Assertions.fail(e.getMessage());
@@ -251,7 +251,7 @@ public class ServiceTests {
     public ServiceTests() {
         try {
             authDAO = new SqlAuthDAO();
-            //gameDAO = new SqlGameDAO();
+            gameDAO = new SqlGameDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }

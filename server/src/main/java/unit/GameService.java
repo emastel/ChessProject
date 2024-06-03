@@ -1,8 +1,9 @@
 package unit;
 
 import chess.ChessGame;
-import dataaccess.*;
-import model.AuthData;
+import dataaccess.DataAccessException;
+import dataaccess.SqlAuthDAO;
+import dataaccess.SqlGameDAO;
 import model.GameData;
 
 import java.sql.SQLException;
@@ -34,11 +35,11 @@ public class GameService {
         if(retrievedAuth == null) {
             throw new UnauthorizedException("Error: unauthorized");
         }
-        return gameDAO.listGames().values().toArray(new GameData[0]);
+        return gameDAO.listGames().toArray(new GameData[0]);
     }
 
     public GameData createGame(String authToken, String gameName) throws UnauthorizedException, SQLException, DataAccessException {
-        AuthData retrievedAuth = authDAO.getAuth(authToken);
+        String retrievedAuth = authDAO.getUser(authToken);
         if(retrievedAuth == null) {
             throw new UnauthorizedException("Error: unauthorized");
         }

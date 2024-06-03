@@ -1,5 +1,6 @@
 package dataaccess;
 
+import chess.ChessGame;
 import com.google.gson.Gson;
 import model.GameData;
 
@@ -16,11 +17,11 @@ public class SqlGameDAO {
             """
             CREATE TABLE IF NOT EXISTS games (
             gameID int not null,
-            whiteUsername varchar(256) not null,
-            blackUsername varchar(256) not null,
+            whiteUsername varchar(256),
+            blackUsername varchar(256),
             gameName varchar(256) not null,
-            game varchar(256) not null,
-            PRIMARY KEY (gameID),
+            game varchar(4096) not null,
+            PRIMARY KEY (gameID)
             )
             """
         };
@@ -29,7 +30,7 @@ public class SqlGameDAO {
 
     public void createGame(GameData game) throws DataAccessException, SQLException {
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("INSERT INTO games (gameID, whiteUsername, blackUsername, gameName, game) VALUES (?,?,?,?,?), RETURN_GENERATED_KEYS")) {
+            try(var preparedStatement = con.prepareStatement("INSERT INTO games (gameID, whiteUsername, blackUsername, gameName, game) VALUES (?,?,?,?,?)")) {
                 preparedStatement.setInt(1,game.getGameID());
                 preparedStatement.setString(2, game.getWhiteUsername());
                 preparedStatement.setString(3, game.getBlackUsername());
@@ -45,12 +46,17 @@ public class SqlGameDAO {
 
     public GameData getGame(int id) throws DataAccessException, SQLException {
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("SELECT game FROM games WHERE id=?")) {
+            try(var preparedStatement = con.prepareStatement("SELECT * FROM games WHERE gameID=?")) {
                 preparedStatement.setInt(1, id);
                 try(var rs = preparedStatement.executeQuery()) {
                     while(rs.next()) {
+                        var gameId = rs.getInt("gameID");
+                        var whiteUsername = rs.getString("whiteUsername");
+                        var blackUsername = rs.getString("blackUsername");
+                        var gameName = rs.getString("gameName");
                         var game = rs.getString("game");
-                        return gson.fromJson(game, GameData.class);
+                        var gameClass = gson.fromJson(game, ChessGame.class);
+                        return new GameData(gameId,whiteUsername,blackUsername,gameName,gameClass);
                     }
                 }
             }
@@ -65,7 +71,7 @@ public class SqlGameDAO {
     public Collection<GameData> listGames() throws DataAccessException, SQLException {
         Collection<GameData> games = new ArrayList<>();
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("SELECT game FROM users")) {
+            try(var preparedStatement = con.prepareStatement("SELECT game FROM games")) {
                 try(var rs = preparedStatement.executeQuery()) {
                     while(rs.next()) {
                         var game = rs.getString("game");
@@ -82,11 +88,12 @@ public class SqlGameDAO {
     }
 
     public void updateGame(GameData input, int id) throws DataAccessException, SQLException {
-        Collection<GameData> games = new ArrayList<>();
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("UPDATE game SET game=? WHERE id=?")) {
-                preparedStatement.setString(1, input.getGameName());
-                preparedStatement.setInt(2, id);
+            try(var preparedStatement = con.prepareStatement("UPDATE games SET whiteUsername=?, blackUsername=?, game=?  WHERE gameID=?")) {
+                preparedStatement.setString(1, input.getWhiteUsername());
+                preparedStatement.setString(2, input.getBlackUsername());
+                preparedStatement.setString(3, input.gameToString());
+                preparedStatement.setInt(4, id);
                 preparedStatement.executeUpdate();
             }
         }
