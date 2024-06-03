@@ -19,7 +19,7 @@ public class UserService {
 
     private SqlAuthDAO authDAO;
 
-    {
+    public UserService() {
         try {
             userDAO = new SqlUserDAO();
             authDAO = new SqlAuthDAO();
@@ -62,13 +62,13 @@ public class UserService {
         return authData;
     }
 
-//    public void logout(String authToken) throws UnauthorizedException {
-//        AuthData retrievedUser = authDAO.getAuth(authToken);
-//        if(retrievedUser == null) {
-//            throw new UnauthorizedException("Error: unauthorized");
-//        }
-//        authDAO.deleteAuth(retrievedUser.username(), retrievedUser);
-//    }
+    public void logout(String authToken) throws UnauthorizedException, SQLException, DataAccessException {
+        String retrievedUser = authDAO.getUser(authToken);
+        if(retrievedUser == null) {
+            throw new UnauthorizedException("Error: unauthorized");
+        }
+        authDAO.deleteAuth(retrievedUser, authToken);
+    }
 
     public void clearUsers() throws DataAccessException {
         try {

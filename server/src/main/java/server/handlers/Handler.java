@@ -85,18 +85,18 @@ public class Handler {
 
     }
 
-//    public static String logoutRequest(Request req, Response res) {
-//        String authToken = req.headers("authorization");
-//        try {
-//            userService.logout(authToken);
-//        }
-//        catch(Exception e) {
-//            BlankResponse result = unauthorizedError(res, e);
-//            return gson.toJson(result);
-//        }
-//        res.status(200);
-//        return "null";
-//    }
+    public static String logoutRequest(Request req, Response res) {
+        String authToken = req.headers("authorization");
+        try {
+            userService.logout(authToken);
+        }
+        catch(Exception e) {
+            BlankResponse result = unauthorizedError(res, e);
+            return gson.toJson(result);
+        }
+        res.status(200);
+        return "null";
+    }
 
     public static String listGamesRequest(Request req, Response res) {
         String authToken = req.headers("authorization");
