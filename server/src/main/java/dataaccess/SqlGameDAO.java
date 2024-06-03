@@ -25,11 +25,12 @@ public class SqlGameDAO {
     public void createGame(GameData game) throws DataAccessException, SQLException {
         try(var con = DatabaseManager.getConnection()) {
             try(var preparedStatement = con.prepareStatement("INSERT INTO games (gameID, whiteUsername, blackUsername, gameName, game) VALUES (?,?,?,?,?), RETURN_GENERATED_KEYS")) {
-                preparedStatement.setInt(0,game.getGameID());
-                preparedStatement.setString(1, game.getWhiteUsername());
-                preparedStatement.setString(2, game.getBlackUsername());
-                preparedStatement.setString(3, game.getGameName());
-                preparedStatement.setString(4,game.gameToString());
+                preparedStatement.setInt(1,game.getGameID());
+                preparedStatement.setString(2, game.getWhiteUsername());
+                preparedStatement.setString(3, game.getBlackUsername());
+                preparedStatement.setString(4, game.getGameName());
+                preparedStatement.setString(5,game.gameToString());
+                preparedStatement.executeUpdate();
             }
         }
         catch (Exception e) {

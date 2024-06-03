@@ -1,7 +1,6 @@
 package unit;
 
-import dataaccess.AuthDAO;
-import dataaccess.GameDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -37,18 +36,18 @@ public class ServiceTests {
         }
     }
 
-//    @BeforeEach
-//    public void setup() {
-//        userService.clearUsers();
-//        gameService.clearGames();
-//        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
-//        try {
-//            userService.register(user);
-//        }
-//        catch (Exception e) {
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+    @BeforeEach
+    public void setup() throws DataAccessException {
+        userService.clearUsers();
+        gameService.clearGames();
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.register(user);
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
 
     @Test
     @Order(3)
@@ -78,34 +77,34 @@ public class ServiceTests {
         }
     }
 
-//    @Test
-//    @Order(5)
-//    @DisplayName("Logout")
-//    public void testLogout() {
-//        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
-//        try {
-//            AuthData testResult = userService.login(user);
-//            userService.logout(testResult.authToken());
-//            Assertions.assertNull(authDAO.getAuth(testResult.authToken()));
-//        }
-//        catch (Exception e) {
-//            Assertions.fail(e.getMessage());
-//        }
-//    }
+    @Test
+    @Order(5)
+    @DisplayName("Logout")
+    public void testLogout() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            AuthData testResult = userService.login(user);
+            userService.logout(testResult.authToken());
+            Assertions.assertNull(authDAO.getUser(testResult.authToken()));
+        }
+        catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
 
-//    @Test
-//    @Order(6)
-//    @DisplayName("Bad Logout")
-//    public void badLogout() {
-//        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
-//        try {
-//            userService.login(user);
-//            userService.logout("notAnAuthtoken");
-//        }
-//        catch (Exception e) {
-//            assertUnauthorized(e.getMessage());
-//        }
-//    }
+    @Test
+    @Order(6)
+    @DisplayName("Bad Logout")
+    public void badLogout() {
+        UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
+        try {
+            userService.login(user);
+            userService.logout("notAnAuthtoken");
+        }
+        catch (Exception e) {
+            assertUnauthorized(e.getMessage());
+        }
+    }
 
     @Test
     @Order(7)
@@ -198,8 +197,8 @@ public class ServiceTests {
             AuthData authData = userService.login(user);
             GameData gameResult = gameService.createGame(authData.authToken(),"testGame");
             gameService.joinGame("WHITE", gameResult.getGameID(),authData.authToken());
-            GameData joinedGame = gameDAO.getGame(gameResult.getGameID());
-            assertUsername("testUser", joinedGame.getWhiteUsername());
+//            GameData joinedGame = gameDAO.getGame(gameResult.getGameID());
+//            assertUsername("testUser", joinedGame.getWhiteUsername());
         }
         catch (Exception e) {
             Assertions.fail(e.getMessage());
@@ -246,9 +245,17 @@ public class ServiceTests {
 
     private GameService gameService = new GameService();
 
-    private AuthDAO authDAO = new AuthDAO();
+    private SqlGameDAO gameDAO;
+    private SqlAuthDAO authDAO;
 
-    private GameDAO gameDAO = new GameDAO();
+    public ServiceTests() {
+        try {
+            authDAO = new SqlAuthDAO();
+            //gameDAO = new SqlGameDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

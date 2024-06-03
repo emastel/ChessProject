@@ -7,8 +7,7 @@ import java.sql.SQLException;
 public class SqlUserDAO {
 
     public SqlUserDAO() throws DataAccessException {
-        String[] createStatements = {
-                """
+        String[] createStatements = {"""
             CREATE TABLE IF NOT EXISTS users(
             id int not null AUTO_INCREMENT,
             username varchar(256) not null,
@@ -22,13 +21,15 @@ public class SqlUserDAO {
 
     public void createUser(UserData user) throws SQLException{
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("INSERT INTO users (username, password, email) VALUES (?,?,?), RETURN_GENERATED_KEYS")) {
+            try(var preparedStatement = con.prepareStatement("INSERT INTO users (username, password, email) VALUES (?,?,?)")) {
                 preparedStatement.setString(1, user.username());
                 preparedStatement.setString(2, user.password());
                 preparedStatement.setString(3, user.email());
+                preparedStatement.executeUpdate();
             }
         }
         catch (Exception e) {
+            e.printStackTrace();
             throw new SQLException(e.getMessage());
         }
     }
@@ -55,6 +56,7 @@ public class SqlUserDAO {
             }
         }
         catch(Exception e) {
+            e.printStackTrace();
             throw new SQLException(e.getMessage());
         }
         return null;
@@ -62,11 +64,12 @@ public class SqlUserDAO {
 
     public void clear() throws DataAccessException{
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("DROP TABLE users")) {
+            try(var preparedStatement = con.prepareStatement("DELETE FROM users")) {
                 preparedStatement.executeUpdate();
             }
         }
         catch(Exception e) {
+            e.printStackTrace();
             throw new DataAccessException(e.getMessage());
         }
     }

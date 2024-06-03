@@ -15,14 +15,12 @@ public class UserService {
 //    private AuthDAO authDAO = new AuthDAO();
 
     private SqlUserDAO userDAO;
-
-
     private SqlAuthDAO authDAO;
 
     public UserService() {
         try {
-            userDAO = new SqlUserDAO();
             authDAO = new SqlAuthDAO();
+            userDAO = new SqlUserDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +50,7 @@ public class UserService {
         if(retrievedUser == null) {
             throw new UnauthorizedException("Error: unauthorized");
         }
-        String retrievePassword = userDAO.getElement(user.username(), "username");
+        String retrievePassword = userDAO.getElement(user.username(), "password");
         if(!Objects.equals(retrievePassword, user.password())) {
             throw new UnauthorizedException("Error: unauthorized");
         }
