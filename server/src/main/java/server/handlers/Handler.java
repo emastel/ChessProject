@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
+import org.mindrot.jbcrypt.BCrypt;
 import unit.AuthService;
 import unit.GameService;
 import unit.UserService;
@@ -38,8 +39,9 @@ public class Handler {
     public static String registerRequest(Request req, Response res) {
         RegisterRequest regReq = gson.fromJson(req.body(), RegisterRequest.class);
         RegisterLoginResponse result = null;
+        String hashedPassword = BCrypt.hashpw(regReq.password(), BCrypt.gensalt());
         try {
-            UserData user = new UserData(regReq.username(), regReq.password(), regReq.email());
+            UserData user = new UserData(regReq.username(), hashedPassword, regReq.email());
             AuthData retrievedAuthData = userService.register(user);
             result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
             res.status(200);
@@ -71,8 +73,9 @@ public class Handler {
 
     public static String loginRequest(Request req, Response res) {
         LoginRequest regReq = gson.fromJson(req.body(), LoginRequest.class);
+        String hashedPassword = BCrypt.hashpw(regReq.password(), BCrypt.gensalt());
         try {
-            UserData user = new UserData(regReq.username(), regReq.password(), null);
+            UserData user = new UserData(regReq.username(), hashedPassword, null);
             AuthData retrievedAuthData = userService.login(user);
             RegisterLoginResponse result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
             res.status(200);

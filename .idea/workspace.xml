@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="sql game dao written">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="game tests pass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +62,7 @@
     "JUnit.ChessBoardTests.executor": "Debug",
     "JUnit.ChessMoveTests.executor": "Debug",
     "JUnit.ChessPositionTests.executor": "Debug",
-    "JUnit.DatabaseTests.executor": "Run",
+    "JUnit.DatabaseTests.executor": "Debug",
     "JUnit.EnPassantTests.enPassantBlackLeft.executor": "Debug",
     "JUnit.EnPassantTests.enPassantWhiteLeft.executor": "Debug",
     "JUnit.EnPassantTests.enPassantWhiteRight.executor": "Debug",
@@ -151,6 +149,21 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ServiceTests">
+    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.DatabaseTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -214,22 +227,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.testRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="unit.ServiceTests" />
-      <option name="METHOD_NAME" value="testRegister" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Chess Project" />
       <method v="2">
@@ -246,10 +243,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ServiceTests" />
+        <item itemvalue="JUnit.DatabaseTests" />
         <item itemvalue="JUnit.ServiceTests.testJoinGame" />
         <item itemvalue="JUnit.ServiceTests.testLogout" />
         <item itemvalue="JUnit.ServiceTests.testLogin" />
-        <item itemvalue="JUnit.ServiceTests.testRegister" />
       </list>
     </recent_temporary>
   </component>
@@ -277,7 +274,7 @@
       <workItem from="1716303993319" duration="86062000" />
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
-      <workItem from="1717429501953" duration="12100000" />
+      <workItem from="1717429501953" duration="12434000" />
     </task>
     <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
       <option name="closed" value="true" />
@@ -655,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717446146808</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="game tests pass">
+      <option name="closed" value="true" />
+      <created>1717447856848</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1717447856848</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -673,7 +678,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixes to make all tests pass" />
     <MESSAGE value="Castling tests pass" />
     <MESSAGE value="Past tests work with castling" />
     <MESSAGE value="en passant implemented" />
@@ -698,6 +702,7 @@
     <MESSAGE value="sql syntax corrections" />
     <MESSAGE value="User unit tests pass" />
     <MESSAGE value="sql game dao written" />
-    <option name="LAST_COMMIT_MESSAGE" value="sql game dao written" />
+    <MESSAGE value="game tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="game tests pass" />
   </component>
 </project>
