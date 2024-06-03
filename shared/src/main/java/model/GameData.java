@@ -1,6 +1,7 @@
 package model;
 
 import chess.ChessGame;
+import com.google.gson.Gson;
 
 public class GameData {
 
@@ -9,6 +10,8 @@ public class GameData {
     private String blackUsername;
     private String gameName;
     private ChessGame game;
+
+    public static Gson gson = new Gson();
 
     public GameData() {}
 
@@ -26,6 +29,10 @@ public class GameData {
 
     public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public String gameToString() {
+        return gson.toJson(game);
     }
 
     public String getWhiteUsername() {

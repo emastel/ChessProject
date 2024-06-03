@@ -4,20 +4,39 @@ import model.GameData;
 
 import java.sql.SQLException;
 
-import static java.sql.Statement.RETURN_GENERATED_KEYS;
-import static java.sql.Types.NULL;
-
 public class SqlGameDAO {
 
-//
-//    public SqlGameDAO() throws DataAccessException {
-//        configureDatabase();
-//    }
-//
-//    public GameData createGame(GameData game) throws DataAccessException {
-//
-//    }
-//
+    public SqlGameDAO() throws DataAccessException {
+        String[] createStatements = {
+            """
+            CREATE TABLE IF NOT EXISTS games (
+            gameID int not null,
+            whiteUsername varchar(256) not null,
+            blackUsername varchar(256) not null,
+            gameName varchar(256) not null,
+            game varchar(256) not null,
+            PRIMARY KEY (gameID),
+            )
+            """
+        };
+        DatabaseManager.configureDatabase(createStatements);
+    }
+
+    public void createGame(GameData game) throws DataAccessException, SQLException {
+        try(var con = DatabaseManager.getConnection()) {
+            try(var preparedStatement = con.prepareStatement("INSERT INTO games (gameID, whiteUsername, blackUsername, gameName, game) VALUES (?,?,?,?,?), RETURN_GENERATED_KEYS")) {
+                preparedStatement.setInt(0,game.getGameID());
+                preparedStatement.setString(1, game.getWhiteUsername());
+                preparedStatement.setString(2, game.getBlackUsername());
+                preparedStatement.setString(3, game.getGameName());
+                preparedStatement.setString(4,game.gameToString());
+            }
+        }
+        catch (Exception e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+
 //    public GameData getGame(int id) throws DataAccessException {
 //
 //    }
@@ -59,61 +78,31 @@ public class SqlGameDAO {
 //        return game.setGameID(id);
 //    }
 
-    private int executeUpdate(String statement, Object... params) throws DataAccessException {
-        try(var con = DatabaseManager.getConnection()) {
-            try(var ps = con.prepareStatement(statement, RETURN_GENERATED_KEYS)) {
-                for (var i = 0; i < params.length; i++) {
-                    var param = params[i];
-                    if (param instanceof String p) ps.setString(i+1,p);
-                    else if (param instanceof Integer p) ps.setInt(i+1,p);
-                    else if (param instanceof GameData p) ps.setString(i+1,p.toString());
-                    else if (param == null) ps.setNull(i+1,NULL);
-                }
-                ps.executeUpdate();
+//    private int executeUpdate(String statement, Object... params) throws DataAccessException {
+//        try(var con = DatabaseManager.getConnection()) {
+//            try(var ps = con.prepareStatement(statement, RETURN_GENERATED_KEYS)) {
+//                for (var i = 0; i < params.length; i++) {
+//                    var param = params[i];
+//                    if (param instanceof String p) ps.setString(i+1,p);
+//                    else if (param instanceof Integer p) ps.setInt(i+1,p);
+//                    else if (param instanceof GameData p) ps.setString(i+1,p.toString());
+//                    else if (param == null) ps.setNull(i+1,NULL);
+//                }
+//                ps.executeUpdate();
+//
+//                var rs = ps.getGeneratedKeys();
+//                if(rs.next()) {
+//                    return rs.getInt(1);
+//                }
+//            }
+//            return 0;
+//        }
+//        catch (SQLException e) {
+//            throw new DataAccessException(e.getMessage());
+//        }
+//    }
 
-                var rs = ps.getGeneratedKeys();
-                if(rs.next()) {
-                    return rs.getInt(1);
-                }
-            }
-            return 0;
-        }
-        catch (SQLException e) {
-            throw new DataAccessException(e.getMessage());
-        }
-    }
 
-    private final String[] createStatements = {
-            """
-            CREATE TABLE IF NOT EXISTS games (
-            'gameID' int not null,
-            'whiteUsername' varchar(256) not null,
-            'blackUsername' varchar(256) not null,
-            'gameName' varchar(256) not null,
-            'game' varchar(256) not null,
-            PRIMARY KEY ('id'),
-            INDEX(whiteUsername)
-            INDEX(blackUsername)
-            INDEX(gameName)
-            INDEX(game)
-            )
-            """
-    };
-
-    private void configureDatabase() throws DataAccessException {
-        DatabaseManager.createDatabase();
-        try (var con = DatabaseManager.getConnection()) {
-            for(var statement : createStatements) {
-                try(var preparedStatement = con.prepareStatement(statement)) {
-                    preparedStatement.executeUpdate();
-                }
-            }
-
-        }
-        catch (SQLException e) {
-            throw new DataAccessException(e.getMessage());
-        }
-    }
 
 
 }
