@@ -1,6 +1,7 @@
 package server.handlers;
 
 import com.google.gson.Gson;
+import dataaccess.DataAccessException;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -41,6 +42,9 @@ public class Handler {
         RegisterLoginResponse result = null;
         String hashedPassword = BCrypt.hashpw(regReq.password(), BCrypt.gensalt());
         try {
+            if(regReq.password() == null) {
+                throw new DataAccessException("Error: bad request");
+            }
             UserData user = new UserData(regReq.username(), hashedPassword, regReq.email());
             AuthData retrievedAuthData = userService.register(user);
             result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
@@ -73,9 +77,8 @@ public class Handler {
 
     public static String loginRequest(Request req, Response res) {
         LoginRequest regReq = gson.fromJson(req.body(), LoginRequest.class);
-        String hashedPassword = BCrypt.hashpw(regReq.password(), BCrypt.gensalt());
         try {
-            UserData user = new UserData(regReq.username(), hashedPassword, null);
+            UserData user = new UserData(regReq.username(), regReq.password(), null);
             AuthData retrievedAuthData = userService.login(user);
             RegisterLoginResponse result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
             res.status(200);

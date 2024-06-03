@@ -1,11 +1,13 @@
 package unit;
 
-import dataaccess.*;
+import dataaccess.DataAccessException;
+import dataaccess.SqlAuthDAO;
+import dataaccess.SqlUserDAO;
 import model.AuthData;
 import model.UserData;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.UUID;
 
 public class UserService {
@@ -30,8 +32,8 @@ public class UserService {
         if(user.username() == null || user.password() == null || user.username().isEmpty() || user.password().isEmpty()) {
             throw new BadRequestException("Error: bad request");
         }
-        String retrievedPassword = userDAO.getElement(user.username(), "password");
-        if(retrievedPassword != null && Objects.equals(retrievedPassword, user.password())) {
+        String retrievedUsername = userDAO.getElement(user.username(), "username");
+        if(retrievedUsername != null && retrievedUsername.equals(user.username())) {
             throw new AlreadyTakenException("Error: already taken");
         }
         try {
@@ -51,7 +53,7 @@ public class UserService {
             throw new UnauthorizedException("Error: unauthorized");
         }
         String retrievePassword = userDAO.getElement(user.username(), "password");
-        if(!Objects.equals(retrievePassword, user.password())) {
+        if(!BCrypt.checkpw(user.password(), retrievePassword)) {
             throw new UnauthorizedException("Error: unauthorized");
         }
         String authToken = UUID.randomUUID().toString();

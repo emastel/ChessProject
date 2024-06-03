@@ -71,11 +71,16 @@ public class SqlGameDAO {
     public Collection<GameData> listGames() throws DataAccessException, SQLException {
         Collection<GameData> games = new ArrayList<>();
         try(var con = DatabaseManager.getConnection()) {
-            try(var preparedStatement = con.prepareStatement("SELECT game FROM games")) {
+            try(var preparedStatement = con.prepareStatement("SELECT * FROM games")) {
                 try(var rs = preparedStatement.executeQuery()) {
                     while(rs.next()) {
+                        var gameId = rs.getInt("gameID");
+                        var whiteUsername = rs.getString("whiteUsername");
+                        var blackUsername = rs.getString("blackUsername");
+                        var gameName = rs.getString("gameName");
                         var game = rs.getString("game");
-                        games.add(gson.fromJson(game, GameData.class));
+                        var gameClass = gson.fromJson(game, ChessGame.class);
+                        games.add(new GameData(gameId,whiteUsername,blackUsername,gameName,gameClass));
                     }
                 }
             }

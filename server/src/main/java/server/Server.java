@@ -1,16 +1,24 @@
 package server;
 
+import dataaccess.DatabaseManager;
 import server.handlers.Handler;
-import spark.*;
+import spark.Spark;
 
 public class Server {
+
+    public Server(){
+        try{
+            DatabaseManager.createDatabase();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     private Handler handler;
 
     public int run(int desiredPort) {
         Spark.port(desiredPort);
-
-        //TODO: call create database
 
         Spark.staticFiles.location("web");
 
