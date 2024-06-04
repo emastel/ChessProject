@@ -1,10 +1,6 @@
-package unit;
+package dataaccess;
 
 import chess.ChessGame;
-import dataaccess.DataAccessException;
-import dataaccess.SqlAuthDAO;
-import dataaccess.SqlGameDAO;
-import dataaccess.SqlUserDAO;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -15,13 +11,13 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-public class DAOTests {
+public class CustomTests {
 
     private SqlGameDAO gameDAO;
     private SqlAuthDAO authDAO;
     private SqlUserDAO userDAO;
 
-    public DAOTests() {
+    public CustomTests() {
         try {
             authDAO = new SqlAuthDAO();
             gameDAO = new SqlGameDAO();
@@ -152,7 +148,7 @@ public class DAOTests {
     @Test
     @Order(9)
     @DisplayName("Bad Create User")
-    public void BadCreateUser() throws SQLException {
+    public void badCreateUser() throws SQLException {
         UserData testInput = new UserData(null, "password", "email");
         try {
             userDAO.createUser(testInput);
