@@ -12,10 +12,6 @@ import java.util.UUID;
 
 public class UserService {
 
-//    private UserDAO userDAO = new UserDAO();
-//
-//    private AuthDAO authDAO = new AuthDAO();
-
     private SqlUserDAO userDAO;
     private SqlAuthDAO authDAO;
 

@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="previous tests pass">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Cleanup">
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/unit/DAOTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/dataaccess/AuthDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/dataaccess/AuthDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/unit/GameService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/unit/GameService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/unit/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/unit/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/shared/model/GameData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/model/GameData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/server/unit/ServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/server/unit/ServiceTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/AuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/unit/ServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +73,23 @@
     "JUnit.ChessBoardTests.executor": "Debug",
     "JUnit.ChessMoveTests.executor": "Debug",
     "JUnit.ChessPositionTests.executor": "Debug",
+    "JUnit.DAOTests.BadCreateUser.executor": "Debug",
+    "JUnit.DAOTests.badAuthToken.executor": "Debug",
+    "JUnit.DAOTests.badCreateGame.executor": "Debug",
+    "JUnit.DAOTests.badDeleteAuthToken.executor": "Debug",
+    "JUnit.DAOTests.badGetAuthToken.executor": "Debug",
+    "JUnit.DAOTests.badGetUser.executor": "Debug",
+    "JUnit.DAOTests.badJoinGame.executor": "Debug",
+    "JUnit.DAOTests.badListGames.executor": "Debug",
+    "JUnit.DAOTests.clearAuthToken.executor": "Debug",
+    "JUnit.DAOTests.clearUser.executor": "Debug",
+    "JUnit.DAOTests.createAuthToken.executor": "Debug",
+    "JUnit.DAOTests.createGame.executor": "Debug",
+    "JUnit.DAOTests.createUser.executor": "Debug",
+    "JUnit.DAOTests.executor": "Debug",
+    "JUnit.DAOTests.getAuthToken.executor": "Debug",
+    "JUnit.DAOTests.joinGame.executor": "Debug",
+    "JUnit.DAOTests.listGames.executor": "Debug",
     "JUnit.DatabaseTests.executor": "Debug",
     "JUnit.EnPassantTests.enPassantBlackLeft.executor": "Debug",
     "JUnit.EnPassantTests.enPassantWhiteLeft.executor": "Debug",
@@ -149,80 +178,82 @@
       <recent name="$PROJECT_DIR$/server/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseTests">
-    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DAOTests.clearGames">
+    <configuration name="DAOTests.badJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.DatabaseTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests.clearData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="METHOD_NAME" value="clearData" />
+      <option name="PACKAGE_NAME" value="unit" />
+      <option name="MAIN_CLASS_NAME" value="unit.DAOTests" />
+      <option name="METHOD_NAME" value="badJoinGame" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.gamesList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DAOTests.badListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="METHOD_NAME" value="gamesList" />
+      <option name="PACKAGE_NAME" value="unit" />
+      <option name="MAIN_CLASS_NAME" value="unit.DAOTests" />
+      <option name="METHOD_NAME" value="badListGames" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.uniqueAuthorizationTokens" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DAOTests.clearGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
+          <option name="PATTERN" value="unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="METHOD_NAME" value="uniqueAuthorizationTokens" />
+      <option name="PACKAGE_NAME" value="unit" />
+      <option name="MAIN_CLASS_NAME" value="unit.DAOTests" />
+      <option name="METHOD_NAME" value="clearGames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DAOTests.joinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unit" />
+      <option name="MAIN_CLASS_NAME" value="unit.DAOTests" />
+      <option name="METHOD_NAME" value="joinGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DAOTests.listGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unit" />
+      <option name="MAIN_CLASS_NAME" value="unit.DAOTests" />
+      <option name="METHOD_NAME" value="listGames" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -243,11 +274,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseTests" />
-        <item itemvalue="JUnit.StandardAPITests" />
-        <item itemvalue="JUnit.StandardAPITests.clearData" />
-        <item itemvalue="JUnit.StandardAPITests.uniqueAuthorizationTokens" />
-        <item itemvalue="JUnit.StandardAPITests.gamesList" />
+        <item itemvalue="JUnit.DAOTests.clearGames" />
+        <item itemvalue="JUnit.DAOTests.badListGames" />
+        <item itemvalue="JUnit.DAOTests.listGames" />
+        <item itemvalue="JUnit.DAOTests.badJoinGame" />
+        <item itemvalue="JUnit.DAOTests.joinGame" />
       </list>
     </recent_temporary>
   </component>
@@ -275,23 +306,7 @@
       <workItem from="1716303993319" duration="86062000" />
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
-      <workItem from="1717429501953" duration="20499000" />
-    </task>
-    <task id="LOCAL-00002" summary="fix(shared) maven resource reference">
-      <option name="closed" value="true" />
-      <created>1703046815883</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1703046815883</updated>
-    </task>
-    <task id="LOCAL-00003" summary="file cleanup">
-      <option name="closed" value="true" />
-      <created>1715015416796</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1715015416796</updated>
+      <workItem from="1717429501953" duration="27170000" />
     </task>
     <task id="LOCAL-00004" summary="Gets and setters implemented">
       <option name="closed" value="true" />
@@ -669,7 +684,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717454524198</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Database Tests pass">
+      <option name="closed" value="true" />
+      <created>1717457307422</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1717457307422</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Cleanup">
+      <option name="closed" value="true" />
+      <created>1717457393719</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1717457393720</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,8 +718,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="en passant implemented" />
-    <MESSAGE value="Phase 3 setup complete" />
     <MESSAGE value="Classes created" />
     <MESSAGE value="Data Access classes written" />
     <MESSAGE value="Service classes written" />
@@ -712,22 +741,8 @@
     <MESSAGE value="game tests pass" />
     <MESSAGE value="password encryption" />
     <MESSAGE value="previous tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="previous tests pass" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/passoff/server/DatabaseTests.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Database Tests pass" />
+    <MESSAGE value="Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
   </component>
 </project>

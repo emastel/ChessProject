@@ -27,10 +27,6 @@ public class GameData {
         return this.gameID;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
-    }
-
     public String gameToString() {
         return gson.toJson(game);
     }

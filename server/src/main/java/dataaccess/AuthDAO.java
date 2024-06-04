@@ -20,17 +20,6 @@ public class AuthDAO {
         authTokens.put(input.username(),tokens);
     }
 
-    public AuthData getAuth(String authToken) {
-        for(Map.Entry<String, List<AuthData>> entry : authTokens.entrySet()) {
-            for(AuthData authData : entry.getValue()) {
-                if(Objects.equals(authData.authToken(), authToken)) {
-                    return authData;
-                }
-            }
-        }
-        return null;
-    }
-
     public void deleteAuth(String username, AuthData input) {
         tokens.remove(input);
         authTokens.remove(username);

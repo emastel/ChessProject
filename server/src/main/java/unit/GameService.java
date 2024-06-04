@@ -11,10 +11,6 @@ import java.util.Objects;
 
 public class GameService {
 
-//    private AuthDAO authDAO = new AuthDAO();
-//
-//    private GameDAO gameDAO = new GameDAO();
-
     private SqlGameDAO gameDAO;
     private SqlAuthDAO authDAO;
 

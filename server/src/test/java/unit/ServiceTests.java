@@ -206,7 +206,7 @@ public class ServiceTests {
     }
 
     @Test
-    @Order(13)
+    @Order(14)
     @DisplayName("Bad Join Game")
     public void badJoinGame() {
         UserData user = new UserData("testUser", "testPassword", "testemail@gmail.com");
