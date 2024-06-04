@@ -207,7 +207,8 @@ public class CustomTests {
     @Test
     @Order(13)
     @DisplayName("create game")
-    public void createGame() throws SQLException {
+    public void createGame() throws SQLException, DataAccessException {
+        gameDAO.clear();
         GameData testInput = new GameData(1, "white", "black", "the game", new ChessGame());
         try {
             gameDAO.createGame(testInput);
