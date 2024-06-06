@@ -1,7 +1,11 @@
 package client;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import server.Server;
+import ui.Gameplay;
 
 
 public class ServerFacadeTests {
@@ -20,6 +24,10 @@ public class ServerFacadeTests {
         server.stop();
     }
 
+    @Test
+    public void testBoard() {
+        Gameplay.main();
+    }
 
     @Test
     public void sampleTest() {
