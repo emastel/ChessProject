@@ -129,51 +129,51 @@ public class Gameplay {
     private static void printSquares(PrintStream out, int col, int row) {
         if((row==0&&col==0) || (row==7&&col==0)) {
             out.print(SET_TEXT_COLOR_RED);
-            out.print(" R ");
+            out.print(WHITE_ROOK);
         }
         else if ((row==1&&col==0)||(row==6&&col==0)) {
             out.print(SET_TEXT_COLOR_RED);
-            out.print(" N ");
+            out.print(WHITE_KNIGHT);
         }
         else if ((row==2&&col==0) || (row==5&&col==0)) {
             out.print(SET_TEXT_COLOR_RED);
-            out.print(" B ");
+            out.print(WHITE_BISHOP);
         }
         else if (row==3&&col==0) {
             out.print(SET_TEXT_COLOR_RED);
-            out.print(" K ");
+            out.print(WHITE_KING);
         }
         else if (row==4&&col==0) {
             out.print(SET_TEXT_COLOR_RED);
-            out.print(" Q ");
+            out.print(WHITE_QUEEN);
         }
         else if (col==1) {
             out.print(SET_TEXT_COLOR_RED);
-            out.print(" P ");
+            out.print(WHITE_PAWN);
         }
         else if((row==0&&col==7) || (row==7&&col==7)) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print(" R ");
+            out.print(BLACK_ROOK);
         }
         else if ((row==1&&col==7)||(row==6&&col==7)) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print(" N ");
+            out.print(BLACK_KNIGHT);
         }
         else if ((row==2&&col==7) || (row==5&&col==7)) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print(" B ");
+            out.print(BLACK_BISHOP);
         }
         else if (row==3&&col==7) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print(" K ");
+            out.print(BLACK_KING);
         }
         else if (row==4&&col==7) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print(" Q ");
+            out.print(BLACK_QUEEN);
         }
         else if (col==6) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print(" P ");
+            out.print(BLACK_PAWN);
         }
         else {
             out.print("   ");
