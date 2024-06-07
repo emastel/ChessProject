@@ -1,4 +1,4 @@
-package server.handlers;
+package requestResponse;
 
 import model.GameData;
 

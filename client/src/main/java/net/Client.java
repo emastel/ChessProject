@@ -11,13 +11,11 @@ import static ui.EscapeSequences.*;
 public class Client {
 
     private ServerFacade server;
-    private String serverURL;
     private State state = State.SIGNEDOUT;
 
 
-    public Client(String serverURL) {
-        server = new ServerFacade(serverURL);
-        this.serverURL = serverURL;
+    public Client() {
+        server = new ServerFacade();
         var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     }
 
@@ -34,8 +32,8 @@ public class Client {
                 case "listGames" -> listGames(params);
                 case "playGame" -> playGame(params);
                 case "observeGame" -> observeGame(params);
-                case "quit" -> quit(PrintStream out);
-                default -> help(PrintStream out);
+                case "quit" -> quit(PrintStream);
+                default -> help(PrintStream);
             };
         } catch (Exception e) {
             return e.getMessage();
@@ -120,7 +118,6 @@ public class Client {
             out.print("- to play chess");
             printHelpQuit(out);
         }
-
     }
 
     public String quit() {

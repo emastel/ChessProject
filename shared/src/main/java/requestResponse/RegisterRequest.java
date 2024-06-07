@@ -1,3 +1,3 @@
-package server.handlers;
+package requestResponse;
 
 public record RegisterRequest(String username, String password, String email) {}
