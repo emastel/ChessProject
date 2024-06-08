@@ -73,4 +73,23 @@ public class SqlAuthDAO {
             throw new DataAccessException(e.getMessage());
         }
     }
+
+    public String getToken(String user) throws SQLException{
+        try(var con = DatabaseManager.getConnection()) {
+            try(var preparedStatement = con.prepareStatement("SELECT id, token, username FROM auths WHERE username=?")) {
+                preparedStatement.setString(1, user);
+                try(var rs = preparedStatement.executeQuery()) {
+                    while(rs.next()) {
+                        return rs.getString("token");
+                    }
+                }
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new SQLException(e.getMessage());
+        }
+        return null;
+    }
+
 }

@@ -14,7 +14,11 @@ import java.net.URL;
 
 public class ServerFacade {
 
-    private final String serverUrl = "http://localhost:8080";
+    private final String serverUrl;
+
+    public ServerFacade(int port) {
+        serverUrl = "http://localhost:" + Integer.toString(port);
+    }
 
     public RegisterLoginResponse register(String username, String password, String email) {
         var path = "/user";
