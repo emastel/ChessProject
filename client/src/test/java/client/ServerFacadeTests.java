@@ -3,11 +3,10 @@ package client;
 import dataaccess.DataAccessException;
 import dataaccess.SqlAuthDAO;
 import dataaccess.SqlUserDAO;
-import net.Client;
 import org.junit.jupiter.api.*;
 import server.Server;
 import ui.Gameplay;
-import ui.ServerFacade;
+import net.ServerFacade;
 
 import java.sql.SQLException;
 
@@ -15,7 +14,6 @@ import java.sql.SQLException;
 public class ServerFacadeTests {
 
     private static Server server;
-    private static Client client;
     private static SqlUserDAO users;
     private static ServerFacade serverFacade;
     private static SqlAuthDAO auths;
@@ -25,7 +23,6 @@ public class ServerFacadeTests {
         server = new Server();
         var port = server.run(0);
         System.out.println("Started test HTTP server on " + port);
-        client = new Client();
         users = new SqlUserDAO();
         auths = new SqlAuthDAO();
         serverFacade = new ServerFacade(port);
@@ -89,6 +86,22 @@ public class ServerFacadeTests {
         serverFacade.logout(token);
         Assertions.assertNull(auths.getUser(token));
     }
+
+    @Test
+    public void badLogout() throws SQLException {
+        serverFacade.register("username", "password", "email");
+        serverFacade.login("username", "password");
+        Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            serverFacade.logout("wrong");
+        });
+
+        String expectedMessage = "failure: 401";
+        String actualMessage = exception.getMessage();
+
+        Assertions.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+
 
 
     @Test

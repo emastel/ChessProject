@@ -1,7 +1,7 @@
-package net;
+package ui;
 
-import ui.Gameplay;
-import ui.ServerFacade;
+import net.ServerFacade;
+import net.State;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
