@@ -4,10 +4,12 @@ import dataaccess.DataAccessException;
 import dataaccess.SqlAuthDAO;
 import dataaccess.SqlGameDAO;
 import dataaccess.SqlUserDAO;
+import model.GameData;
+import net.ServerFacade;
 import org.junit.jupiter.api.*;
+import requestResponse.ListGamesResponse;
 import server.Server;
 import ui.Gameplay;
-import net.ServerFacade;
 
 import java.sql.SQLException;
 
@@ -124,6 +126,38 @@ public class ServerFacadeTests {
         String expectedMessage = "failure: 401";
         String actualMessage = exception.getMessage();
         Assertions.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testListGame() throws SQLException, DataAccessException {
+        serverFacade.register("username", "password", "email");
+        //serverFacade.login("username", "password");
+        String token = auths.getToken("username");
+        serverFacade.createGame("game1", token);
+        serverFacade.createGame("game2", token);
+        serverFacade.createGame("game3", token);
+        ListGamesResponse games = serverFacade.listGames(token);
+        GameData[] list = games.games();
+        Assertions.assertEquals(3, list.length);
+
+    }
+
+    @Test
+    public void badListGame() throws SQLException, DataAccessException {
+        serverFacade.register("username", "password", "email");
+        //serverFacade.login("username", "password");
+        String token = auths.getToken("username");
+        serverFacade.createGame("game1", token);
+        serverFacade.createGame("game2", token);
+        serverFacade.createGame("game3", token);
+        Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            serverFacade.listGames("wrong");
+        });
+
+        String expectedMessage = "failure: 401";
+        String actualMessage = exception.getMessage();
+        Assertions.assertTrue(actualMessage.contains(expectedMessage));
+
     }
 
 

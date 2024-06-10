@@ -87,7 +87,7 @@ public class ServerFacade {
 
             connection.addRequestProperty("Authorization", authToken);
             AuthTokenRequest request = new AuthTokenRequest(authToken);
-            writeBody(request,connection);
+            //writeBody(request,connection);
             connection.connect();
             throwIfNotSuccessful(connection);
             return readBody(connection, ListGamesResponse.class);

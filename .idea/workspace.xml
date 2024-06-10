@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="UI updates">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Json problem fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/client/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/client/ServerFacadeTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/CreateGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/requestResponse/CreateGameRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +112,8 @@
     "JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor": "Debug",
     "JUnit.QueenMoveTests.executor": "Debug",
     "JUnit.RookMoveTests.executor": "Debug",
+    "JUnit.ServerFacadeTests.badCreateGame.executor": "Debug",
+    "JUnit.ServerFacadeTests.badListGame.executor": "Debug",
     "JUnit.ServerFacadeTests.badLogin.executor": "Debug",
     "JUnit.ServerFacadeTests.badLogout.executor": "Debug",
     "JUnit.ServerFacadeTests.executor": "Debug",
@@ -120,6 +121,7 @@
     "JUnit.ServerFacadeTests.testBoard.executor": "Debug",
     "JUnit.ServerFacadeTests.testCreateGame.executor": "Debug",
     "JUnit.ServerFacadeTests.testList.executor": "Debug",
+    "JUnit.ServerFacadeTests.testListGame.executor": "Debug",
     "JUnit.ServerFacadeTests.testLogin.executor": "Debug",
     "JUnit.ServerFacadeTests.testLogout.executor": "Debug",
     "JUnit.ServerFacadeTests.testRegister.executor": "Debug",
@@ -189,7 +191,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTests.badCreateGame">
+  <component name="RunManager" selected="JUnit.ServerFacadeTests.badListGame">
     <configuration name="ServerFacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
@@ -221,7 +223,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.testBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTests.badListGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
         <pattern>
@@ -231,7 +233,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="client" />
       <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="testBoard" />
+      <option name="METHOD_NAME" value="badListGame" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -253,7 +255,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.testList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTests.testListGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
         <pattern>
@@ -263,7 +265,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="client" />
       <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="testList" />
+      <option name="METHOD_NAME" value="testListGame" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -284,11 +286,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServerFacadeTests.badListGame" />
+        <item itemvalue="JUnit.ServerFacadeTests.testListGame" />
         <item itemvalue="JUnit.ServerFacadeTests.badCreateGame" />
         <item itemvalue="JUnit.ServerFacadeTests.testCreateGame" />
         <item itemvalue="JUnit.ServerFacadeTests" />
-        <item itemvalue="JUnit.ServerFacadeTests.testBoard" />
-        <item itemvalue="JUnit.ServerFacadeTests.testList" />
       </list>
     </recent_temporary>
   </component>
@@ -317,15 +319,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="45319000" />
-    </task>
-    <task id="LOCAL-00014" summary="Cloned the board instead">
-      <option name="closed" value="true" />
-      <created>1715277286890</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1715277286890</updated>
+      <workItem from="1717541035000" duration="46027000" />
     </task>
     <task id="LOCAL-00015" summary="MakeMoveTests passing">
       <option name="closed" value="true" />
@@ -711,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718033395780</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Json problem fixed">
+      <option name="closed" value="true" />
+      <created>1718034519755</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1718034519755</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +731,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Code cleanup" />
     <MESSAGE value="Code cleanup all previous tests pass" />
     <MESSAGE value="More code cleanup" />
     <MESSAGE value="unit test cleanup" />
@@ -754,17 +755,7 @@
     <MESSAGE value="User tests passing" />
     <MESSAGE value="Client written" />
     <MESSAGE value="UI updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI updates" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Json problem fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Json problem fixed" />
   </component>
 </project>
