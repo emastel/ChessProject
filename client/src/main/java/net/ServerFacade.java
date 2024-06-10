@@ -85,6 +85,7 @@ public class ServerFacade {
             connection.setRequestMethod("GET");
             connection.setDoOutput(true);
 
+            connection.addRequestProperty("Authorization", authToken);
             AuthTokenRequest request = new AuthTokenRequest(authToken);
             writeBody(request,connection);
             connection.connect();
@@ -104,6 +105,7 @@ public class ServerFacade {
             connection.setRequestMethod("PUT");
             connection.setDoOutput(true);
 
+            connection.addRequestProperty("Authorization", authToken);
             AuthTokenRequest request = new AuthTokenRequest(authToken);
             writeBody(request,connection);
             connection.connect();
@@ -122,6 +124,7 @@ public class ServerFacade {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
+            connection.addRequestProperty("Authorization", authToken);
             CreateGameRequest request = new CreateGameRequest(name,authToken);
             writeBody(request,connection);
             connection.connect();

@@ -2,6 +2,7 @@ package client;
 
 import dataaccess.DataAccessException;
 import dataaccess.SqlAuthDAO;
+import dataaccess.SqlGameDAO;
 import dataaccess.SqlUserDAO;
 import org.junit.jupiter.api.*;
 import server.Server;
@@ -17,6 +18,7 @@ public class ServerFacadeTests {
     private static SqlUserDAO users;
     private static ServerFacade serverFacade;
     private static SqlAuthDAO auths;
+    private static SqlGameDAO games;
 
     @BeforeAll
     public static void init() throws DataAccessException {
@@ -25,6 +27,7 @@ public class ServerFacadeTests {
         System.out.println("Started test HTTP server on " + port);
         users = new SqlUserDAO();
         auths = new SqlAuthDAO();
+        games = new SqlGameDAO();
         serverFacade = new ServerFacade(port);
     }
 
@@ -32,6 +35,7 @@ public class ServerFacadeTests {
     public void clear() throws DataAccessException {
         users.clear();
         auths.clear();
+        games.clear();
     }
 
     @AfterAll
@@ -101,6 +105,14 @@ public class ServerFacadeTests {
         Assertions.assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    public void testCreateGame() throws SQLException, DataAccessException {
+        serverFacade.register("username", "password", "email");
+        //serverFacade.login("username", "password");
+        String token = auths.getToken("username");
+        serverFacade.createGame("game", token);
+        Assertions.assertNotNull(games.getGame(1));
+    }
 
 
 

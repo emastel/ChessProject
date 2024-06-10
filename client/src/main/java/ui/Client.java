@@ -1,7 +1,10 @@
 package ui;
 
+import com.google.gson.Gson;
+import model.GameData;
 import net.ServerFacade;
 import net.State;
+import requestResponse.ListGamesResponse;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -11,6 +14,7 @@ import static ui.EscapeSequences.*;
 
 public class Client {
 
+    public static Gson gson = new Gson();
     private ServerFacade server;
     private State state = State.SIGNEDOUT;
     PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
@@ -97,9 +101,26 @@ public class Client {
 
     public void listGames(String...params) {
         if(params.length >= 1) {
-            server.listGames(params[1]);
-            out.print(SET_TEXT_COLOR_GREEN);
-            out.print("Listed games successfully");
+            ListGamesResponse allGames = server.listGames(params[1]);
+            GameData[] list = allGames.games();
+            for(GameData game : list) {
+                int i = 1;
+                out.print(SET_TEXT_COLOR_BLUE);
+                out.print(i +". Game Name: ");
+                out.print(SET_TEXT_COLOR_MAGENTA);
+                out.print(game.getGameName());
+                out.println();
+                out.print(SET_TEXT_COLOR_BLUE);
+                out.print("White Player: ");
+                out.print(SET_TEXT_COLOR_MAGENTA);
+                out.print(game.getWhiteUsername());
+                out.println();
+                out.print(SET_TEXT_COLOR_BLUE);
+                out.print("Black Player: ");
+                out.print(SET_TEXT_COLOR_MAGENTA);
+                out.print(game.getBlackUsername());
+                out.println();
+            }
         }
         else {
             out.print(SET_TEXT_COLOR_RED);
