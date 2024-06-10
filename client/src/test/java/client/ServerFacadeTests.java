@@ -1,9 +1,6 @@
 package client;
 
-import dataaccess.DataAccessException;
-import dataaccess.SqlAuthDAO;
-import dataaccess.SqlGameDAO;
-import dataaccess.SqlUserDAO;
+import dataaccess.*;
 import model.GameData;
 import net.ServerFacade;
 import org.junit.jupiter.api.*;
@@ -158,6 +155,32 @@ public class ServerFacadeTests {
         String actualMessage = exception.getMessage();
         Assertions.assertTrue(actualMessage.contains(expectedMessage));
 
+    }
+
+    @Test
+    public void testJoinGame() throws SQLException, DataAccessException {
+        serverFacade.register("username", "password", "email");
+        //serverFacade.login("username", "password");
+        String token = auths.getToken("username");
+        serverFacade.createGame("game1", token);
+        serverFacade.joinGame(token, "WHITE", 1);
+        String actual = games.getGame(1).getWhiteUsername();
+        Assertions.assertEquals("username", actual);
+    }
+
+    @Test
+    public void badJoinGame() throws SQLException, DataAccessException {
+        serverFacade.register("username", "password", "email");
+        //serverFacade.login("username", "password");
+        String token = auths.getToken("username");
+        serverFacade.createGame("game1", token);
+        Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            serverFacade.joinGame("wrong","BLACK",1);
+        });
+
+        String expectedMessage = "failure: 401";
+        String actualMessage = exception.getMessage();
+        Assertions.assertTrue(actualMessage.contains(expectedMessage));
     }
 
 

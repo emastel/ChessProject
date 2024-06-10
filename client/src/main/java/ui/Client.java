@@ -131,7 +131,7 @@ public class Client {
 
     public void playGame(String...params) {
         if(params.length >= 1) {
-            server.joinGame(params[1]);
+            server.joinGame(params[1], params[2], Integer.parseInt(params[3]));
             out.print(SET_TEXT_COLOR_GREEN);
             out.print("Joined game successfully");
         }

@@ -67,8 +67,8 @@ public class ServerFacade {
             connection.setDoOutput(true);
 
             connection.addRequestProperty("Authorization", authToken);
-            AuthTokenRequest request = new AuthTokenRequest(authToken);
-            writeBody(request,connection);
+            //AuthTokenRequest request = new AuthTokenRequest(authToken);
+            //writeBody(request,connection);
             connection.connect();
             throwIfNotSuccessful(connection);
 
@@ -97,7 +97,7 @@ public class ServerFacade {
         }
     }
 
-    public void joinGame(String authToken) {
+    public void joinGame(String authToken, String color, int gameId) {
         var path = "/game";
         try {
             URL url = (new URI(serverUrl + path)).toURL();
@@ -106,7 +106,8 @@ public class ServerFacade {
             connection.setDoOutput(true);
 
             connection.addRequestProperty("Authorization", authToken);
-            AuthTokenRequest request = new AuthTokenRequest(authToken);
+            JoinGameRequest request = new JoinGameRequest(color, gameId);
+            //AuthTokenRequest request = new AuthTokenRequest(authToken);
             writeBody(request,connection);
             connection.connect();
             throwIfNotSuccessful(connection);
