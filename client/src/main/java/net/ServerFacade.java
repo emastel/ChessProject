@@ -1,7 +1,6 @@
 package net;
 
 import com.google.gson.Gson;
-import exception.ResponseException;
 import model.GameName;
 import reqrep.*;
 
@@ -32,7 +31,7 @@ public class ServerFacade {
             RegisterRequest request = new RegisterRequest(username, password, email);
             writeBody(request,connection);
             connection.connect();
-            throwIfNotSuccessful(connection);
+            //throwIfNotSuccessful(connection);
             return readBody(connection, RegisterLoginResponse.class);
 
         } catch (Exception e) {
@@ -51,7 +50,7 @@ public class ServerFacade {
             LoginRequest request = new LoginRequest(username, password);
             writeBody(request,connection);
             connection.connect();
-            throwIfNotSuccessful(connection);
+            //throwIfNotSuccessful(connection);
             return readBody(connection, RegisterLoginResponse.class);
 
         } catch (Exception e) {
@@ -59,7 +58,7 @@ public class ServerFacade {
         }
     }
 
-    public void logout(String authToken) {
+    public BlankResponse logout(String authToken) {
         var path = "/session";
         try {
             URL url = (new URI(serverUrl + path)).toURL();
@@ -68,17 +67,15 @@ public class ServerFacade {
             connection.setDoOutput(true);
 
             connection.addRequestProperty("Authorization", authToken);
-            //AuthTokenRequest request = new AuthTokenRequest(authToken);
-            //writeBody(request,connection);
             connection.connect();
-            throwIfNotSuccessful(connection);
-
+            //throwIfNotSuccessful(connection);
+            return readBody(connection, BlankResponse.class);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public ListGamesResponse listGames(String authToken) {
+    public Object listGames(String authToken) {
         var path = "/game";
         try {
             URL url = (new URI(serverUrl + path)).toURL();
@@ -90,15 +87,20 @@ public class ServerFacade {
             AuthTokenRequest request = new AuthTokenRequest(authToken);
             //writeBody(request,connection);
             connection.connect();
-            throwIfNotSuccessful(connection);
-            return readBody(connection, ListGamesResponse.class);
+            //throwIfNotSuccessful(connection);
+            if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return readBody(connection, ListGamesResponse.class);
+            }
+            else {
+                return readBody(connection, BlankResponse.class);
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public void joinGame(String authToken, String color, int gameId) {
+    public BlankResponse joinGame(String authToken, String color, int gameId) {
         var path = "/game";
         try {
             URL url = (new URI(serverUrl + path)).toURL();
@@ -111,14 +113,14 @@ public class ServerFacade {
             //AuthTokenRequest request = new AuthTokenRequest(authToken);
             writeBody(request,connection);
             connection.connect();
-            throwIfNotSuccessful(connection);
-
+            //throwIfNotSuccessful(connection);
+            return readBody(connection, BlankResponse.class);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public CreateGameResponse createGame(String name, String authToken) {
+    public Object createGame(String name, String authToken) {
         var path = "/game";
         try {
             URL url = (new URI(serverUrl + path)).toURL();
@@ -130,8 +132,13 @@ public class ServerFacade {
             GameName request = new GameName(name);
             writeBody(request,connection);
             connection.connect();
-            throwIfNotSuccessful(connection);
-            return readBody(connection, CreateGameResponse.class);
+            //throwIfNotSuccessful(connection);
+            if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return readBody(connection, CreateGameResponse.class);
+            }
+            else {
+                return readBody(connection, BlankResponse.class);
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -149,24 +156,23 @@ public class ServerFacade {
     private static <T> T readBody(HttpURLConnection connection, Class<T> responseClass) throws IOException {
         T response = null;
         if(connection.getContentLength() < 0) {
-            try(InputStream resBody = connection.getInputStream()) {
-                InputStreamReader bodyReader = new InputStreamReader(resBody);
-                response = new Gson().fromJson(bodyReader, responseClass);
+            if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                try(InputStream resBody = connection.getInputStream()) {
+                    InputStreamReader bodyReader = new InputStreamReader(resBody);
+                    response = new Gson().fromJson(bodyReader, responseClass);
+                }
             }
+            else {
+                try(InputStream resBody = connection.getErrorStream()) {
+                    InputStreamReader bodyReader = new InputStreamReader(resBody);
+                    response = new Gson().fromJson(bodyReader, responseClass);
+                }
+            }
+
         }
         return response;
     }
 
-    private void throwIfNotSuccessful(HttpURLConnection http) throws IOException, ResponseException {
-        var status = http.getResponseCode();
-        if (!isSuccessful(status)) {
-            throw new ResponseException(status, "failure: " + status);
-        }
-    }
-
-    private boolean isSuccessful(int status) {
-        return status / 100 == 2;
-    }
 
 
 }

@@ -4,53 +4,77 @@ import com.google.gson.Gson;
 import model.GameData;
 import net.ServerFacade;
 import net.State;
+import reqrep.BlankResponse;
 import reqrep.ListGamesResponse;
+import reqrep.RegisterLoginResponse;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static ui.EscapeSequences.*;
 
 public class Client {
 
-    public static Gson gson = new Gson();
-    private ServerFacade server;
-    private State state = State.SIGNEDOUT;
-    PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-    boolean running = true;
+    public  Gson gson = new Gson();
+    private  ServerFacade server;
+    private  State state = State.SIGNEDOUT;
+    private  PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+    private  boolean running = true;
+    private  String authToken;
+    GameData[] list;
 
 
     public Client() {
         server = new ServerFacade(8080);
     }
 
-    public void eval(String input) {
+    public static void main(String[] args) {
+        Client client = new Client();
+        while (client.running) {
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            client.eval(input);
+        }
+    }
+
+    public  void eval(String input) {
         try {
-            var tokens = input.toLowerCase().split(" ");
+            var tokens = input.split(" ");
             var cmd = (tokens.length > 0) ? tokens[0] : "help";
             var params = Arrays.copyOfRange(tokens, 1, tokens.length);
             switch (cmd) {
                 case "register" -> register(params);
                 case "login" -> login(params);
-                case "logout" -> logout(params);
-                case "createGame" -> createGame(params);
-                case "listGames" -> listGames(params);
-                case "playGame" -> playGame(params);
-                case "observeGame" -> observeGame(params);
+                case "logout" -> logout();
+                case "create" -> createGame(params);
+                case "list" -> listGames();
+                case "join" -> playGame(params);
+                case "observe" -> observeGame(params);
                 case "quit" -> quit();
                 default -> help();
             }
         } catch (Exception e) {
+            out.print(SET_TEXT_COLOR_RED);
             out.print(e.getMessage());
+            out.println();
         }
     }
 
-    public void register(String...params) {
+    public  void register(String...params) {
         if(params.length >= 1) {
-            server.register(params[0], params[1], params[2]);
+            RegisterLoginResponse res = server.register(params[0], params[1], params[2]);
+            if(res.message() == null) {
+                authToken = res.authToken();
+            }
+            else {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print(res.message());
+            }
             out.print(SET_TEXT_COLOR_GREEN);
             out.print("Registered successfully");
+            state = State.SIGNEDIN;
         }
         else {
             out.print(SET_TEXT_COLOR_RED);
@@ -59,10 +83,17 @@ public class Client {
         out.println();
     }
 
-    public void login(String...params) {
+    public  void login(String...params) {
         if(params.length >= 1) {
             state = State.SIGNEDIN;
-            server.login(params[1], params[2]);
+            RegisterLoginResponse res = server.login(params[0], params[1]);
+            if(res.message() == null) {
+                authToken = res.authToken();
+            }
+            else {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print(res.message());
+            }
             out.print(SET_TEXT_COLOR_GREEN);
             out.print("Logged in successfully");
         }
@@ -73,12 +104,31 @@ public class Client {
         out.println();
     }
 
-    public void logout(String...params) {
-        if(params.length >= 1) {
-            state = State.SIGNEDOUT;
-            server.logout(params[1]);
+    public  void logout(String...params) {
+        BlankResponse res = server.logout(authToken);
+        if(res == null) {
             out.print(SET_TEXT_COLOR_GREEN);
             out.print("Logged out successfully");
+            state = State.SIGNEDOUT;
+        }
+        else {
+            out.print(SET_TEXT_COLOR_RED);
+            out.print(res.message());
+        }
+        out.println();
+    }
+
+    public  void createGame(String...params) {
+        if(params.length >= 1) {
+            Object res = server.createGame(params[0], authToken);
+            if(res instanceof BlankResponse) {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print(((BlankResponse)res).message());
+            }
+            else {
+                out.print(SET_TEXT_COLOR_GREEN);
+                out.print("Created game successfully");
+            }
         }
         else {
             out.print(SET_TEXT_COLOR_RED);
@@ -87,25 +137,12 @@ public class Client {
         out.println();
     }
 
-    public void createGame(String...params) {
-        if(params.length >= 1) {
-            server.createGame(params[1],params[2]);
-            out.print(SET_TEXT_COLOR_GREEN);
-            out.print("Created game successfully");
-        }
-        else {
-            out.print(SET_TEXT_COLOR_RED);
-            out.print("Missing information");
-        }
-        out.println();
-    }
-
-    public void listGames(String...params) {
-        if(params.length >= 1) {
-            ListGamesResponse allGames = server.listGames(params[1]);
-            GameData[] list = allGames.games();
+    public  void listGames() {
+        Object allGames = server.listGames(authToken);
+        if(allGames instanceof ListGamesResponse) {
+            list = ((ListGamesResponse)allGames).games();
+            int i = 1;
             for(GameData game : list) {
-                int i = 1;
                 out.print(SET_TEXT_COLOR_BLUE);
                 out.print(i +". Game Name: ");
                 out.print(SET_TEXT_COLOR_MAGENTA);
@@ -121,6 +158,26 @@ public class Client {
                 out.print(SET_TEXT_COLOR_MAGENTA);
                 out.print(game.getBlackUsername());
                 out.println();
+                ++i;
+            }
+        }
+        else {
+            out.print(SET_TEXT_COLOR_RED);
+            out.print(((BlankResponse)allGames).message());
+        }
+        out.println();
+    }
+
+    public  void playGame(String...params) {
+        if(params.length >= 1) {
+            int gameId = list[Integer.parseInt(params[1])-1].getGameID();
+            BlankResponse res = server.joinGame(authToken, params[0], gameId);
+            if(res == null) {
+                Gameplay.main();
+            }
+            else {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print(res.message());
             }
         }
         else {
@@ -130,25 +187,13 @@ public class Client {
         out.println();
     }
 
-    public void playGame(String...params) {
-        if(params.length >= 1) {
-            server.joinGame(params[1], params[2], Integer.parseInt(params[3]));
-            Gameplay.main();
-        }
-        else {
-            out.print(SET_TEXT_COLOR_RED);
-            out.print("Missing information");
-        }
-        out.println();
-    }
-
-    public void observeGame(String...params) {
+    public  void observeGame(String...params) {
         if(params.length >= 1) {
             Gameplay.main();
         }
     }
 
-    private void printHelpQuit(PrintStream out) {
+    private  void printHelpQuit(PrintStream out) {
         out.print(SET_TEXT_COLOR_BLUE);
         out.print("Quit ");
         out.print(SET_TEXT_COLOR_MAGENTA);
@@ -161,7 +206,7 @@ public class Client {
         out.println();
     }
 
-    public void help() {
+    public  void help() {
         if(state == State.SIGNEDIN) {
             out.print(SET_TEXT_COLOR_BLUE);
             out.print("Create <NAME> ");
@@ -204,7 +249,7 @@ public class Client {
         }
     }
 
-    public void quit() {
+    public  void quit() {
         running = false;
         out.print(SET_TEXT_COLOR_GREEN);
         out.print("Quit successfully");

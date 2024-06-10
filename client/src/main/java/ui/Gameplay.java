@@ -38,7 +38,7 @@ public class Gameplay {
     private static void drawHeaders(PrintStream out) {
         setGrey(out);
 
-        String[] headers = {" a ", " b ", " c ", " d ", " e ", " f ", " g ", " h "};
+        String[] headers = {" h ", " g ", " f ", " e ", " d ", " c ", " b ", " a "};
         out.print("   ");
         if(color == Player.WHITE) {
             for(int boardCol = 0; boardCol < BOARD_SIZE_IN_SQUARES; boardCol++) {

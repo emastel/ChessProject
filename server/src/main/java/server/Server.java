@@ -17,6 +17,11 @@ public class Server {
 
     private Handler handler;
 
+    public static void main(String[] args) {
+        Server server = new Server();
+        server.run(8080);
+    }
+
     public int run(int desiredPort) {
         Spark.port(desiredPort);
 

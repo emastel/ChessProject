@@ -144,8 +144,8 @@ public class ServerFacadeTests {
         serverFacade.createGame("game1", token);
         serverFacade.createGame("game2", token);
         serverFacade.createGame("game3", token);
-        ListGamesResponse games = serverFacade.listGames(token);
-        GameData[] list = games.games();
+        Object games = serverFacade.listGames(token);
+        GameData[] list = ((ListGamesResponse)games).games();
         Assertions.assertEquals(3, list.length);
 
     }
@@ -175,7 +175,7 @@ public class ServerFacadeTests {
         String token = auths.getToken("username");
         serverFacade.createGame("game1", token);
         int id = games.getID("game1");
-        serverFacade.joinGame(token, "WHITE", id);
+        serverFacade.joinGame(token, "BLACK", id);
         String actual = games.getGame(id).getWhiteUsername();
         Assertions.assertEquals("username", actual);
     }

@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Old tests passing again">
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/exception/ResponseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/exception/ResponseException.java" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Tests added again">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/client/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/client/ServerFacadeTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Handlers/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/AuthTokenRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/AuthTokenRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/BlankResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/BlankResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/CreateGameResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/CreateGameResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/JoinGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/ListGamesResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/ListGamesResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/RegisterLoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/RegisterLoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/requestResponse/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/reqrep/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/client/ServerFacadeTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client/ServerFacadeTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/net/ServerFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/net/ServerFacade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/ui/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/ui/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/ui/Gameplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/ui/Gameplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +64,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Client.executor": "Debug",
+    "Application.Server.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.All in server.executor": "Debug",
     "JUnit.BishopMoveTests.bishopBlocked.executor": "Debug",
@@ -207,11 +206,29 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTests.testClient">
-    <configuration name="All in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Client" />
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="server" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -247,33 +264,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+    <configuration name="ServerFacadeTests.testJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
-      <option name="METHOD_NAME" value="testLogin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests.goodJoin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoff.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoff.server" />
-      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
-      <option name="METHOD_NAME" value="goodJoin" />
+      <option name="PACKAGE_NAME" value="client" />
+      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
+      <option name="METHOD_NAME" value="testJoinGame" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -294,11 +295,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.ServerFacadeTests.testJoinGame" />
         <item itemvalue="JUnit.ServerFacadeTests.testClient" />
         <item itemvalue="JUnit.ServerFacadeTests" />
-        <item itemvalue="JUnit.All in server" />
-        <item itemvalue="JUnit.StandardAPITests.goodJoin" />
-        <item itemvalue="JUnit.ServiceTests.testLogin" />
       </list>
     </recent_temporary>
   </component>
@@ -327,23 +328,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="51344000" />
-    </task>
-    <task id="LOCAL-00023" summary="Data Access classes written">
-      <option name="closed" value="true" />
-      <created>1716318860781</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1716318860781</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Service classes written">
-      <option name="closed" value="true" />
-      <created>1716325691453</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1716325691453</updated>
+      <workItem from="1717541035000" duration="56446000" />
     </task>
     <task id="LOCAL-00025" summary="Lots of code written but I don't know if it works">
       <option name="closed" value="true" />
@@ -721,7 +706,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718040253373</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Code Quality updates">
+      <option name="closed" value="true" />
+      <created>1718040595693</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1718040595693</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Tests added again">
+      <option name="closed" value="true" />
+      <created>1718040747405</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1718040747405</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,8 +740,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Auth database setup" />
-    <MESSAGE value="sql syntax corrections" />
     <MESSAGE value="User unit tests pass" />
     <MESSAGE value="sql game dao written" />
     <MESSAGE value="game tests pass" />
@@ -764,6 +763,24 @@
     <MESSAGE value="All unit tests pass" />
     <MESSAGE value="File rename" />
     <MESSAGE value="Old tests passing again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Old tests passing again" />
+    <MESSAGE value="Code Quality updates" />
+    <MESSAGE value="Tests added again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests added again" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/unit/GameService.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
