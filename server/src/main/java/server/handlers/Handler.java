@@ -6,7 +6,7 @@ import model.AuthData;
 import model.GameData;
 import model.GameName;
 import model.UserData;
-import requestResponse.*;
+import reqrep.*;
 import spark.Request;
 import spark.Response;
 import unit.AuthService;

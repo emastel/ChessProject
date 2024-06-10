@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import model.GameData;
 import net.ServerFacade;
 import net.State;
-import requestResponse.ListGamesResponse;
+import reqrep.ListGamesResponse;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;

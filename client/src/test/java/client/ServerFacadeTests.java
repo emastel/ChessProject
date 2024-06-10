@@ -1,11 +1,15 @@
 package client;
 
-import dataaccess.*;
+import dataaccess.DataAccessException;
+import dataaccess.SqlAuthDAO;
+import dataaccess.SqlGameDAO;
+import dataaccess.SqlUserDAO;
 import model.GameData;
 import net.ServerFacade;
 import org.junit.jupiter.api.*;
-import requestResponse.ListGamesResponse;
+import reqrep.ListGamesResponse;
 import server.Server;
+import ui.Client;
 import ui.Gameplay;
 
 import java.sql.SQLException;
@@ -45,6 +49,12 @@ public class ServerFacadeTests {
     @Test
     public void testBoard() {
         Gameplay.main();
+    }
+
+    @Test
+    public void testClient() {
+        Client client = new Client();
+        client.eval("help");
     }
 
     @Test

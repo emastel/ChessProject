@@ -1,4 +1,4 @@
-package requestResponse;
+package reqrep;
 
 import model.GameData;
 

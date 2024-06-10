@@ -3,7 +3,7 @@ package net;
 import com.google.gson.Gson;
 import exception.ResponseException;
 import model.GameName;
-import requestResponse.*;
+import reqrep.*;
 
 import java.io.IOException;
 import java.io.InputStream;
