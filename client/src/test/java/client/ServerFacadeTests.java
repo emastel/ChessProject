@@ -110,7 +110,8 @@ public class ServerFacadeTests {
         //serverFacade.login("username", "password");
         String token = auths.getToken("username");
         serverFacade.createGame("game", token);
-        Assertions.assertNotNull(games.getGame(1));
+        int id = games.getID("game");
+        Assertions.assertNotNull(games.getGame(id));
     }
 
     @Test
@@ -163,8 +164,9 @@ public class ServerFacadeTests {
         //serverFacade.login("username", "password");
         String token = auths.getToken("username");
         serverFacade.createGame("game1", token);
-        serverFacade.joinGame(token, "WHITE", 1);
-        String actual = games.getGame(1).getWhiteUsername();
+        int id = games.getID("game1");
+        serverFacade.joinGame(token, "WHITE", id);
+        String actual = games.getGame(id).getWhiteUsername();
         Assertions.assertEquals("username", actual);
     }
 
