@@ -33,7 +33,9 @@ public class UserService {
             throw new AlreadyTakenException("Error: already taken");
         }
         try {
-            userDAO.createUser(user);
+            String hashedPassword = BCrypt.hashpw(user.password(), BCrypt.gensalt());
+            UserData updatedUser = new UserData(user.username(), hashedPassword, user.email());
+            userDAO.createUser(updatedUser);
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }

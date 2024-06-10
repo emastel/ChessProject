@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Join game tests pass">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="File rename">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/client/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/client/ServerFacadeTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlGameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/unit/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/unit/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/unit/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/service/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in server.executor": "Debug",
     "JUnit.BishopMoveTests.bishopBlocked.executor": "Debug",
     "JUnit.BishopMoveTests.executor": "Debug",
     "JUnit.CastlingTests.castleWhite.executor": "Debug",
@@ -154,6 +158,8 @@
     "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
     "JUnit.ValidMovesTests.noPutSelfInDanger.executor": "Debug",
     "JUnit.ValidMovesTests.rookPinnedToKing.executor": "Debug",
+    "JUnit.dataaccess in server.executor": "Debug",
+    "JUnit.passoff in shared.executor": "Debug",
     "JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor": "Debug",
     "JUnit.passoff.chess.piece in shared.executor": "Debug",
     "JUnit.passoff.server in server.executor": "Debug",
@@ -193,6 +199,14 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ServerFacadeTests">
+    <configuration name="All in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerFacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
@@ -208,65 +222,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.badJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
+    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="client.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="client" />
-      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="badJoinGame" />
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.ServiceTests" />
+      <option name="METHOD_NAME" value="testLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.badListGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
+    <configuration name="StandardAPITests.goodJoin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="client.*" />
+          <option name="PATTERN" value="passoff.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="client" />
-      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="badListGame" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerFacadeTests.testCreateGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="client" />
-      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="testCreateGame" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerFacadeTests.testJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="client" />
-      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="testJoinGame" />
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="METHOD_NAME" value="goodJoin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -288,10 +285,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ServerFacadeTests" />
-        <item itemvalue="JUnit.ServerFacadeTests.testCreateGame" />
-        <item itemvalue="JUnit.ServerFacadeTests.badJoinGame" />
-        <item itemvalue="JUnit.ServerFacadeTests.testJoinGame" />
-        <item itemvalue="JUnit.ServerFacadeTests.badListGame" />
+        <item itemvalue="JUnit.All in server" />
+        <item itemvalue="JUnit.StandardAPITests.goodJoin" />
+        <item itemvalue="JUnit.ServiceTests.testLogin" />
+        <item itemvalue="JUnit.ServiceTests" />
       </list>
     </recent_temporary>
   </component>
@@ -320,47 +317,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="47069000" />
-    </task>
-    <task id="LOCAL-00017" summary="Fixes to make all tests pass">
-      <option name="closed" value="true" />
-      <created>1715630387641</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1715630387641</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Castling tests pass">
-      <option name="closed" value="true" />
-      <created>1715727691196</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1715727691196</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Past tests work with castling">
-      <option name="closed" value="true" />
-      <created>1715728860547</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1715728860547</updated>
-    </task>
-    <task id="LOCAL-00020" summary="en passant implemented">
-      <option name="closed" value="true" />
-      <created>1715882858540</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1715882858540</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Phase 3 setup complete">
-      <option name="closed" value="true" />
-      <created>1716221885583</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1716221885583</updated>
+      <workItem from="1717541035000" duration="50739000" />
     </task>
     <task id="LOCAL-00022" summary="Classes created">
       <option name="closed" value="true" />
@@ -714,7 +671,47 @@
       <option name="project" value="LOCAL" />
       <updated>1718035562707</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="All unit tests pass">
+      <option name="closed" value="true" />
+      <created>1718036163167</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1718036163168</updated>
+    </task>
+    <task id="LOCAL-00067" summary="File rename">
+      <option name="closed" value="true" />
+      <created>1718036461374</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1718036461375</updated>
+    </task>
+    <task id="LOCAL-00068" summary="File rename">
+      <option name="closed" value="true" />
+      <created>1718036485141</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1718036485141</updated>
+    </task>
+    <task id="LOCAL-00069" summary="File rename">
+      <option name="closed" value="true" />
+      <created>1718036550226</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1718036550227</updated>
+    </task>
+    <task id="LOCAL-00070" summary="File rename">
+      <option name="closed" value="true" />
+      <created>1718036663697</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1718036663697</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,8 +729,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="unit test cleanup" />
-    <MESSAGE value="Project 4 setup" />
     <MESSAGE value="User database setup" />
     <MESSAGE value="Auth database setup" />
     <MESSAGE value="sql syntax corrections" />
@@ -757,17 +752,8 @@
     <MESSAGE value="Json problem fixed" />
     <MESSAGE value="List games tests pass" />
     <MESSAGE value="Join game tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Join game tests pass" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/server/handlers/Handler.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="All unit tests pass" />
+    <MESSAGE value="File rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="File rename" />
   </component>
 </project>

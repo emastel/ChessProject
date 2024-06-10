@@ -2,6 +2,7 @@ package net;
 
 import com.google.gson.Gson;
 import exception.ResponseException;
+import model.GameName;
 import requestResponse.*;
 
 import java.io.IOException;
@@ -126,7 +127,7 @@ public class ServerFacade {
             connection.setDoOutput(true);
 
             connection.addRequestProperty("Authorization", authToken);
-            CreateGameRequest request = new CreateGameRequest(authToken,name);
+            GameName request = new GameName(name);
             writeBody(request,connection);
             connection.connect();
             throwIfNotSuccessful(connection);

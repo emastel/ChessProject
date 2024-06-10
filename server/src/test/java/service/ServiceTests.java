@@ -61,6 +61,7 @@ public class ServiceTests {
             assertUsername(user.username(),testResult.username());
         }
         catch (Exception e) {
+            e.printStackTrace();
             Assertions.fail(e.getMessage());
         }
     }

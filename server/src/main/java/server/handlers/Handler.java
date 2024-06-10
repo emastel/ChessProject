@@ -6,13 +6,12 @@ import model.AuthData;
 import model.GameData;
 import model.GameName;
 import model.UserData;
-import org.mindrot.jbcrypt.BCrypt;
 import requestResponse.*;
+import spark.Request;
+import spark.Response;
 import unit.AuthService;
 import unit.GameService;
 import unit.UserService;
-import spark.Request;
-import spark.Response;
 
 public class Handler {
 
@@ -42,12 +41,12 @@ public class Handler {
     public static String registerRequest(Request req, Response res) {
         RegisterRequest regReq = gson.fromJson(req.body(), RegisterRequest.class);
         RegisterLoginResponse result = null;
-        String hashedPassword = BCrypt.hashpw(regReq.password(), BCrypt.gensalt());
+        //String hashedPassword = BCrypt.hashpw(regReq.password(), BCrypt.gensalt());
         try {
             if(regReq.password() == null) {
                 throw new DataAccessException("Error: bad request");
             }
-            UserData user = new UserData(regReq.username(), hashedPassword, regReq.email());
+            UserData user = new UserData(regReq.username(), regReq.password(), regReq.email());
             AuthData retrievedAuthData = userService.register(user);
             result = new RegisterLoginResponse(null,retrievedAuthData.username(),retrievedAuthData.authToken());
             res.status(200);
@@ -123,7 +122,7 @@ public class Handler {
         String authToken = req.headers("Authorization");
         GameName gameName = gson.fromJson(req.body(), GameName.class);
         try {
-            GameData game = gameService.createGame(authToken,gameName.name());
+            GameData game = gameService.createGame(authToken,gameName.gameName());
             CreateGameResponse result = new CreateGameResponse(null, game.getGameID());
             return gson.toJson(result);
         }

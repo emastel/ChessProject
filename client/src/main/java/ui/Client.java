@@ -18,6 +18,7 @@ public class Client {
     private ServerFacade server;
     private State state = State.SIGNEDOUT;
     PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+    boolean running = true;
 
 
     public Client() {
@@ -132,8 +133,7 @@ public class Client {
     public void playGame(String...params) {
         if(params.length >= 1) {
             server.joinGame(params[1], params[2], Integer.parseInt(params[3]));
-            out.print(SET_TEXT_COLOR_GREEN);
-            out.print("Joined game successfully");
+            Gameplay.main();
         }
         else {
             out.print(SET_TEXT_COLOR_RED);
@@ -150,12 +150,12 @@ public class Client {
 
     private void printHelpQuit(PrintStream out) {
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("quit ");
+        out.print("Quit ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- playing chess");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("help ");
+        out.print("Help ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- with possible commands");
         out.println();
@@ -164,39 +164,39 @@ public class Client {
     public void help() {
         if(state == State.SIGNEDIN) {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("create <NAME> ");
+            out.print("Create <NAME> ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- a game");
             out.println();
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("list ");
+            out.print("List ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- games");
             out.println();
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("join <ID> [WHITE|BLACK] ");
+            out.print("Join [WHITE|BLACK] <ID> ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- a game");
             out.println();
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("observe <ID> ");
+            out.print("Observe <ID> ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- a game");
             out.println();
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("logout ");
+            out.print("Logout ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- when you are done");
             out.println();
             printHelpQuit(out);
         } else {
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("register <USERNAME> <PASSWORD> <EMAIL> ");
+            out.print("Register <USERNAME> <PASSWORD> <EMAIL> ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- to create an account");
             out.println();
             out.print(SET_TEXT_COLOR_BLUE);
-            out.print("login <USERNAME> <PASSWORD> ");
+            out.print("Login <USERNAME> <PASSWORD> ");
             out.print(SET_TEXT_COLOR_MAGENTA);
             out.print("- to play chess");
             out.println();
@@ -205,6 +205,7 @@ public class Client {
     }
 
     public void quit() {
+        running = false;
         out.print(SET_TEXT_COLOR_GREEN);
         out.print("Quit successfully");
     }
