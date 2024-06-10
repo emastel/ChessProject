@@ -85,7 +85,7 @@ public class ServerFacadeTests {
     @Test
     public void testLogout() throws SQLException {
         serverFacade.register("username", "password", "email");
-        serverFacade.login("username", "password");
+        //serverFacade.login("username", "password");
         String token = auths.getToken("username");
         serverFacade.logout(token);
         Assertions.assertNull(auths.getUser(token));
@@ -94,7 +94,7 @@ public class ServerFacadeTests {
     @Test
     public void badLogout() throws SQLException {
         serverFacade.register("username", "password", "email");
-        serverFacade.login("username", "password");
+        //serverFacade.login("username", "password");
         Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
             serverFacade.logout("wrong");
         });
@@ -112,6 +112,18 @@ public class ServerFacadeTests {
         String token = auths.getToken("username");
         serverFacade.createGame("game", token);
         Assertions.assertNotNull(games.getGame(1));
+    }
+
+    @Test
+    public void badCreateGame() throws SQLException, DataAccessException {
+        serverFacade.register("username", "password", "email");
+        Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            serverFacade.createGame("game", "wrong");
+        });
+
+        String expectedMessage = "failure: 401";
+        String actualMessage = exception.getMessage();
+        Assertions.assertTrue(actualMessage.contains(expectedMessage));
     }
 
 

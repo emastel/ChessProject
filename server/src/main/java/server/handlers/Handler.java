@@ -120,10 +120,10 @@ public class Handler {
     }
 
     public static String createGameRequest(Request req, Response res) {
-        String authToken = req.headers("authorization");
-        GameName gameName = gson.fromJson(req.body(), GameName.class);;
+        String authToken = req.headers("Authorization");
+        GameName gameName = gson.fromJson(req.body(), GameName.class);
         try {
-            GameData game = gameService.createGame(authToken,gameName.gameName());
+            GameData game = gameService.createGame(authToken,gameName.name());
             CreateGameResponse result = new CreateGameResponse(null, game.getGameID());
             return gson.toJson(result);
         }

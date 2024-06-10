@@ -125,7 +125,7 @@ public class ServerFacade {
             connection.setDoOutput(true);
 
             connection.addRequestProperty("Authorization", authToken);
-            CreateGameRequest request = new CreateGameRequest(name,authToken);
+            CreateGameRequest request = new CreateGameRequest(authToken,name);
             writeBody(request,connection);
             connection.connect();
             throwIfNotSuccessful(connection);

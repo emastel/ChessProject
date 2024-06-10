@@ -1,4 +1,4 @@
 package requestResponse;
 
-public record CreateGameRequest(String name, String authToken) {
+public record CreateGameRequest(String authToken, String name) {
 }
