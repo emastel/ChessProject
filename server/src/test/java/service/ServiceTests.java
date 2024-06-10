@@ -1,10 +1,12 @@
-package unit;
+package service;
 
 import dataaccess.*;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
 import org.junit.jupiter.api.*;
+import unit.GameService;
+import unit.UserService;
 
 public class ServiceTests {
 
