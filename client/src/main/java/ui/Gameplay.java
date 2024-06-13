@@ -149,11 +149,55 @@ public class Gameplay {
     public void highlightLegalMoves(int row, int col, String user) {
         ChessPosition position = new ChessPosition(row, col);
         Collection<ChessMove> moves = game.validMoves(position);
-        if(user.equals(gameData.getWhiteUsername())) {
+        if(game.getTeamTurn() == ChessGame.TeamColor.WHITE) {
             drawBoard("White",moves);
         }
         else {
             drawBoard("Black",moves);
+        }
+    }
+
+    public void makeMove(int startRow, int startCol, int endRow, int endCol, String user) {
+        ChessPosition startPosition = new ChessPosition(startRow, startCol);
+        ChessPosition endPosition = new ChessPosition(endRow, endCol);
+        if(user.equals(gameData.getWhiteUsername())) {
+            if(pieces.containsKey(startPosition)) {
+                if(pieces.get(startPosition).equals("whiteRook")||pieces.get(startPosition).equals("whiteBishop")
+                        ||pieces.get(startPosition).equals("whiteKnight")||pieces.get(startPosition).equals("whiteQueen")
+                        ||pieces.get(startPosition).equals("whiteKing")||pieces.get(startPosition).equals("whitePawn")) {
+                    ChessMove move = new ChessMove(startPosition,endPosition,null);
+                    if(game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK))
+                    {
+                        out.print(SET_TEXT_COLOR_RED);
+                        out.print("In Stalemate");
+                    }
+                    else if (game.isInCheckmate(ChessGame.TeamColor.WHITE) || game.isInCheckmate(ChessGame.TeamColor.BLACK)) {
+                        out.print(SET_TEXT_COLOR_RED);
+                        out.print("In Checkmate");
+                    }
+                    else {
+                        try {
+                            game.makeMove(move);
+                            pieces.put(endPosition,pieces.get(startPosition));
+                            pieces.remove(startPosition);
+                            out.print(SET_BG_COLOR_GREEN);
+                            out.print("Made move");
+                        } catch (Exception e) {
+                            out.print(SET_TEXT_COLOR_RED);
+                            out.print("Invalid move");
+                        }
+                    }
+                }
+                else {
+                    out.print(SET_TEXT_COLOR_RED);
+                    out.print("Not your piece");
+                }
+            }
+            else {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print("No piece there");
+            }
+
         }
     }
 

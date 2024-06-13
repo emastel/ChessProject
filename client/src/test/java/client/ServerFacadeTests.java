@@ -10,7 +10,6 @@ import org.junit.jupiter.api.*;
 import reqrep.ListGamesResponse;
 import server.Server;
 import ui.Client;
-import ui.Gameplay;
 
 import java.sql.SQLException;
 
@@ -44,11 +43,6 @@ public class ServerFacadeTests {
     @AfterAll
     static void stopServer() {
         server.stop();
-    }
-
-    @Test
-    public void testBoard() {
-        Gameplay.main();
     }
 
     @Test

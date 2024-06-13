@@ -282,7 +282,19 @@ public class Client {
     }
 
     public void makeMove(String...params) {
-
+        if(params.length >= 1) {
+            int startRow = Integer.parseInt(params[0]);
+            int startCol = Integer.parseInt(params[1]);
+            int endRow = Integer.parseInt(params[2]);
+            int endCol = Integer.parseInt(params[3]);
+            try {
+                String user = auths.getUser(authToken);
+                game.makeMove(startRow, startCol, endRow, endCol, user);
+            } catch (Exception e) {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print("Invalid");
+            }
+        }
     }
 
     private  void printHelpQuit(PrintStream out) {
