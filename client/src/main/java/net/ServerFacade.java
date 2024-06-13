@@ -20,6 +20,10 @@ public class ServerFacade {
         serverUrl = "http://localhost:" + Integer.toString(port);
     }
 
+    public String getServerUrl() {
+        return serverUrl;
+    }
+
     public RegisterLoginResponse register(String username, String password, String email) {
         var path = "/user";
         try {

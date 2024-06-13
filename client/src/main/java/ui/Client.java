@@ -1,8 +1,12 @@
 package ui;
 
+import dataaccess.SqlAuthDAO;
+import exception.ResponseException;
 import model.GameData;
+import net.NotificationHandler;
 import net.ServerFacade;
 import net.State;
+import net.WebSocketFacade;
 import reqrep.BlankResponse;
 import reqrep.ListGamesResponse;
 import reqrep.RegisterLoginResponse;
@@ -21,14 +25,21 @@ public class Client {
     private  PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     private  boolean running = true;
     private  String authToken;
+    String user;
     GameData[] list;
-    private boolean inGame = false;
+    private static boolean inGame = false;
     private String team;
     private Gameplay game;
+    private WebSocketFacade ws;
+    private String url;
+    private SqlAuthDAO auths;
+    private NotificationHandler notificationHandler = new NotificationHandler() {
+    };
 
 
     public Client() {
         server = new ServerFacade(8080);
+        url = server.getServerUrl();
     }
 
     public static void main(String[] args) {
@@ -36,7 +47,12 @@ public class Client {
         while (client.running) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            client.eval(input);
+            if(inGame) {
+                client.gameEval(input);
+            }
+            else {
+                client.eval(input);
+            }
         }
     }
 
@@ -125,7 +141,7 @@ public class Client {
         out.println();
     }
 
-    public  void logout(String...params) {
+    public  void logout() {
         BlankResponse res = server.logout(authToken);
         if(res == null) {
             out.print(SET_TEXT_COLOR_GREEN);
@@ -189,7 +205,7 @@ public class Client {
         out.println();
     }
 
-    public  void joinGame(String...params) {
+    public  void joinGame(String...params) throws ResponseException {
         if(params.length >= 1) {
             int gameId = list[Integer.parseInt(params[1])-1].getGameID();
             team = params[0];
@@ -197,7 +213,8 @@ public class Client {
             if(res == null) {
                 inGame = true;
                 game = new Gameplay();
-                game.drawBoard(team);
+                ws = new WebSocketFacade(url,notificationHandler);
+                game.startGame(team,gameId);
             }
             else {
                 out.print(SET_TEXT_COLOR_RED);
@@ -216,14 +233,19 @@ public class Client {
     }
 
     public void redraw() {
-        game.drawBoard(team);
+        game.drawBoard(team,null);
     }
 
     public void leave() {
-        inGame = false;
-        out.print(SET_TEXT_COLOR_GREEN);
-        out.print("You left the game");
-        //TODO:Remove user from the game
+        try {
+            game.leaveGame(auths.getUser(authToken));
+            inGame = false;
+            out.print(SET_TEXT_COLOR_GREEN);
+            out.print("You left the game");
+        } catch (Exception e) {
+            out.print(SET_TEXT_COLOR_RED);
+            out.print("Invalid");
+        }
     }
 
     public void resign() {
@@ -243,6 +265,24 @@ public class Client {
             out.print(SET_TEXT_COLOR_RED);
             out.print("Invalid response");
         }
+    }
+
+    public void legalMoves(String...params) {
+        if(params.length >= 1) {
+            try {
+                int row = Integer.parseInt(params[0]);
+                int col = Integer.parseInt(params[1]);
+                String user = auths.getUser(authToken);
+                game.highlightLegalMoves(row, col, user);
+            } catch (Exception e) {
+                out.print(SET_TEXT_COLOR_RED);
+                out.print("Invalid");
+            }
+        }
+    }
+
+    public void makeMove(String...params) {
+
     }
 
     private  void printHelpQuit(PrintStream out) {
@@ -308,12 +348,12 @@ public class Client {
         out.print("- redraws chess board");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("move");
+        out.print("move <Start Row, Start Column, End Row, End Column>");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- make a move");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("moves");
+        out.print("moves <ROW,COLUMN>");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- highlights legal moves");
         out.println();

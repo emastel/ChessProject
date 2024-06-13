@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Phase 6 setup">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="WebSocket  written">
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/net/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/net/WebSocketFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/net/WebSocketFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-code/6-gameplay/passoff/server/TestFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-code/6-gameplay/passoff/server/WebSocketTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-code/6-gameplay/websocket/commands/UserGameCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-code/6-gameplay/websocket/messages/ServerMessage.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +198,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.Client" />
       <module name="client" />
@@ -290,8 +287,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
         <item itemvalue="JUnit.ServerFacadeTests.testJoinGame" />
         <item itemvalue="JUnit.ServerFacadeTests.testClient" />
         <item itemvalue="JUnit.ServerFacadeTests" />
@@ -323,15 +320,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="64832000" />
-    </task>
-    <task id="LOCAL-00026" summary="User functions in server and tested service wise">
-      <option name="closed" value="true" />
-      <created>1716498558537</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1716498558537</updated>
+      <workItem from="1717541035000" duration="77683000" />
     </task>
     <task id="LOCAL-00027" summary="Game functions in server and not yet tested">
       <option name="closed" value="true" />
@@ -717,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718054857571</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="WebSocket  written">
+      <option name="closed" value="true" />
+      <created>1718224325645</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1718224325646</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +732,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sql game dao written" />
     <MESSAGE value="game tests pass" />
     <MESSAGE value="password encryption" />
     <MESSAGE value="previous tests pass" />
@@ -760,7 +756,8 @@
     <MESSAGE value="Code Quality updates" />
     <MESSAGE value="Tests added again" />
     <MESSAGE value="Phase 6 setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 6 setup" />
+    <MESSAGE value="WebSocket  written" />
+    <option name="LAST_COMMIT_MESSAGE" value="WebSocket  written" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

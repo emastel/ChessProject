@@ -1,9 +1,15 @@
 package ui;
 
+import chess.ChessGame;
+import chess.ChessMove;
 import chess.ChessPosition;
+import dataaccess.DataAccessException;
+import dataaccess.SqlGameDAO;
+import model.GameData;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -17,25 +23,56 @@ public class Gameplay {
     private static Player color;
     private static Map<ChessPosition,String> pieces = new HashMap<>();
     private static boolean started = false;
+    private static GameData gameData;
+    private static ChessGame game;
+    private static SqlGameDAO gameDAO;
+    private static PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
-    public static void main() {
-        var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-        color = Player.WHITE;
-        out.print(ERASE_SCREEN);
-        drawHeaders(out);
-        drawChessBoard(out);
-        drawHeaders(out);
-        out.print(SET_BG_COLOR_LIGHT_GREY);
-        out.print(SET_TEXT_COLOR_BLACK);
-        color = Player.BLACK;
-        drawLine(out);
-        drawHeaders(out);
-        drawChessBoard(out);
-        drawHeaders(out);
+    static {
+        try {
+            gameDAO = new SqlGameDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public static void drawBoard(String team) {
-        var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+//    public static void main() {
+//        var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+//        color = Player.WHITE;
+//        out.print(ERASE_SCREEN);
+//        drawHeaders(out);
+//        drawChessBoard(out);
+//        drawHeaders(out);
+//        out.print(SET_BG_COLOR_LIGHT_GREY);
+//        out.print(SET_TEXT_COLOR_BLACK);
+//        color = Player.BLACK;
+//        drawLine(out);
+//        drawHeaders(out);
+//        drawChessBoard(out);
+//        drawHeaders(out);
+//    }
+
+    public static void startGame(String color, int id) {
+        try{
+            started = true;
+            gameData = gameDAO.getGame(id);
+            game = gameData.getGame();
+            drawBoard(color, null);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void leaveGame(String user) {
+        if(Objects.equals(gameData.getWhiteUsername(), user)) {
+            gameData.setWhiteUsername(null);
+        }
+        else if(Objects.equals(gameData.getBlackUsername(), user)) {
+            gameData.setBlackUsername(null);
+        }
+    }
+
+    public static void drawBoard(String team, Collection<ChessMove> moves) {
         if(Objects.equals(team, "WHITE")){
             color = Player.WHITE;
         }
@@ -43,32 +80,29 @@ public class Gameplay {
             color = Player.BLACK;
         }
         out.print(ERASE_SCREEN);
-        drawHeaders(out);
-        drawChessBoard(out);
-        drawHeaders(out);
+        drawHeaders();
+        drawChessBoard(moves);
+        drawHeaders();
     }
 
-
-
-
-    private static void setGrey(PrintStream out) {
+    private static void setGrey() {
         out.print(SET_BG_COLOR_LIGHT_GREY);
         out.print(SET_TEXT_COLOR_LIGHT_GREY);
     }
 
-    private static void drawHeaders(PrintStream out) {
-        setGrey(out);
+    private static void drawHeaders() {
+        setGrey();
 
         String[] headers = {" h ", " g ", " f ", " e ", " d ", " c ", " b ", " a "};
         out.print("   ");
         if(color == Player.WHITE) {
             for(int boardCol = 0; boardCol < BOARD_SIZE_IN_SQUARES; boardCol++) {
-                printHeaderText(out,headers[boardCol]);
+                printHeaderText(headers[boardCol]);
             }
         }
         else {
             for(int boardCol = BOARD_SIZE_IN_SQUARES -1; boardCol >= 0; --boardCol) {
-                printHeaderText(out,headers[boardCol]);
+                printHeaderText(headers[boardCol]);
             }
         }
         out.print("   ");
@@ -76,35 +110,35 @@ public class Gameplay {
         out.println();
     }
 
-    private static void printHeaderText(PrintStream out, String text) {
+    private static void printHeaderText(String text) {
         out.print(SET_BG_COLOR_LIGHT_GREY);
         out.print(SET_TEXT_COLOR_BLACK);
         out.print(text);
-        setGrey(out);
+        setGrey();
     }
 
-    private static void printBuffer(PrintStream out, int row) {
+    private static void printBuffer(int row) {
         out.print(SET_BG_COLOR_LIGHT_GREY);
         out.print(SET_TEXT_COLOR_BLACK);
         out.print(" " + (row + 1) + " ");
     }
 
-    private static void drawChessBoard(PrintStream out) {
+    private static void drawChessBoard(Collection<ChessMove> moves) {
         if(color == Player.WHITE) {
             for (int col = 0; col < BOARD_SIZE_IN_SQUARES; ++col) {
-                printBuffer(out, col);
-                drawSquares(out, col, null);
-                printBuffer(out, col);
+                printBuffer(col);
+                drawSquares(col, moves);
+                printBuffer(col);
                 out.print(RESET_BG_COLOR);
                 out.println();
             }
         }
         else {
             for (int col = BOARD_SIZE_IN_SQUARES-1; col >=0; --col) {
-                printBuffer(out, col);
-                drawSquares(out, col,null);
+                printBuffer(col);
+                drawSquares(col, moves);
                 out.print(SET_BG_COLOR_LIGHT_GREY);
-                printBuffer(out, col);
+                printBuffer(col);
                 out.print(RESET_BG_COLOR);
                 out.println();
             }
@@ -112,40 +146,81 @@ public class Gameplay {
 
     }
 
-    private void hightlightLegalMoves(int row, int col) {
+    public void highlightLegalMoves(int row, int col, String user) {
         ChessPosition position = new ChessPosition(row, col);
-
-
+        Collection<ChessMove> moves = game.validMoves(position);
+        if(user.equals(gameData.getWhiteUsername())) {
+            drawBoard("White",moves);
+        }
+        else {
+            drawBoard("Black",moves);
+        }
     }
 
-    private static void drawSquares(PrintStream out, int col, ) {
-        for(int squareRow = 0; squareRow < BOARD_SIZE_IN_SQUARES; squareRow++) {
-            if(col % 2 == 0) {
-                if(squareRow % 2 == 0) {
+    private static void printSquare(ChessPosition position, Collection<ChessMove> moves, String color) {
+        if(moves != null) {
+            boolean printed = false;
+            for(ChessMove move : moves) {
+                if(move.getEndPosition() == position) {
+                    if(Objects.equals(color, "white")) {
+                        out.print(SET_BG_COLOR_GREEN);
+                    }
+                    else {
+                        out.print(SET_BG_COLOR_DARK_GREEN);
+                    }
+                    printed = true;
+                    break;
+                }
+            }
+            if(!printed) {
+                if(Objects.equals(color, "white")) {
                     out.print(SET_BG_COLOR_WHITE);
                 }
                 else {
                     out.print(SET_BG_COLOR_BLACK);
                 }
             }
-            else {
-                if(squareRow % 2 == 0) {
-                    out.print(SET_BG_COLOR_BLACK);
-                }
-                else {
-                    out.print(SET_BG_COLOR_WHITE);
-                }
-            }
-            if(started) {
-                printSquares(out, col, squareRow);
+        }
+        else {
+            if(Objects.equals(color, "white")) {
+                out.print(SET_BG_COLOR_WHITE);
             }
             else {
-                initialPrintSquares(out, col, squareRow);
+                out.print(SET_BG_COLOR_BLACK);
             }
         }
     }
 
-    private static void drawLine(PrintStream out) {
+
+    private static void drawSquares(int col, Collection<ChessMove> moves) {
+        for(int squareRow = 0; squareRow < BOARD_SIZE_IN_SQUARES; squareRow++) {
+            ChessPosition pos = new ChessPosition(squareRow, col);
+            if(col % 2 == 0) {
+                if(squareRow % 2 == 0) {
+                    printSquare(pos, moves, "white");
+                }
+                else {
+                    printSquare(pos, moves, "black");
+                }
+            }
+            else {
+                if(squareRow % 2 == 0) {
+                    printSquare(pos, moves, "black");
+                }
+                else {
+                    printSquare(pos, moves, "white");
+                }
+            }
+            if(started) {
+                printSquares(col, squareRow);
+            }
+            else {
+                initialPrintSquares(col, squareRow);
+            }
+        }
+    }
+
+    private static void drawLine() {
         for(int i=0; i < 10; i++) {
             out.print(SET_BG_COLOR_BLACK);
             out.print(SET_TEXT_COLOR_BLACK);
@@ -155,7 +230,7 @@ public class Gameplay {
         out.println();
     }
 
-    private static void printSquares(PrintStream out, int col, int row) {
+    private static void printSquares(int col, int row) {
         ChessPosition position = new ChessPosition(row, col);
         if(pieces.containsKey(position)) {
             if(Objects.equals(pieces.get(position), "whiteRook")) {
@@ -212,7 +287,7 @@ public class Gameplay {
         }
     }
 
-    private static void initialPrintSquares(PrintStream out, int col, int row) {
+    private static void initialPrintSquares(int col, int row) {
         ChessPosition position = new ChessPosition(row, col);
         if((row==0&&col==0) || (row==7&&col==0)) {
             out.print(SET_TEXT_COLOR_RED);
