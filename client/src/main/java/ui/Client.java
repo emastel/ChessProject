@@ -3,10 +3,8 @@ package ui;
 import dataaccess.SqlAuthDAO;
 import exception.ResponseException;
 import model.GameData;
-import net.NotificationHandler;
 import net.ServerFacade;
 import net.State;
-import net.WebSocketFacade;
 import reqrep.BlankResponse;
 import reqrep.ListGamesResponse;
 import reqrep.RegisterLoginResponse;
@@ -30,11 +28,8 @@ public class Client {
     private static boolean inGame = false;
     private String team;
     private Gameplay game;
-    private WebSocketFacade ws;
     private String url;
     private SqlAuthDAO auths;
-    private NotificationHandler notificationHandler = new NotificationHandler() {
-    };
 
 
     public Client() {
@@ -213,7 +208,6 @@ public class Client {
             if(res == null) {
                 inGame = true;
                 game = new Gameplay();
-                ws = new WebSocketFacade(url,notificationHandler);
                 game.startGame(team,gameId);
             }
             else {

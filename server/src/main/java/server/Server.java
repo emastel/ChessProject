@@ -2,7 +2,6 @@ package server;
 
 import dataaccess.DatabaseManager;
 import server.handlers.Handler;
-import server.handlers.WebSocketHandler;
 import spark.Spark;
 
 public class Server {
