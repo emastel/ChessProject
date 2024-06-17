@@ -3,8 +3,6 @@ package ui;
 import chess.ChessGame;
 import chess.ChessMove;
 import chess.ChessPosition;
-import dataaccess.DataAccessException;
-import dataaccess.SqlGameDAO;
 import model.GameData;
 
 import java.io.PrintStream;
@@ -25,21 +23,12 @@ public class Gameplay {
     private static boolean started = false;
     private static GameData gameData;
     private static ChessGame game;
-    private static SqlGameDAO gameDAO;
     private static PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
-    static {
-        try {
-            gameDAO = new SqlGameDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public Gameplay(int id)  {
        try {
-           gameData = gameDAO.getGame(id);
-           game = gameData.getGame();
+
        } catch (Exception e) {
            out.print(SET_TEXT_COLOR_RED);
            out.print("Error");
@@ -49,10 +38,10 @@ public class Gameplay {
 
     public static void drawBoard(String team, Collection<ChessMove> moves) {
         if(Objects.equals(team, "WHITE")){
-            color = Player.WHITE;
+            color = Player.BLACK;
         }
         else {
-            color = Player.BLACK;
+            color = Player.WHITE;
         }
         out.print(ERASE_SCREEN);
         drawHeaders();

@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Websocket server working">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Tests added">
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/client/ServerFacadeTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/client/ServerFacadeTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/ui/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/ui/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/ui/Gameplay$Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/ui/Gameplay$Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/ui/Gameplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/ui/Gameplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shared/chess/ChessGame$TeamColor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/chess/ChessGame$TeamColor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shared/chess/ChessGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/chess/ChessGame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +182,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.34252873",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -211,7 +204,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.Client" />
       <module name="client" />
       <extension name="coverage">
@@ -297,6 +290,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="JUnit.WebSocketTests" />
+      <item itemvalue="JUnit.WebSocketTests.leaveGame" />
+      <item itemvalue="JUnit.WebSocketTests.moveAfterResign" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
@@ -332,23 +332,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="121261000" />
-    </task>
-    <task id="LOCAL-00034" summary="Code cleanup all previous tests pass">
-      <option name="closed" value="true" />
-      <created>1716926418739</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1716926418739</updated>
-    </task>
-    <task id="LOCAL-00035" summary="More code cleanup">
-      <option name="closed" value="true" />
-      <created>1716927087967</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1716927087967</updated>
+      <workItem from="1717541035000" duration="122822000" />
     </task>
     <task id="LOCAL-00036" summary="unit test cleanup">
       <option name="closed" value="true" />
@@ -726,7 +710,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718651462641</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Client progress">
+      <option name="closed" value="true" />
+      <created>1718653313973</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1718653313974</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Tests added">
+      <option name="closed" value="true" />
+      <created>1718653435555</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1718653435555</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,8 +744,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test file updates" />
-    <MESSAGE value="Project 5 setup" />
     <MESSAGE value="Chess Board UI created" />
     <MESSAGE value="Help UI created" />
     <MESSAGE value="ServerFacade written" />
@@ -769,7 +767,9 @@
     <MESSAGE value="Websocket Client written" />
     <MESSAGE value="Connect tests working" />
     <MESSAGE value="Websocket server working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Websocket server working" />
+    <MESSAGE value="Client progress" />
+    <MESSAGE value="Tests added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -779,14 +779,10 @@
           <line>60</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/client/src/main/java/ui/Client.java</url>
-          <line>283</line>
-          <properties class="ui.Client" method="legalMoves">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="69" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

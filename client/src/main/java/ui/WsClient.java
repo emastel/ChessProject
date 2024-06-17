@@ -4,6 +4,7 @@ import chess.ChessMove;
 import com.google.gson.Gson;
 import websocket.commands.MakeMoveCommand;
 import websocket.commands.UserGameCommand;
+import websocket.messages.ServerMessage;
 
 import javax.websocket.*;
 import java.io.IOException;
@@ -30,7 +31,17 @@ public class WsClient extends Endpoint {
 
         this.session.addMessageHandler(new MessageHandler.Whole<String>() {
             public void onMessage(String message) {
-                System.out.println(message);
+                ServerMessage type = new Gson().fromJson(message, ServerMessage.class);
+                if(type.getServerMessageType() == ServerMessage.ServerMessageType.LOAD_GAME)
+                {
+                    System.out.println("Game loaded");
+                }
+                else if (type.getServerMessageType() == ServerMessage.ServerMessageType.ERROR) {
+                    System.out.println();
+                }
+                else if (type.getServerMessageType() == ServerMessage.ServerMessageType.NOTIFICATION) {
+                    System.out.println();
+                }
             }
         });
     }

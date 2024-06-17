@@ -3,7 +3,6 @@ package ui;
 import chess.ChessMove;
 import chess.ChessPiece;
 import chess.ChessPosition;
-import dataaccess.SqlAuthDAO;
 import exception.ResponseException;
 import model.GameData;
 import net.ServerFacade;
@@ -34,7 +33,6 @@ public class Client {
     private String team;
     private Gameplay game;
     private String url;
-    private SqlAuthDAO auths;
     private WsClient ws;
     private static boolean isObserver = false;
     int gameID;
@@ -45,7 +43,7 @@ public class Client {
         url = server.getServerUrl();
         try {
             ws = new WsClient();
-            auths = new SqlAuthDAO();
+
         } catch (Exception e ) {
             e.printStackTrace();
         }
@@ -287,7 +285,7 @@ public class Client {
             try {
                 int row = Integer.parseInt(params[0]);
                 int col = Integer.parseInt(params[1]);
-                String user = auths.getUser(authToken);
+
                 game.highlightLegalMoves(row, col, user);
             } catch (Exception e) {
                 out.print(SET_TEXT_COLOR_RED);
