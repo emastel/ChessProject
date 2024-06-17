@@ -45,10 +45,6 @@ public class WsClient extends Endpoint {
         });
     }
 
-    public void send(String message) throws Exception {
-        this.session.getBasicRemote().sendText(message);
-    }
-
     public void connect(String authToken, int id) throws IOException {
         UserGameCommand connect = new UserGameCommand(UserGameCommand.CommandType.CONNECT,authToken,id);
         String message =  new Gson().toJson(connect);
