@@ -189,16 +189,6 @@ public class Gameplay {
         }
     }
 
-    private static void drawLine() {
-        for(int i=0; i < 10; i++) {
-            out.print(SET_BG_COLOR_BLACK);
-            out.print(SET_TEXT_COLOR_BLACK);
-            out.print("   ");
-        }
-        out.print(RESET_BG_COLOR);
-        out.println();
-    }
-
     private static void printSquares(int col, int row) {
         ChessPosition position = new ChessPosition(row, col);
         if(pieces.containsKey(position)) {
