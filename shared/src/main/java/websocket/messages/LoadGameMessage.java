@@ -14,4 +14,6 @@ public class LoadGameMessage extends ServerMessage {
         return game;
     }
 
+
+
 }

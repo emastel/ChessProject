@@ -4,43 +4,42 @@ import chess.ChessMove;
 import com.google.gson.Gson;
 import websocket.commands.MakeMoveCommand;
 import websocket.commands.UserGameCommand;
+import websocket.messages.ErrorMessage;
+import websocket.messages.LoadGameMessage;
+import websocket.messages.NotificationMessage;
 import websocket.messages.ServerMessage;
 
 import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Scanner;
 
 public class WsClient extends Endpoint {
 
-    public static void main(String[] args) throws Exception {
-        var ws = new WsClient();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Test");
-        while(true) {
-            ws.send(scanner.nextLine());
-        }
-    }
-
+    public Client client;
     public Session session;
 
-    public WsClient() throws Exception {
+    public WsClient(Client client) throws Exception {
         URI uri = new URI("ws://localhost:8080/ws");
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
-
+        this.client = client;
         this.session.addMessageHandler(new MessageHandler.Whole<String>() {
+            @Override
             public void onMessage(String message) {
                 ServerMessage type = new Gson().fromJson(message, ServerMessage.class);
                 if(type.getServerMessageType() == ServerMessage.ServerMessageType.LOAD_GAME)
                 {
+                    LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
                     System.out.println("Game loaded");
+                    client.setGame(loadGameMessage.getMessage());
                 }
                 else if (type.getServerMessageType() == ServerMessage.ServerMessageType.ERROR) {
-                    System.out.println();
+                    ErrorMessage error = new Gson().fromJson(message, ErrorMessage.class);
+                    System.out.println(error.getErrorMessage());
                 }
                 else if (type.getServerMessageType() == ServerMessage.ServerMessageType.NOTIFICATION) {
-                    System.out.println();
+                    NotificationMessage notification = new Gson().fromJson(message, NotificationMessage.class);
+                    System.out.println(notification.getMessage());
                 }
             }
         });

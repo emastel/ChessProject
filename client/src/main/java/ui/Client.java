@@ -1,5 +1,6 @@
 package ui;
 
+import chess.ChessGame;
 import chess.ChessMove;
 import chess.ChessPiece;
 import chess.ChessPosition;
@@ -31,18 +32,19 @@ public class Client {
     GameData[] list;
     private static boolean inGame = false;
     private String team;
-    private Gameplay game;
     private String url;
     private WsClient ws;
     private static boolean isObserver = false;
     int gameID;
+    ChessGame chessGame;
+    Gameplay gameplay;
 
 
     public Client() {
         server = new ServerFacade(8080);
         url = server.getServerUrl();
         try {
-            ws = new WsClient();
+            ws = new WsClient(this);
 
         } catch (Exception e ) {
             e.printStackTrace();
@@ -65,6 +67,12 @@ public class Client {
             }
         }
     }
+
+    public void setGame(GameData game) {
+        chessGame = game.getGame();
+        gameplay = new Gameplay(game.getGameID());
+    }
+
 
     public  void eval(String input) {
         try {
@@ -240,9 +248,8 @@ public class Client {
             BlankResponse res = server.joinGame(authToken, team, gameId);
             if(res == null) {
                 inGame = true;
-                game = new Gameplay(gameId);
                 ws.connect(authToken,gameId);
-                game.drawBoard(team,null);
+                gameplay.drawBoard(team,null);
             }
             else {
                 out.print(SET_TEXT_COLOR_RED);
@@ -260,7 +267,6 @@ public class Client {
         if(params.length >= 1) {
             int gameId = list[Integer.parseInt(params[1])-1].getGameID();
             ws.connect(authToken,gameId);
-            game = new Gameplay(gameId);
         } else {
             out.print(SET_TEXT_COLOR_RED);
             out.print("Missing information");
@@ -268,7 +274,7 @@ public class Client {
     }
 
     public void redraw() {
-        game.drawBoard(team,null);
+        gameplay.drawBoard(team,null);
     }
 
     public void leave() throws IOException {
@@ -286,7 +292,7 @@ public class Client {
                 int row = Integer.parseInt(params[0]);
                 int col = Integer.parseInt(params[1]);
 
-                game.highlightLegalMoves(row, col, user);
+                gameplay.highlightLegalMoves(row, col, user);
             } catch (Exception e) {
                 out.print(SET_TEXT_COLOR_RED);
                 out.print("Invalid");
@@ -302,7 +308,7 @@ public class Client {
         ChessMove move = null;
         ChessPosition startPosition = new ChessPosition(startRow, startCol);
         ChessPosition endPosition = new ChessPosition(endRow, endCol);
-        String piece = game.getPiece(startPosition);
+        String piece = gameplay.getPiece(startPosition);
         if (piece != null) {
             if (piece.equals("whitePawn") || piece.equals("blackPawn")) {
                 if(endRow == 8 || endRow == 1) {
@@ -334,7 +340,7 @@ public class Client {
             }
         }
         ws.makeMove(authToken,gameID,move);
-        game.drawBoard(team,null);
+        gameplay.drawBoard(team,null);
     }
 
     private  void printHelpQuit(PrintStream out) {

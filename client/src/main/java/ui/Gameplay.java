@@ -21,8 +21,8 @@ public class Gameplay {
     private static Player color;
     private static Map<ChessPosition,String> pieces = new HashMap<>();
     private static boolean started = false;
-    private static GameData gameData;
-    private static ChessGame game;
+    private  GameData gameData;
+    private  ChessGame game;
     private static PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
 
