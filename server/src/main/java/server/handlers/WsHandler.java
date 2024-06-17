@@ -18,6 +18,9 @@ import websocket.messages.NotificationMessage;
 
 import java.util.*;
 
+import static chess.ChessGame.TeamColor.BLACK;
+import static chess.ChessGame.TeamColor.WHITE;
+
 @WebSocket
 public class WsHandler {
 
@@ -65,10 +68,12 @@ public class WsHandler {
 
     private void sendOthers(Session thisSession, String message, int id) throws Exception {
         List<Session> sessions = games.get(id);
+        NotificationMessage notifMessage = new NotificationMessage(message);
+        String msg = new Gson().toJson(notifMessage);
         if (sessions != null) {
             for (Session session : sessions) {
                 if(session != thisSession) {
-                    session.getRemote().sendString(message);
+                    session.getRemote().sendString(msg);
                 }
             }
         }
@@ -76,7 +81,7 @@ public class WsHandler {
 
     private void sendAll(String message, int id) throws Exception {
         List<Session> sessions = games.get(id);
-        if (sessions == null) {
+        if (sessions != null) {
             for (Session session : sessions) {
                 session.getRemote().sendString(message);
             }
@@ -130,31 +135,42 @@ public class WsHandler {
         try {
             MakeMoveCommand command = new Gson().fromJson(message, MakeMoveCommand.class);
             int id = command.getGameID();
+            String auth = command.getAuthString();
+            String user = authDAO.getUser(auth);
             ChessMove move = command.getMove();
             GameData data = gameDAO.getGame(id);
             ChessGame game = data.getGame();
-            game.makeMove(move);
-            data.setGame(game);
-            gameDAO.updateGame(data, id);
-            sendNotifOthers(session, id, move.toString());
-            if(game.isInCheck(ChessGame.TeamColor.WHITE)) {
-                sendNotifAll(session, id, "White is in check");
+            ChessGame.TeamColor team = game.getTeamTurn();
+            if(game.isOver()) {
+                sendError(session, "Game over");
             }
-            else if (game.isInCheck(ChessGame.TeamColor.BLACK)) {
-                sendNotifAll(session, id, "Black is in check");
+            else if((Objects.equals(user, data.getWhiteUsername()) && team == WHITE) || (Objects.equals(user, data.getBlackUsername()) && team == BLACK)) {
+                game.makeMove(move);
+                data.setGame(game);
+                gameDAO.updateGame(data, id);
+                sendNotifOthers(session, id, move.toString());
+                if(game.isInCheck(WHITE)) {
+                    sendNotifAll(session, id, "White is in check");
+                }
+                else if (game.isInCheck(BLACK)) {
+                    sendNotifAll(session, id, "Black is in check");
+                }
+                else if (game.isInCheckmate(WHITE)) {
+                    sendNotifAll(session, id, "White is in checkmate");
+                }
+                else if (game.isInCheckmate(BLACK)) {
+                    sendNotifAll(session, id, "Black is in checkmate");
+                }
+                else if (game.isInStalemate(WHITE)) {
+                    sendNotifAll(session, id, "Game is in stalemate");
+                }
+                LoadGameMessage loadGameMessage = new LoadGameMessage(data);
+                String msg = new Gson().toJson(loadGameMessage);
+                sendAll(msg,id);
             }
-            else if (game.isInCheckmate(ChessGame.TeamColor.WHITE)) {
-                sendNotifAll(session, id, "White is in checkmate");
+            else {
+                sendError(session, "Invalid Move");
             }
-            else if (game.isInCheckmate(ChessGame.TeamColor.BLACK)) {
-                sendNotifAll(session, id, "Black is in checkmate");
-            }
-            else if (game.isInStalemate(ChessGame.TeamColor.WHITE)) {
-                sendNotifAll(session, id, "Game is in stalemate");
-            }
-            LoadGameMessage loadGameMessage = new LoadGameMessage(data);
-            String msg = new Gson().toJson(loadGameMessage);
-            sendAll(msg,id);
         } catch (Exception e) {
             sendError(session, "Failed to make move");
         }
@@ -172,6 +188,10 @@ public class WsHandler {
                 gameDAO.updateGame(data, id);
             }
             sendOthers(session,user + " has left the game",id);
+            List<Session> sessions = games.get(id);
+            sessions.remove(session);
+            games.remove(id);
+            games.put(id, sessions);
         } catch (Exception e) {
             sendError(session, "Failed to leave");
         }
@@ -179,11 +199,22 @@ public class WsHandler {
 
     private void resign(Session session, int id, String auth) throws Exception {
         try {
-            GameData data = gameDAO.getGame(id);
-            data.setGameOver(true);
-            gameDAO.updateGame(data, id);
             String user = authDAO.getUser(auth);
-            sendNotifAll(session, id, user + " has resigned");
+            GameData data = gameDAO.getGame(id);
+            if(Objects.equals(user, data.getWhiteUsername()) || Objects.equals(user, data.getBlackUsername())) {
+                ChessGame game = data.getGame();
+                if(game.isOver()) {
+                    sendError(session, "Game over");
+                }
+                else {
+                    game.setOver(true);
+                    gameDAO.updateGame(data, id);
+                    sendNotifAll(session, id, user + " has resigned");
+                }
+            }
+            else {
+                sendError(session, "Observers can't resign");
+            }
         } catch (Exception e) {
             sendError(session, "Failed to resign");
         }

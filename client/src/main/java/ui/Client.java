@@ -12,6 +12,7 @@ import reqrep.BlankResponse;
 import reqrep.ListGamesResponse;
 import reqrep.RegisterLoginResponse;
 
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -36,6 +37,7 @@ public class Client {
     private SqlAuthDAO auths;
     private WsClient ws;
     private static boolean isObserver = false;
+    int gameID;
 
 
     public Client() {
@@ -227,7 +229,7 @@ public class Client {
         out.println();
     }
 
-    public  void joinGame(String...params) throws ResponseException {
+    public  void joinGame(String...params) throws ResponseException, IOException {
         if(params.length >= 1) {
             int gameId = list[Integer.parseInt(params[1])-1].getGameID();
             team = params[0];
@@ -235,7 +237,7 @@ public class Client {
             if(res == null) {
                 inGame = true;
                 game = new Gameplay();
-                ws.connect();
+                ws.connect(authToken,gameId);
             }
             else {
                 out.print(SET_TEXT_COLOR_RED);
@@ -249,9 +251,10 @@ public class Client {
         out.println();
     }
 
-    public  void observeGame(String...params) {
+    public  void observeGame(String...params) throws IOException {
         if(params.length >= 1) {
-            ws.connect();
+            int gameId = list[Integer.parseInt(params[1])-1].getGameID();
+            ws.connect(authToken,gameId);
             game = new Gameplay();
         } else {
             out.print(SET_TEXT_COLOR_RED);
@@ -263,12 +266,12 @@ public class Client {
         game.drawBoard(team,null);
     }
 
-    public void leave() {
-        ws.leave();
+    public void leave() throws IOException {
+        ws.leave(authToken,gameID);
     }
 
-    public void resign() {
-        ws.resign();
+    public void resign() throws IOException {
+        ws.resign(authToken,gameID);
 
     }
 
@@ -286,13 +289,12 @@ public class Client {
         }
     }
 
-    public void makeMove(String...params) {
+    public void makeMove(String...params) throws IOException {
         int startRow = Integer.parseInt(params[0]);
         int startCol = Integer.parseInt(params[1]);
         int endRow = Integer.parseInt(params[2]);
         int endCol = Integer.parseInt(params[3]);
-        ChessMove move;
-        String user = auths.getUser(authToken);
+        ChessMove move = null;
         ChessPosition startPosition = new ChessPosition(startRow, startCol);
         ChessPosition endPosition = new ChessPosition(endRow, endCol);
         String piece = game.getPiece(startPosition);
@@ -326,7 +328,7 @@ public class Client {
                 move = new ChessMove(startPosition,endPosition, null);
             }
         }
-        ws.makeMove();
+        ws.makeMove(authToken,gameID,move);
         game.drawBoard(team,null);
     }
 

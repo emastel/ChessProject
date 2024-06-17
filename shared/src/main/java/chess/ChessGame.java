@@ -5,6 +5,16 @@ import java.util.Collection;
 
 public class ChessGame {
 
+    boolean isOver = false;
+
+    public boolean isOver() {
+        return isOver;
+    }
+
+    public void setOver(boolean over) {
+        isOver = over;
+    }
+
     public ChessGame() {
         thisBoard = new ChessBoard();
         thisBoard.resetBoard();

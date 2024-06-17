@@ -2,6 +2,7 @@ package ui;
 
 import chess.ChessMove;
 import com.google.gson.Gson;
+import websocket.commands.MakeMoveCommand;
 import websocket.commands.UserGameCommand;
 
 import javax.websocket.*;
@@ -44,8 +45,10 @@ public class WsClient extends Endpoint {
         this.session.getBasicRemote().sendText(message);
     }
 
-    public void makeMove(String authToken, int id, ChessMove move) {
-
+    public void makeMove(String authToken, int id, ChessMove move) throws IOException {
+        MakeMoveCommand makeMove = new MakeMoveCommand(authToken,id,move);
+        String message =  new Gson().toJson(makeMove);
+        this.session.getBasicRemote().sendText(message);
     }
 
     public void leave(String authToken, int id) throws IOException {

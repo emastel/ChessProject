@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Websocket Client written">
-      <change afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/MakeMoveCommand.java" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Connect tests working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/WsClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/WsClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shared/model/GameData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/model/GameData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/WsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/WsHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/shared.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/ConnectCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/UserGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/UserGameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/websocket/messages/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/messages/ErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,6 +162,8 @@
     "JUnit.WebSocketTests.connectBadGameID.executor": "Debug",
     "JUnit.WebSocketTests.connectGood.executor": "Debug",
     "JUnit.WebSocketTests.executor": "Debug",
+    "JUnit.WebSocketTests.leaveGame.executor": "Debug",
+    "JUnit.WebSocketTests.moveAfterResign.executor": "Debug",
     "JUnit.WebSocketTests.validMove.executor": "Debug",
     "JUnit.dataaccess in server.executor": "Debug",
     "JUnit.passoff in shared.executor": "Debug",
@@ -210,20 +205,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests.validMove">
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Server" />
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.WebSocketTests">
     <configuration name="WebSocketTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -255,7 +237,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebSocketTests.connectGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WebSocketTests.leaveGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -265,7 +247,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoff.server" />
       <option name="MAIN_CLASS_NAME" value="passoff.server.WebSocketTests" />
-      <option name="METHOD_NAME" value="connectGood" />
+      <option name="METHOD_NAME" value="leaveGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.moveAfterResign" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.WebSocketTests" />
+      <option name="METHOD_NAME" value="moveAfterResign" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -302,11 +300,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.WebSocketTests.validMove" />
         <item itemvalue="JUnit.WebSocketTests" />
+        <item itemvalue="JUnit.WebSocketTests.leaveGame" />
+        <item itemvalue="JUnit.WebSocketTests.moveAfterResign" />
+        <item itemvalue="JUnit.WebSocketTests.validMove" />
         <item itemvalue="JUnit.WebSocketTests.connectBadGameID" />
-        <item itemvalue="JUnit.WebSocketTests.connectGood" />
-        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -335,15 +333,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="117238000" />
-    </task>
-    <task id="LOCAL-00032" summary="All tests passing">
-      <option name="closed" value="true" />
-      <created>1716916355932</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1716916355932</updated>
+      <workItem from="1717541035000" duration="119852000" />
     </task>
     <task id="LOCAL-00033" summary="Code cleanup">
       <option name="closed" value="true" />
@@ -729,7 +719,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718643049105</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Connect tests working">
+      <option name="closed" value="true" />
+      <created>1718648670722</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1718648670722</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -747,7 +745,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test file fixing" />
     <MESSAGE value="Test file" />
     <MESSAGE value="Test file updates" />
     <MESSAGE value="Project 5 setup" />
@@ -772,7 +769,8 @@
     <MESSAGE value="Websocket rewritten" />
     <MESSAGE value="Websocket Handler written" />
     <MESSAGE value="Websocket Client written" />
-    <option name="LAST_COMMIT_MESSAGE" value="Websocket Client written" />
+    <MESSAGE value="Connect tests working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connect tests working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
