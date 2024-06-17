@@ -1,5 +1,7 @@
 package ui;
 
+import chess.ChessMove;
+import chess.ChessPosition;
 import dataaccess.SqlAuthDAO;
 import exception.ResponseException;
 import model.GameData;
@@ -30,6 +32,8 @@ public class Client {
     private Gameplay game;
     private String url;
     private SqlAuthDAO auths;
+    private WsClient ws;
+    private static boolean isObserver = false;
 
 
     public Client() {
@@ -44,6 +48,9 @@ public class Client {
             String input = scanner.nextLine();
             if(inGame) {
                 client.gameEval(input);
+            }
+            else if(isObserver) {
+                client.obsEval(input);
             }
             else {
                 client.eval(input);
@@ -86,6 +93,24 @@ public class Client {
                 case "resign" -> resign();
                 case "moves" -> legalMoves(params);
                 default -> gameHelp();
+            }
+        } catch (Exception e) {
+            out.print(SET_TEXT_COLOR_RED);
+            out.print(e.getMessage());
+            out.println();
+        }
+    }
+
+    public  void obsEval(String input) {
+        try {
+            var tokens = input.split(" ");
+            var cmd = (tokens.length > 0) ? tokens[0] : "help";
+            var params = Arrays.copyOfRange(tokens, 1, tokens.length);
+            switch (cmd) {
+                case "redraw" -> redraw();
+                case "leave" -> leave();
+                case "moves" -> legalMoves(params);
+                default -> obsHelp();
             }
         } catch (Exception e) {
             out.print(SET_TEXT_COLOR_RED);
@@ -208,7 +233,7 @@ public class Client {
             if(res == null) {
                 inGame = true;
                 game = new Gameplay();
-
+                ws.connect();
             }
             else {
                 out.print(SET_TEXT_COLOR_RED);
@@ -223,7 +248,13 @@ public class Client {
     }
 
     public  void observeGame(String...params) {
-
+        if(params.length >= 1) {
+            ws.connect();
+            game = new Gameplay();
+        } else {
+            out.print(SET_TEXT_COLOR_RED);
+            out.print("Missing information");
+        }
     }
 
     public void redraw() {
@@ -231,12 +262,7 @@ public class Client {
     }
 
     public void leave() {
-        try {
-
-
-        } catch (Exception e) {
-
-        }
+        ws.leave();
     }
 
     public void resign() {
@@ -247,10 +273,10 @@ public class Client {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         if(input.equals("Y")) {
-
+            ws.resign();
         }
         else if(input.equals("N")) {
-
+            out.print("You did not forfeit the game");
         }
         else {
             out.print(SET_TEXT_COLOR_RED);
@@ -280,7 +306,10 @@ public class Client {
             int endCol = Integer.parseInt(params[3]);
             try {
                 String user = auths.getUser(authToken);
-                game.makeMove(startRow, startCol, endRow, endCol, user);
+                ChessPosition startPosition = new ChessPosition(startRow, startCol);
+                ChessPosition endPosition = new ChessPosition(endRow, endCol);
+                ChessMove = new ChessMove(startPosition,endPosition,)
+                ws.makeMove();
             } catch (Exception e) {
                 out.print(SET_TEXT_COLOR_RED);
                 out.print("Invalid");
@@ -364,6 +393,24 @@ public class Client {
         out.print("resign");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- forfeit");
+        out.println();
+        out.print(SET_TEXT_COLOR_BLUE);
+        out.print("leave");
+        out.print(SET_TEXT_COLOR_MAGENTA);
+        out.print("- leave the game");
+        out.println();
+    }
+
+    public void obsHelp() {
+        out.print(SET_TEXT_COLOR_BLUE);
+        out.print("redraw");
+        out.print(SET_TEXT_COLOR_MAGENTA);
+        out.print("- redraws chess board");
+        out.println();
+        out.print(SET_TEXT_COLOR_BLUE);
+        out.print("moves <ROW,COLUMN>");
+        out.print(SET_TEXT_COLOR_MAGENTA);
+        out.print("- highlights legal moves");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
         out.print("leave");

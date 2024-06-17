@@ -1,5 +1,7 @@
 package ui;
 
+import chess.ChessMove;
+
 import javax.websocket.*;
 import java.net.URI;
 import java.util.Scanner;
@@ -33,6 +35,21 @@ public class WsClient extends Endpoint {
         this.session.getBasicRemote().sendText(message);
     }
 
+    public void connect(Session session, int id) {
+
+    }
+
+    public void makeMove(Session session, int id, ChessMove move) {
+
+    }
+
+    public void leave(Session session, int id) {
+
+    }
+
+    public void resign(Session session, int id) {
+
+    }
 
     @Override
     public void onOpen(Session session, EndpointConfig endpointConfig) {
