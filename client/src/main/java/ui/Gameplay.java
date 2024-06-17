@@ -36,26 +36,16 @@ public class Gameplay {
         }
     }
 
-//    public static void startGame(String color, int id) {
-//        try{
-//            started = true;
-//            gameData = gameDAO.getGame(id);
-//            game = gameData.getGame();
-//            drawBoard(color, null);
-//        } catch(Exception e) {
-//            out.print(SET_TEXT_COLOR_RED);
-//            out.print("Invalid game ID");
-//        }
-//    }
-//
-//    public static void leaveGame(String user) {
-//        if(Objects.equals(gameData.getWhiteUsername(), user)) {
-//            gameData.setWhiteUsername(null);
-//        }
-//        else if(Objects.equals(gameData.getBlackUsername(), user)) {
-//            gameData.setBlackUsername(null);
-//        }
-//    }
+    public Gameplay(int id)  {
+       try {
+           gameData = gameDAO.getGame(id);
+           game = gameData.getGame();
+       } catch (Exception e) {
+           out.print(SET_TEXT_COLOR_RED);
+           out.print("Error");
+       }
+    }
+
 
     public static void drawBoard(String team, Collection<ChessMove> moves) {
         if(Objects.equals(team, "WHITE")){

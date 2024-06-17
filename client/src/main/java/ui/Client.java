@@ -43,6 +43,12 @@ public class Client {
     public Client() {
         server = new ServerFacade(8080);
         url = server.getServerUrl();
+        try {
+            ws = new WsClient();
+            auths = new SqlAuthDAO();
+        } catch (Exception e ) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
@@ -236,8 +242,9 @@ public class Client {
             BlankResponse res = server.joinGame(authToken, team, gameId);
             if(res == null) {
                 inGame = true;
-                game = new Gameplay();
+                game = new Gameplay(gameId);
                 ws.connect(authToken,gameId);
+                game.drawBoard(team,null);
             }
             else {
                 out.print(SET_TEXT_COLOR_RED);
@@ -255,7 +262,7 @@ public class Client {
         if(params.length >= 1) {
             int gameId = list[Integer.parseInt(params[1])-1].getGameID();
             ws.connect(authToken,gameId);
-            game = new Gameplay();
+            game = new Gameplay(gameId);
         } else {
             out.print(SET_TEXT_COLOR_RED);
             out.print("Missing information");
@@ -390,22 +397,22 @@ public class Client {
 
     public void gameHelp() {
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("redraw");
+        out.print("redraw ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- redraws chess board");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("move <Start Row, Start Column, End Row, End Column>");
+        out.print("move <Start Row, Start Column, End Row, End Column> ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- make a move");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("moves <ROW,COLUMN>");
+        out.print("moves <ROW,COLUMN> ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- highlights legal moves");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("resign");
+        out.print("resign ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- forfeit");
         out.println();
@@ -418,17 +425,17 @@ public class Client {
 
     public void obsHelp() {
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("redraw");
+        out.print("redraw ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- redraws chess board");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("moves <ROW,COLUMN>");
+        out.print("moves <ROW,COLUMN> ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- highlights legal moves");
         out.println();
         out.print(SET_TEXT_COLOR_BLUE);
-        out.print("leave");
+        out.print("leave ");
         out.print(SET_TEXT_COLOR_MAGENTA);
         out.print("- leave the game");
         out.println();
