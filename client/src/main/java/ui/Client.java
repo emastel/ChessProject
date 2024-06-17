@@ -1,6 +1,7 @@
 package ui;
 
 import chess.ChessMove;
+import chess.ChessPiece;
 import chess.ChessPosition;
 import dataaccess.SqlAuthDAO;
 import exception.ResponseException;
@@ -14,6 +15,7 @@ import reqrep.RegisterLoginResponse;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static ui.EscapeSequences.*;
@@ -266,22 +268,8 @@ public class Client {
     }
 
     public void resign() {
-        out.print(SET_TEXT_COLOR_YELLOW);
-        out.print("Are you sure you want to forfeit the game?");
-        out.println();
-        out.println("Y/N");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        if(input.equals("Y")) {
-            ws.resign();
-        }
-        else if(input.equals("N")) {
-            out.print("You did not forfeit the game");
-        }
-        else {
-            out.print(SET_TEXT_COLOR_RED);
-            out.print("Invalid response");
-        }
+        ws.resign();
+
     }
 
     public void legalMoves(String...params) {
@@ -299,22 +287,47 @@ public class Client {
     }
 
     public void makeMove(String...params) {
-        if(params.length >= 1) {
-            int startRow = Integer.parseInt(params[0]);
-            int startCol = Integer.parseInt(params[1]);
-            int endRow = Integer.parseInt(params[2]);
-            int endCol = Integer.parseInt(params[3]);
-            try {
-                String user = auths.getUser(authToken);
-                ChessPosition startPosition = new ChessPosition(startRow, startCol);
-                ChessPosition endPosition = new ChessPosition(endRow, endCol);
-                ChessMove = new ChessMove(startPosition,endPosition,)
-                ws.makeMove();
-            } catch (Exception e) {
-                out.print(SET_TEXT_COLOR_RED);
-                out.print("Invalid");
+        int startRow = Integer.parseInt(params[0]);
+        int startCol = Integer.parseInt(params[1]);
+        int endRow = Integer.parseInt(params[2]);
+        int endCol = Integer.parseInt(params[3]);
+        ChessMove move;
+        String user = auths.getUser(authToken);
+        ChessPosition startPosition = new ChessPosition(startRow, startCol);
+        ChessPosition endPosition = new ChessPosition(endRow, endCol);
+        String piece = game.getPiece(startPosition);
+        if (piece != null) {
+            if (piece.equals("whitePawn") || piece.equals("blackPawn")) {
+                if(endRow == 8 || endRow == 1) {
+                    out.print(SET_TEXT_COLOR_YELLOW);
+                    out.print("What piece would you like to promote it to?");
+                    out.println();
+                    Scanner scanner = new Scanner(System.in);
+                    String input = scanner.nextLine();
+                    if (Objects.equals(input, "bishop")) {
+                        move = new ChessMove(startPosition,endPosition, ChessPiece.PieceType.BISHOP);
+                    }
+                    else if (Objects.equals(input, "knight")) {
+                        move = new ChessMove(startPosition,endPosition, ChessPiece.PieceType.KNIGHT);
+                    }
+                    else if (Objects.equals(input, "rook")) {
+                        move = new ChessMove(startPosition,endPosition, ChessPiece.PieceType.ROOK);
+                    }
+                    else if (Objects.equals(input, "queen")) {
+                        move = new ChessMove(startPosition,endPosition, ChessPiece.PieceType.QUEEN);
+                    }
+                    else {
+                        out.print(SET_TEXT_COLOR_RED);
+                        out.print("Invalid input");
+                    }
+                }
+            }
+            else {
+                move = new ChessMove(startPosition,endPosition, null);
             }
         }
+        ws.makeMove();
+        game.drawBoard(team,null);
     }
 
     private  void printHelpQuit(PrintStream out) {

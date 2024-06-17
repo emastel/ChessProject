@@ -10,6 +10,7 @@ import model.GameData;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import websocket.commands.MakeMoveCommand;
 import websocket.commands.UserGameCommand;
 import websocket.messages.ErrorMessage;
 import websocket.messages.LoadGameMessage;
@@ -34,13 +35,13 @@ public class WsHandler {
     }
 
     @OnWebSocketMessage
-    public void onMessage(Session session, String message, int id, ChessMove move, String auth) throws Exception {
+    public void onMessage(Session session, String message) throws Exception {
         UserGameCommand command = new Gson().fromJson(message, UserGameCommand.class);
         switch (command.getCommandType()) {
-            case CONNECT -> connect(session, id, auth);
-            case MAKE_MOVE -> makeMove(session, id, move);
-            case LEAVE -> leave(session, id, auth);
-            case RESIGN -> resign(session, id, auth);
+            case CONNECT -> connect(session, command.getGameID(), command.getAuthString());
+            case MAKE_MOVE -> makeMove(session, message);
+            case LEAVE -> leave(session, command.getGameID(), command.getAuthString());
+            case RESIGN -> resign(session, command.getGameID(), command.getAuthString());
         }
     }
 
@@ -64,7 +65,7 @@ public class WsHandler {
 
     private void sendOthers(Session thisSession, String message, int id) throws Exception {
         List<Session> sessions = games.get(id);
-        if (sessions == null) {
+        if (sessions != null) {
             for (Session session : sessions) {
                 if(session != thisSession) {
                     session.getRemote().sendString(message);
@@ -95,27 +96,41 @@ public class WsHandler {
 
 
     private void connect(Session session, int id, String auth) throws Exception {
-        if (!games.containsKey(id)) {
-            List<Session> sessions = new ArrayList<>();
-            sessions.add(session);
-            games.put(id, sessions);
+        List<Session> sessions = new ArrayList<>();
+        if(authDAO.getUser(auth) == null) {
+            sendError(session, "Invalid authToken");
+        }
+        else if (!games.containsKey(id)) {
+            if(gameDAO.getGame(id) == null) {
+                sendError(session, "Invalid id");
+            }
+            else
+            {
+                sessions.add(session);
+                games.put(id, sessions);
+            }
         }
         else {
-            List<Session> sessions = games.get(id);
+            sessions = games.get(id);
             sessions.add(session);
             games.put(id, sessions);
         }
-        try {
-            String user = authDAO.getUser(auth);
-            sendLoadGame(session,id);
-            sendNotifOthers(session, id, user + " connected to game" + id);
-        } catch (Exception e) {
-            sendError(session, "Failed to connect");
+        if(!sessions.isEmpty()) {
+            try {
+                String user = authDAO.getUser(auth);
+                sendLoadGame(session,id);
+                sendNotifOthers(session, id, user + " connected to game " + id);
+            } catch (Exception e) {
+                sendError(session, "Failed to connect");
+            }
         }
     }
 
-    private void makeMove(Session session, int id, ChessMove move) throws Exception {
+    private void makeMove(Session session, String message) throws Exception {
         try {
+            MakeMoveCommand command = new Gson().fromJson(message, MakeMoveCommand.class);
+            int id = command.getGameID();
+            ChessMove move = command.getMove();
             GameData data = gameDAO.getGame(id);
             ChessGame game = data.getGame();
             game.makeMove(move);
@@ -138,8 +153,8 @@ public class WsHandler {
                 sendNotifAll(session, id, "Game is in stalemate");
             }
             LoadGameMessage loadGameMessage = new LoadGameMessage(data);
-            String message = new Gson().toJson(loadGameMessage);
-            sendAll(message,id);
+            String msg = new Gson().toJson(loadGameMessage);
+            sendAll(msg,id);
         } catch (Exception e) {
             sendError(session, "Failed to make move");
         }

@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Websocket rewritten">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/WsHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/messages/LoadGameMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/messages/NotificationMessage.java" afterDir="false" />
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="Websocket Client written">
+      <change afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/MakeMoveCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Gameplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/WSClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/WsClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/server/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/WSServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/model/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/WsClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/WsClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/shared/model/GameData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shared/model/GameData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/handlers/WsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/handlers/WsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/shared.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/ConnectCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/UserGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/commands/UserGameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/websocket/messages/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/websocket/messages/ErrorMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +166,10 @@
     "JUnit.ValidMovesTests.moveIntoCheck.executor": "Debug",
     "JUnit.ValidMovesTests.noPutSelfInDanger.executor": "Debug",
     "JUnit.ValidMovesTests.rookPinnedToKing.executor": "Debug",
+    "JUnit.WebSocketTests.connectBadGameID.executor": "Debug",
+    "JUnit.WebSocketTests.connectGood.executor": "Debug",
     "JUnit.WebSocketTests.executor": "Debug",
+    "JUnit.WebSocketTests.validMove.executor": "Debug",
     "JUnit.dataaccess in server.executor": "Debug",
     "JUnit.passoff in shared.executor": "Debug",
     "JUnit.passoff.chess.1-chess-game.passoff.chess.extracredit in shared.executor": "Debug",
@@ -207,20 +210,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.Client" />
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.WebSocketTests.validMove">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="server" />
@@ -230,38 +220,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerFacadeTests.testClient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="client" />
-      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="testClient" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerFacadeTests.testJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="client" />
-      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="testJoinGame" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -281,6 +239,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebSocketTests.connectBadGameID" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.WebSocketTests" />
+      <option name="METHOD_NAME" value="connectBadGameID" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.connectGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.WebSocketTests" />
+      <option name="METHOD_NAME" value="connectGood" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.validMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.WebSocketTests" />
+      <option name="METHOD_NAME" value="validMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Chess Project" />
       <method v="2">
@@ -296,11 +302,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WebSocketTests.validMove" />
         <item itemvalue="JUnit.WebSocketTests" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.WebSocketTests.connectBadGameID" />
+        <item itemvalue="JUnit.WebSocketTests.connectGood" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.ServerFacadeTests.testJoinGame" />
-        <item itemvalue="JUnit.ServerFacadeTests.testClient" />
       </list>
     </recent_temporary>
   </component>
@@ -329,23 +335,7 @@
       <workItem from="1717363234858" duration="3568000" />
       <workItem from="1717429358412" duration="86000" />
       <workItem from="1717429501953" duration="35196000" />
-      <workItem from="1717541035000" duration="104392000" />
-    </task>
-    <task id="LOCAL-00030" summary="GameData changed into a class">
-      <option name="closed" value="true" />
-      <created>1716588525913</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1716588525914</updated>
-    </task>
-    <task id="LOCAL-00031" summary="All tests except list games passing">
-      <option name="closed" value="true" />
-      <created>1716910325830</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1716910325830</updated>
+      <workItem from="1717541035000" duration="117238000" />
     </task>
     <task id="LOCAL-00032" summary="All tests passing">
       <option name="closed" value="true" />
@@ -723,7 +713,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718299611669</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Websocket Handler written">
+      <option name="closed" value="true" />
+      <created>1718599230990</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1718599230992</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Websocket Client written">
+      <option name="closed" value="true" />
+      <created>1718643049105</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1718643049105</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,8 +747,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Database Tests pass" />
-    <MESSAGE value="Cleanup" />
     <MESSAGE value="Test file fixing" />
     <MESSAGE value="Test file" />
     <MESSAGE value="Test file updates" />
@@ -766,7 +770,9 @@
     <MESSAGE value="Legal moves written" />
     <MESSAGE value="Make moves written" />
     <MESSAGE value="Websocket rewritten" />
-    <option name="LAST_COMMIT_MESSAGE" value="Websocket rewritten" />
+    <MESSAGE value="Websocket Handler written" />
+    <MESSAGE value="Websocket Client written" />
+    <option name="LAST_COMMIT_MESSAGE" value="Websocket Client written" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

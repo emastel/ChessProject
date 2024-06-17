@@ -1,8 +1,11 @@
 package ui;
 
 import chess.ChessMove;
+import com.google.gson.Gson;
+import websocket.commands.UserGameCommand;
 
 import javax.websocket.*;
+import java.io.IOException;
 import java.net.URI;
 import java.util.Scanner;
 
@@ -35,20 +38,26 @@ public class WsClient extends Endpoint {
         this.session.getBasicRemote().sendText(message);
     }
 
-    public void connect(Session session, int id) {
+    public void connect(String authToken, int id) throws IOException {
+        UserGameCommand connect = new UserGameCommand(UserGameCommand.CommandType.CONNECT,authToken,id);
+        String message =  new Gson().toJson(connect);
+        this.session.getBasicRemote().sendText(message);
+    }
+
+    public void makeMove(String authToken, int id, ChessMove move) {
 
     }
 
-    public void makeMove(Session session, int id, ChessMove move) {
-
+    public void leave(String authToken, int id) throws IOException {
+        UserGameCommand leave = new UserGameCommand(UserGameCommand.CommandType.LEAVE,authToken,id);
+        String message =  new Gson().toJson(leave);
+        this.session.getBasicRemote().sendText(message);
     }
 
-    public void leave(Session session, int id) {
-
-    }
-
-    public void resign(Session session, int id) {
-
+    public void resign(String authToken, int id) throws IOException {
+        UserGameCommand resign = new UserGameCommand(UserGameCommand.CommandType.RESIGN,authToken,id);
+        String message =  new Gson().toJson(resign);
+        this.session.getBasicRemote().sendText(message);
     }
 
     @Override

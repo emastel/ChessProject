@@ -142,6 +142,10 @@ public class Gameplay {
         }
     }
 
+    public String getPiece(ChessPosition position) {
+        return pieces.get(position);
+    }
+
 
     private static void printSquare(ChessPosition position, Collection<ChessMove> moves, String color) {
         if(moves != null) {
