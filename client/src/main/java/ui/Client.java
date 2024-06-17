@@ -208,7 +208,7 @@ public class Client {
             if(res == null) {
                 inGame = true;
                 game = new Gameplay();
-                game.startGame(team,gameId);
+
             }
             else {
                 out.print(SET_TEXT_COLOR_RED);
@@ -232,13 +232,10 @@ public class Client {
 
     public void leave() {
         try {
-            game.leaveGame(auths.getUser(authToken));
-            inGame = false;
-            out.print(SET_TEXT_COLOR_GREEN);
-            out.print("You left the game");
+
+
         } catch (Exception e) {
-            out.print(SET_TEXT_COLOR_RED);
-            out.print("Invalid");
+
         }
     }
 

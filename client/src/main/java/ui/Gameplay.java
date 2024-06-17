@@ -36,41 +36,26 @@ public class Gameplay {
         }
     }
 
-//    public static void main() {
-//        var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-//        color = Player.WHITE;
-//        out.print(ERASE_SCREEN);
-//        drawHeaders(out);
-//        drawChessBoard(out);
-//        drawHeaders(out);
-//        out.print(SET_BG_COLOR_LIGHT_GREY);
-//        out.print(SET_TEXT_COLOR_BLACK);
-//        color = Player.BLACK;
-//        drawLine(out);
-//        drawHeaders(out);
-//        drawChessBoard(out);
-//        drawHeaders(out);
+//    public static void startGame(String color, int id) {
+//        try{
+//            started = true;
+//            gameData = gameDAO.getGame(id);
+//            game = gameData.getGame();
+//            drawBoard(color, null);
+//        } catch(Exception e) {
+//            out.print(SET_TEXT_COLOR_RED);
+//            out.print("Invalid game ID");
+//        }
 //    }
-
-    public static void startGame(String color, int id) {
-        try{
-            started = true;
-            gameData = gameDAO.getGame(id);
-            game = gameData.getGame();
-            drawBoard(color, null);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void leaveGame(String user) {
-        if(Objects.equals(gameData.getWhiteUsername(), user)) {
-            gameData.setWhiteUsername(null);
-        }
-        else if(Objects.equals(gameData.getBlackUsername(), user)) {
-            gameData.setBlackUsername(null);
-        }
-    }
+//
+//    public static void leaveGame(String user) {
+//        if(Objects.equals(gameData.getWhiteUsername(), user)) {
+//            gameData.setWhiteUsername(null);
+//        }
+//        else if(Objects.equals(gameData.getBlackUsername(), user)) {
+//            gameData.setBlackUsername(null);
+//        }
+//    }
 
     public static void drawBoard(String team, Collection<ChessMove> moves) {
         if(Objects.equals(team, "WHITE")){
@@ -157,49 +142,6 @@ public class Gameplay {
         }
     }
 
-    public void makeMove(int startRow, int startCol, int endRow, int endCol, String user) {
-        ChessPosition startPosition = new ChessPosition(startRow, startCol);
-        ChessPosition endPosition = new ChessPosition(endRow, endCol);
-        if(user.equals(gameData.getWhiteUsername())) {
-            if(pieces.containsKey(startPosition)) {
-                if(pieces.get(startPosition).equals("whiteRook")||pieces.get(startPosition).equals("whiteBishop")
-                        ||pieces.get(startPosition).equals("whiteKnight")||pieces.get(startPosition).equals("whiteQueen")
-                        ||pieces.get(startPosition).equals("whiteKing")||pieces.get(startPosition).equals("whitePawn")) {
-                    ChessMove move = new ChessMove(startPosition,endPosition,null);
-                    if(game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK))
-                    {
-                        out.print(SET_TEXT_COLOR_RED);
-                        out.print("In Stalemate");
-                    }
-                    else if (game.isInCheckmate(ChessGame.TeamColor.WHITE) || game.isInCheckmate(ChessGame.TeamColor.BLACK)) {
-                        out.print(SET_TEXT_COLOR_RED);
-                        out.print("In Checkmate");
-                    }
-                    else {
-                        try {
-                            game.makeMove(move);
-                            pieces.put(endPosition,pieces.get(startPosition));
-                            pieces.remove(startPosition);
-                            out.print(SET_BG_COLOR_GREEN);
-                            out.print("Made move");
-                        } catch (Exception e) {
-                            out.print(SET_TEXT_COLOR_RED);
-                            out.print("Invalid move");
-                        }
-                    }
-                }
-                else {
-                    out.print(SET_TEXT_COLOR_RED);
-                    out.print("Not your piece");
-                }
-            }
-            else {
-                out.print(SET_TEXT_COLOR_RED);
-                out.print("No piece there");
-            }
-
-        }
-    }
 
     private static void printSquare(ChessPosition position, Collection<ChessMove> moves, String color) {
         if(moves != null) {

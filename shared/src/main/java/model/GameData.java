@@ -10,6 +10,7 @@ public class GameData {
     private String blackUsername;
     private String gameName;
     private ChessGame game;
+    private boolean GameOver = false;
 
     public static Gson gson = new Gson();
 
@@ -21,6 +22,14 @@ public class GameData {
         this.blackUsername = blackUsername;
         this.game = game;
         this.gameName = gameName;
+    }
+
+    public boolean isGameOver() {
+        return GameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        GameOver = gameOver;
     }
 
     public int getGameID() {
@@ -55,4 +64,7 @@ public class GameData {
         return this.game;
     }
 
+    public void setGame(ChessGame game) {
+        this.game = game;
+    }
 }
